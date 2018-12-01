@@ -23,8 +23,7 @@
 				<role>developer</role>
 			</roles>
 			<timezone>Africa/ALGERIA</timezone>
-			<properties>
-			</properties>
+
 		</developer>
 		<developer>
 			<id>youcefidirene</id>
@@ -37,8 +36,7 @@
 				<role>developer</role>
 			</roles>
 			<timezone>Africa/ALGERIA</timezone>
-			<properties>
-			</properties>
+
 		</developer>
 	</developers>
 

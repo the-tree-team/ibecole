@@ -23,3 +23,6 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### ANGULAR ###
+/src/main/webapp/ui-angular/package-lock.json
