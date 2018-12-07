@@ -1,7 +1,7 @@
 package com.ibecole.ibecole.entity.business;
 
 import com.ibecole.ibecole.commun.enumerate.Sexe;
-import com.ibecole.ibecole.commun.enumerate.StaticUtil;
+import com.ibecole.ibecole.commun.StaticUtil;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

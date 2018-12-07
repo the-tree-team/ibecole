@@ -1,10 +1,11 @@
 package com.ibecole.ibecole.entity.business;
 
-import com.ibecole.ibecole.commun.enumerate.StaticUtil;
+import com.ibecole.ibecole.commun.StaticUtil;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("Eleve")
@@ -22,4 +23,16 @@ public class Eleve extends Personne implements Serializable {
     )
     @ManyToOne
     private Parent parent;
+
+    @OneToMany(mappedBy = "eleve")
+    private List<Sanction> sanctionList;
+
+
+    @OneToMany(
+            mappedBy = "eleve",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<EleveAppartenanceGroupe> eleveAppartenanceGroupeList;
+
 }

@@ -1,6 +1,5 @@
 package com.ibecole.ibecole.entity.business;
 
-import com.ibecole.ibecole.commun.enumerate.StaticUtil;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,5 +11,5 @@ public class Parent extends Personne implements Serializable {
 
 
     @OneToMany(mappedBy = "parent")
-    private List<Eleve> enfants;
+    private List<Eleve> enfantList;
 }

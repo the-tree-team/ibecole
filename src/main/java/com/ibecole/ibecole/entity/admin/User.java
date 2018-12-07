@@ -19,6 +19,6 @@ public class User implements Serializable{
     private String username;
 
     @NotNull
-    @Column(name = "password", nullable = false, unique = true, max = 30)
+    @Column(name = "password", nullable = false, unique = true, length = 30)
     private String password;
 }
