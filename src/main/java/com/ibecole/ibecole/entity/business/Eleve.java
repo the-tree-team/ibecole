@@ -6,9 +6,19 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @DiscriminatorValue("Eleve")
+@XmlRootElement
+@Data
+@NoArgsConstructor
+@ToString(of = "id", doNotUseGetters = true)
+@EqualsAndHashCode(of = "id", doNotUseGetters = true)
 public class Eleve extends Personne implements Serializable {
 
     @NotNull
@@ -35,4 +45,7 @@ public class Eleve extends Personne implements Serializable {
     )
     private List<EleveAppartenanceGroupe> eleveAppartenanceGroupeList;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEleve", orphanRemoval = true)
+    private List<Absence> absences;
+    
 }

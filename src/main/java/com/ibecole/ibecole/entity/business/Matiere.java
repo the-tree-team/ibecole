@@ -39,4 +39,7 @@ public class Matiere implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMatiere", orphanRemoval = true)
     private List<Contient> inFormation;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMatiere", orphanRemoval = true)
+    private List<Enseigner> enseigner;
 }

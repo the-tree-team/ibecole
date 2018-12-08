@@ -7,9 +7,19 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(schema = StaticUtil.SCH_BUSINESS, name = "periode")
+@XmlRootElement
+@Data
+@NoArgsConstructor
+@ToString(of = "id", doNotUseGetters = true)
+@EqualsAndHashCode(of = "id", doNotUseGetters = true)
 public class Periode implements Serializable {
 
     @Id
