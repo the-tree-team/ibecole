@@ -1,0 +1,44 @@
+package com.ibecole.ibecole.entity.business;
+
+import com.ibecole.ibecole.commun.StaticUtil;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
+
+@Entity
+@Table(schema = StaticUtil.SCH_BUSINESS, name = "periode")
+public class Periode implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotNull
+    @Column(name = "libelle", length = 10, nullable = false)
+    private String libelle;
+
+    @NotNull
+    @Column(name = "date_debut")
+    private LocalDate dateDebut;
+
+    @NotNull
+    @Column(name = "date_fin")
+    private LocalDate dateFin;
+
+
+
+    @JoinTable(
+            schema = StaticUtil.SCH_BUSINESS,
+            name = "join_periode_anneescolaire",
+            joinColumns = @JoinColumn(name = "annee_scolaire_fk"),
+            inverseJoinColumns = @JoinColumn(name = "periode_fk")
+    )
+    @ManyToOne
+    private AnneeScolaire anneeScolaire;
+
+    @ManyToMany(mappedBy = "periodeList")
+    private List<Groupe> groupeList;
+}
