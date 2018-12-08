@@ -6,39 +6,37 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
-@Table(schema = StaticUtil.SCH_BUSINESS, name = "periode")
-public class Periode implements Serializable {
+@Table(schema = StaticUtil.SCH_BUSINESS, name = "matiere")
+@XmlRootElement
+@Data
+@ToString(of = "id", doNotUseGetters = true)
+@EqualsAndHashCode(of = "id", doNotUseGetters = true)
+public class Matiere implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
+    @Column(name = "code", length = 5, nullable = false)
+    private String code;
+
+    @NotNull
     @Column(name = "libelle", length = 10, nullable = false)
     private String libelle;
 
     @NotNull
-    @Column(name = "date_debut")
-    private LocalDate dateDebut;
+    @Column(name = "couleur", length = 10, nullable = false)
+    private String couleur;
 
-    @NotNull
-    @Column(name = "date_fin")
-    private LocalDate dateFin;
-
-
-
-    @JoinTable(
-            schema = StaticUtil.SCH_BUSINESS,
-            name = "join_periode_anneescolaire",
-            joinColumns = @JoinColumn(name = "annee_scolaire_fk"),
-            inverseJoinColumns = @JoinColumn(name = "periode_fk")
-    )
-    @ManyToOne
-    private AnneeScolaire anneeScolaire;
-
-    @ManyToMany(mappedBy = "periodeList")
-    private List<Groupe> groupeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMatiere", orphanRemoval = true)
+    private List<Contient> inFormation;
 }

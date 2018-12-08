@@ -1,52 +1,50 @@
 package com.ibecole.ibecole.entity.business;
 
-import com.ibecole.ibecole.commun.enumerate.Sexe;
 import com.ibecole.ibecole.commun.StaticUtil;
+import com.ibecole.ibecole.commun.enumerate.Sexe;
+import com.ibecole.ibecole.entity.business.TypeFormation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING, length = 15)
-@Table(schema = StaticUtil.SCH_BUSINESS, name = "personne")
-public abstract class Personne  implements Serializable{
+@Table(schema = StaticUtil.SCH_BUSINESS, name = "formation")
+@XmlRootElement
+@Data
+@ToString(of = "id", doNotUseGetters = true)
+@EqualsAndHashCode(of = "id", doNotUseGetters = true) 
+public class Formation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
-    @Column(name = "nom", length = 30, nullable = false)
-    private String nom;
+    @Column(name = "intitulee", length = 30, nullable = false)
+    private String intitulee;
 
-    @NotNull
-    @Column(name = "prenom", length = 30, nullable = false)
-    private String prenom;
+    private boolean acceleree;
 
-    @NotNull
-    @Column(name = "sexe", length = 20, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Sexe sexe;
+    @Column(name = "prix")
+    private BigDecimal prix;
 
-    @Column(name = "date_naissance")
-    private LocalDate dateNaissance;
+    @Column(name = "total_heur")
+    private Integer totalHeur;
 
-    @Column(name = "lieu_naissance", length = 50)
-    private String lieuNaissance;
+    @ManyToOne
+    @JoinColumn(name = "type_formation")
+    private TypeFormation sexe;
 
-    @NotNull
-    @Column(name = "adresse", length = 150, nullable = false)
-    private String adresse;
-
-    @NotNull
-    @Column(name = "telephone", length = 15, nullable = false)
-    private String telephone;
-
-    @Column(name = "email", length = 30)
-    private String email;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMatiere")
+    private List<Contient> inFormation;
 
     private boolean active;
 }

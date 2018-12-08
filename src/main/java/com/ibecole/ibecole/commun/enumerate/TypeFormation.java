@@ -1,22 +1,18 @@
 package com.ibecole.ibecole.commun.enumerate;
 
-public enum Sexe {
+public enum TypeFormation {
 
-    HOMME('H', "Homme"),
-    FEMME('F', "Femme");
+    TYPEA(  "Typea"),
+    TYPEB(  "typeb");
 
 
     private char code;
     private String libelle;
 
-    private Sexe(char code, String libelle) {
-        this.code = code;
+    private TypeFormation(  String libelle) {
         this.libelle = libelle;
     }
 
-    public char getCode() {
-        return code;
-    }
 
     public String getLibelle() {
         return libelle;

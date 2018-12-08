@@ -7,37 +7,37 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
-@Table(schema = StaticUtil.SCH_BUSINESS, name = "sanction")
-public class Sanction implements Serializable {
+@Table(schema = StaticUtil.SCH_BUSINESS, name = "niveau")
+@XmlRootElement
+@Data
+@NoArgsConstructor
+@ToString(of = "id", doNotUseGetters = true)
+@EqualsAndHashCode(of = "id", doNotUseGetters = true)
+public class Niveau implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
-    @Column(name = "motif", length = 250)
-    private String motif;
+    @Column(name = "code", length = 250)
+    private String code;
 
-    @Column(name = "commentaire", length = 250)
-    private String commentaire;
+    @Column(name = "libelle", length = 250)
+    private String libelle;
 
-    @Column(name = "date")
-    private LocalDate date;
+    @OneToMany(mappedBy = "niveau")
+    private List<Groupe> groupes;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNiveau")
+    private List<NiveauMatiere> niveauMatiere;
 
-    @NotNull
-    @Column(name = "type", length = 50, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TypeSanction type;
-
-    @JoinTable(
-            schema = StaticUtil.SCH_BUSINESS,
-            name = "join_eleve_sanction",
-            joinColumns = @JoinColumn(name = "eleve_fk"),
-            inverseJoinColumns = @JoinColumn(name = "sanction_fk")
-    )
-    @ManyToOne
-    private Eleve eleve;
 }
