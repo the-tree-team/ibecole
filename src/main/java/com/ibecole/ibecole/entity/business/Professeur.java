@@ -17,9 +17,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Entity
-@DiscriminatorValue("Professeur")
-@Getter
-@Setter
+@DiscriminatorValue("Professeur") 
 @XmlRootElement
 @Data
 @ToString(of = "id", doNotUseGetters = true)

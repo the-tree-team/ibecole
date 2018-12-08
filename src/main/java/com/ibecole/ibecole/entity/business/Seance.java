@@ -73,7 +73,7 @@ public class Seance implements Serializable {
     private List<Absence> absences;
     
     @OneToMany(mappedBy = "seance")
-    private List<SeanceSpecial> seanceSpecials;
+    private List<SeanceSpeciale> seanceSpecials;
 
     public Seance(Integer id) {
         this.id = id;

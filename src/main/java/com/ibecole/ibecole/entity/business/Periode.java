@@ -16,9 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(schema = StaticUtil.SCH_BUSINESS, name = "periode")
-@Getter
-@Setter
+@Table(schema = StaticUtil.SCH_BUSINESS, name = "periode") 
 @XmlRootElement
 @Data
 @NoArgsConstructor

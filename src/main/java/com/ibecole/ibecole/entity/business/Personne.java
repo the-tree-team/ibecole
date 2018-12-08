@@ -23,9 +23,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString(of = "id", doNotUseGetters = true)
-@EqualsAndHashCode(of = "id", doNotUseGetters = true)
-@Getter
-@Setter
+@EqualsAndHashCode(of = "id", doNotUseGetters = true) 
 public abstract class Personne  implements Serializable{
 
     @Id

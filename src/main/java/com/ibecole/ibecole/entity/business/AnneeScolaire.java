@@ -9,11 +9,19 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
-@Table(schema = StaticUtil.SCH_BUSINESS, name = "anne_scolaire")
-@Getter
-@Setter
+@Table(schema = StaticUtil.SCH_BUSINESS, name = "annee_scolaire")
+@XmlRootElement
+@Data
+@NoArgsConstructor
+@ToString(of = "id", doNotUseGetters = true)
+@EqualsAndHashCode(of = "id", doNotUseGetters = true)
 public class AnneeScolaire implements Serializable {
 
     @Id

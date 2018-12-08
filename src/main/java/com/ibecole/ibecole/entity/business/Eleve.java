@@ -15,9 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@DiscriminatorValue("Eleve")
-@Getter
-@Setter
+@DiscriminatorValue("Eleve") 
 @XmlRootElement
 @Data
 @NoArgsConstructor

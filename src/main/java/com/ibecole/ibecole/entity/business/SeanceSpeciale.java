@@ -16,13 +16,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(schema = StaticUtil.SCH_BUSINESS, name = "seance_special")
+@Table(schema = StaticUtil.SCH_BUSINESS, name = "seance_speciale")
 @XmlRootElement
 @Data
 @NoArgsConstructor
 @ToString(of = "id", doNotUseGetters = true)
 @EqualsAndHashCode(of = "id", doNotUseGetters = true)
-public class SeanceSpecial implements Serializable {
+public class SeanceSpeciale implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
