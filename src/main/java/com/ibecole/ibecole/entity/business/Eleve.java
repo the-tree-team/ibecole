@@ -1,6 +1,8 @@
 package com.ibecole.ibecole.entity.business;
 
 import com.ibecole.ibecole.commun.StaticUtil;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("Eleve")
+@Getter
+@Setter
 public class Eleve extends Personne implements Serializable {
 
     @NotNull

@@ -2,6 +2,8 @@ package com.ibecole.ibecole.entity.business;
 
 import com.ibecole.ibecole.commun.StaticUtil;
 import com.ibecole.ibecole.commun.enumerate.TypeSanction;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(schema = StaticUtil.SCH_BUSINESS, name = "sanction")
+@Getter
+@Setter
 public class Sanction implements Serializable {
 
     @Id

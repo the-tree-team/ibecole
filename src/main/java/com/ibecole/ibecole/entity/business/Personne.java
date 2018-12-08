@@ -2,6 +2,8 @@ package com.ibecole.ibecole.entity.business;
 
 import com.ibecole.ibecole.commun.enumerate.Sexe;
 import com.ibecole.ibecole.commun.StaticUtil;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,6 +14,8 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING, length = 15)
 @Table(schema = StaticUtil.SCH_BUSINESS, name = "personne")
+@Getter
+@Setter
 public abstract class Personne  implements Serializable{
 
     @Id
@@ -47,6 +51,10 @@ public abstract class Personne  implements Serializable{
 
     @Column(name = "email", length = 30)
     private String email;
+
+    @Lob
+    @Column(nullable = true,length=100000)
+    private byte[] photo;
 
     private boolean active;
 }

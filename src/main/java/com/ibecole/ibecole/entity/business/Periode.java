@@ -1,6 +1,8 @@
 package com.ibecole.ibecole.entity.business;
 
 import com.ibecole.ibecole.commun.StaticUtil;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(schema = StaticUtil.SCH_BUSINESS, name = "periode")
+@Getter
+@Setter
 public class Periode implements Serializable {
 
     @Id
