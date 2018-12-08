@@ -9,11 +9,21 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING, length = 15)
 @Table(schema = StaticUtil.SCH_BUSINESS, name = "personne")
+@XmlRootElement
+@Data
+@NoArgsConstructor
+@ToString(of = "id", doNotUseGetters = true)
+@EqualsAndHashCode(of = "id", doNotUseGetters = true)
 @Getter
 @Setter
 public abstract class Personne  implements Serializable{

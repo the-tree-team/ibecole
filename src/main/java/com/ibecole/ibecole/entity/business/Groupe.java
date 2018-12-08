@@ -50,4 +50,7 @@ public class Groupe implements Serializable {
     )
     private List<EleveAppartenanceGroupe> eleveAppartenanceGroupeList;
 
+    @ManyToOne
+    private Niveau niveau ;
+    
 }
