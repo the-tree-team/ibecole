@@ -37,9 +37,9 @@ public class Eleve extends Personne implements Serializable {
     )
     @ManyToOne
     private Parent parent;
-/*
+
     @OneToMany(mappedBy = "eleve")
-    private List<Sanction> sanctionList;*/
+    private List<Sanction> sanctionList;
 
 
     @OneToMany(
