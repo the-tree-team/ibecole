@@ -37,9 +37,9 @@ public class Matiere implements Serializable {
     @Column(name = "couleur", length = 10, nullable = false)
     private String couleur;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMatiere", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "matiere", orphanRemoval = true)
     private List<Contient> inFormation;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMatiere", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "matiere", orphanRemoval = true)
     private List<Enseigner> enseigner;
 }

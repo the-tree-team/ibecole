@@ -33,6 +33,6 @@ public class Unitee implements Serializable {
     private String libelle;
 
     @OneToMany(mappedBy = "unitee")
-    private List<Contient> contients;
+    private List<Contient> contientList;
 
 }

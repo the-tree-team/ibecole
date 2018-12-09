@@ -31,7 +31,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(schema = StaticUtil.SCH_BUSINESS, name = "absence", uniqueConstraints
-        = @UniqueConstraint(columnNames = {"id_eleve", "id_seance"}))
+        = @UniqueConstraint(columnNames = {"eleve_fk", "seance_fk"}))
 @XmlRootElement
 @Data
 @ToString(of = "id", doNotUseGetters = true)
@@ -45,15 +45,15 @@ public class Absence implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "id_seance", referencedColumnName = "id")
+    @JoinColumn(name = "seance_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Seance idSeance;
+    private Seance seance;
 
-    @JoinColumn(name = "id_eleve", referencedColumnName = "id")
+    @JoinColumn(name = "eleve_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Eleve idEleve;
+    private Eleve eleve;
 
-    @JoinColumn(name = "id_unitee", referencedColumnName = "id")
+    @JoinColumn(name = "justificatif_fk", referencedColumnName = "id")
     @ManyToOne
     private Justificatif justificatif;
  

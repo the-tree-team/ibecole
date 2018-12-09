@@ -41,10 +41,13 @@ public class Formation implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "type_formation")
-    private TypeFormation sexe;
+    private TypeFormation typeFormation;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMatiere")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "matiere")
     private List<Contient> inFormation;
+
+    @OneToMany(mappedBy = "formation")
+    private List<Groupe> groupeList;
 
     private boolean active;
 }

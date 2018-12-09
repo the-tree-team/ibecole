@@ -60,5 +60,9 @@ public class Groupe implements Serializable {
 
     @ManyToOne
     private Niveau niveau ;
+
+
+    @ManyToOne
+    private Formation formation;
     
 }

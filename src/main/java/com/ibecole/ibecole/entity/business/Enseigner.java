@@ -32,7 +32,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(schema = StaticUtil.SCH_BUSINESS, name = "enseigner", uniqueConstraints
-        = @UniqueConstraint(columnNames = {"id_matiere", "id_professeur"}))
+        = @UniqueConstraint(columnNames = {"matiere_fk", "professeur_fk"}))
 @XmlRootElement
 @Data
 @NoArgsConstructor
@@ -47,13 +47,13 @@ public class Enseigner implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "id_matiere", referencedColumnName = "id")
+    @JoinColumn(name = "matiere_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Matiere idMatiere;
+    private Matiere matiere;
 
-    @JoinColumn(name = "id_professeur", referencedColumnName = "id")
+    @JoinColumn(name = "professeur_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Professeur idProfesseur;
+    private Professeur professeur;
 
   
 

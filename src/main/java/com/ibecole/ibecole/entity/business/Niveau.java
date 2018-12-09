@@ -35,7 +35,7 @@ public class Niveau implements Serializable {
     private String libelle;
 
     @OneToMany(mappedBy = "niveau")
-    private List<Groupe> groupes;
+    private List<Groupe> groupeList;
 
     @ManyToOne
     private Contient contient;

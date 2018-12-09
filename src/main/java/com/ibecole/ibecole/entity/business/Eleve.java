@@ -45,6 +45,13 @@ public class Eleve extends Personne implements Serializable {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    private List<Absence> absenceList;
+
+    @OneToMany(
+            mappedBy = "eleve",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<EleveAppartenanceGroupe> eleveAppartenanceGroupeList;
 
 }

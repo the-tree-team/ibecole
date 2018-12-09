@@ -40,14 +40,7 @@ public class Periode implements Serializable {
     @Column(name = "date_fin")
     private LocalDate dateFin;
 
-
-
-    @JoinTable(
-            schema = StaticUtil.SCH_BUSINESS,
-            name = "join_periode_anneescolaire",
-            joinColumns = @JoinColumn(name = "annee_scolaire_fk"),
-            inverseJoinColumns = @JoinColumn(name = "periode_fk")
-    )
+    @JoinColumn(name = "annee_scolaire_fk", referencedColumnName = "id")
     @ManyToOne
     private AnneeScolaire anneeScolaire;
 

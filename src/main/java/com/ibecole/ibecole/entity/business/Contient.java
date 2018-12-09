@@ -31,7 +31,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(schema = StaticUtil.SCH_BUSINESS, name = "formation_contient_matiere", uniqueConstraints
-        = @UniqueConstraint(columnNames = {"id_matiere", "id_formation"}))
+        = @UniqueConstraint(columnNames = {"matiere_fk", "formation_fk"}))
 @XmlRootElement
 @Data
 @ToString(of = "id", doNotUseGetters = true)
@@ -45,15 +45,15 @@ public class Contient implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "id_matiere", referencedColumnName = "id")
+    @JoinColumn(name = "matiere_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Matiere idMatiere;
+    private Matiere matiere;
 
-    @JoinColumn(name = "id_formation", referencedColumnName = "id")
+    @JoinColumn(name = "formation_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Formation idFormation;
+    private Formation formation;
 
-    @JoinColumn(name = "id_unitee", referencedColumnName = "id")
+    @JoinColumn(name = "unitee_fk", referencedColumnName = "id")
     @ManyToOne
     private Unitee unitee;
  

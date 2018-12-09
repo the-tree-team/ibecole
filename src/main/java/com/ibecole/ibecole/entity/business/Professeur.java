@@ -27,6 +27,6 @@ public class Professeur extends Personne implements Serializable {
     @Column(name = "date_recrutement")
     private LocalDate dateRecrutement;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfesseur", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "professeur", orphanRemoval = true)
     private List<Enseigner> enseigner;
 }

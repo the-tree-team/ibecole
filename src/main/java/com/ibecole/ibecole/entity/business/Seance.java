@@ -33,7 +33,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(schema = StaticUtil.SCH_BUSINESS, name = "seance", uniqueConstraints
-        = @UniqueConstraint(columnNames = {"id_groupe", "id_enseigner"}))
+        = @UniqueConstraint(columnNames = {"groupe_fk", "enseigner_fk"}))
 @XmlRootElement
 @Data
 @NoArgsConstructor
@@ -48,14 +48,6 @@ public class Seance implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "id_groupe", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Groupe idGroupe;
-
-    @JoinColumn(name = "id_enseigner", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Enseigner idEnseigner;
-
     @Column(name = "heur_debut")
     private LocalTime heurDebut;
 
@@ -65,15 +57,25 @@ public class Seance implements Serializable {
     private boolean supplementaire;
 
     private boolean supplementairePayee;
-    @JoinColumn(name = "id_classe", referencedColumnName = "id")
+
+
+    @JoinColumn(name = "groupe_fk", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Groupe groupe;
+
+    @JoinColumn(name = "enseigner_fk", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Enseigner enseigner;
+
+    @JoinColumn(name = "classe_fk", referencedColumnName = "id")
     @ManyToOne
     private Classe classe;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSeance", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seance", orphanRemoval = true)
     private List<Absence> absences;
     
     @OneToMany(mappedBy = "seance")
-    private List<SeanceSpeciale> seanceSpecials;
+    private List<SeanceSpeciale> seanceSpecialeList;
 
     public Seance(Integer id) {
         this.id = id;
