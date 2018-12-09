@@ -37,7 +37,6 @@ public class Niveau implements Serializable {
     @OneToMany(mappedBy = "niveau")
     private List<Groupe> groupes;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNiveau")
-    private List<NiveauMatiere> niveauMatiere;
-
+    @ManyToOne
+    private Contient contient;
 }
