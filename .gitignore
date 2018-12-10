@@ -23,7 +23,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-nb-configuration.xml
+*nb-configuration.xml
 
 ### ANGULAR ###
 /src/main/webapp/ui-angular/package-lock.json
