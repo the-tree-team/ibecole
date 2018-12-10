@@ -20,9 +20,18 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(of = "id", doNotUseGetters = true)
 @EqualsAndHashCode(of = "id", doNotUseGetters = true)
-public class Parent extends Personne implements Serializable {
+public class Parent extends Personne implements Serializable, Cloneable {
 
 
     @OneToMany(mappedBy = "parent")
     private List<Eleve> enfantList;
+
+    public Object cloneParent(){
+        try {
+            return this.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

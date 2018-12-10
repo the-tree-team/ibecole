@@ -14,6 +14,15 @@ public enum Sexe {
         this.libelle = libelle;
     }
 
+    public static Sexe getSexeByLibelle(String sexeLibelle){
+        if(sexeLibelle.equals("Homme")){
+            return HOMME;
+        }else
+        {
+            return FEMME;
+        }
+    }
+
     public char getCode() {
         return code;
     }

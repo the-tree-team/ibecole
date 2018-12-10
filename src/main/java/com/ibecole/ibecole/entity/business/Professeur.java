@@ -22,11 +22,20 @@ import lombok.ToString;
 @Data
 @ToString(of = "id", doNotUseGetters = true)
 @EqualsAndHashCode(of = "id", doNotUseGetters = true)
-public class Professeur extends Personne implements Serializable {
+public class Professeur extends Personne implements Serializable, Cloneable{
 
     @Column(name = "date_recrutement")
     private LocalDate dateRecrutement;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "professeur", orphanRemoval = true)
     private List<Enseigner> enseigner;
+
+    public Object cloneProfesseur(){
+        try {
+            return this.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

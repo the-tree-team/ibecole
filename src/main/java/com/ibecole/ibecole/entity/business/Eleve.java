@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(of = "id", doNotUseGetters = true)
 @EqualsAndHashCode(of = "id", doNotUseGetters = true)
-public class Eleve extends Personne implements Serializable {
+public class Eleve extends Personne implements Serializable, Cloneable{
 
     @NotNull
     @Column(name = "matricule", length = 20, unique = true)
@@ -53,5 +53,14 @@ public class Eleve extends Personne implements Serializable {
             orphanRemoval = true
     )
     private List<EleveAppartenanceGroupe> eleveAppartenanceGroupeList;
+
+    public Object cloneEleve(){
+        try {
+            return this.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }
