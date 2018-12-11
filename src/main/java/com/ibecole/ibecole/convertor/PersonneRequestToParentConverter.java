@@ -25,6 +25,9 @@ public class PersonneRequestToParentConverter implements Function<PersonneReques
         /* Attributs Parent */
         parent.setEnfantList(personneRequest.getEnfantList());
 
+        if(null != personneRequest.getId())
+            parent.setId(personneRequest.getId());
+
         return parent;
     }
 }

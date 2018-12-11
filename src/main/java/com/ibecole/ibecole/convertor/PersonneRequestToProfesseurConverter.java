@@ -1,7 +1,6 @@
 package com.ibecole.ibecole.convertor;
 
 import com.ibecole.ibecole.commun.enumerate.Sexe;
-import com.ibecole.ibecole.entity.business.Parent;
 import com.ibecole.ibecole.entity.business.Professeur;
 import com.ibecole.ibecole.model.request.PersonneRequest;
 
@@ -23,6 +22,10 @@ public class PersonneRequestToProfesseurConverter implements Function<PersonneRe
           /* Attributs Professeur */
         professeur.setDateRecrutement(personneRequest.getDateRecrutement());
         professeur.setEnseigner(personneRequest.getEnseigner());
+
+        if(null != personneRequest.getId())
+            professeur.setId(personneRequest.getId());
+
          return professeur;
 
     }

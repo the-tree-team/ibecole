@@ -32,6 +32,9 @@ public class PersonneRequestToEleveConverter implements Function<PersonneRequest
         eleve.setAbsenceList(personneRequest.getAbsenceList());
         eleve.setEleveAppartenanceGroupeList(personneRequest.getEleveAppartenanceGroupeList());
 
+        if(null != personneRequest.getId())
+            eleve.setId(personneRequest.getId());
+
         return eleve;
     }
 }
