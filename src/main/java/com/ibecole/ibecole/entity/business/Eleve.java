@@ -24,7 +24,7 @@ import lombok.ToString;
 public class Eleve extends Personne implements Serializable, Cloneable{
 
     @NotNull
-    @Column(name = "matricule", length = 20, unique = true)
+    @Column(name = "matricule", unique = true)
     private String matricule;
 
     @JoinTable(
