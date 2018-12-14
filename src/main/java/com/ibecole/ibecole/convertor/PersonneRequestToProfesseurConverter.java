@@ -3,12 +3,17 @@ package com.ibecole.ibecole.convertor;
 import com.ibecole.ibecole.commun.enumerate.Sexe;
 import com.ibecole.ibecole.entity.business.Professeur;
 import com.ibecole.ibecole.model.request.PersonneRequest;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.Nullable;
 
 import java.util.function.Function;
 
-public class PersonneRequestToProfesseurConverter implements Function<PersonneRequest, Professeur> {
+public class PersonneRequestToProfesseurConverter implements Converter<PersonneRequest, Professeur> {
+
+
+    @Nullable
     @Override
-    public Professeur apply(PersonneRequest personneRequest) {
+    public Professeur convert(PersonneRequest personneRequest) {
         Professeur professeur = new Professeur();
         professeur.setNom(personneRequest.getNom());
         professeur.setPrenom(personneRequest.getPrenom());
@@ -26,8 +31,6 @@ public class PersonneRequestToProfesseurConverter implements Function<PersonneRe
         if(null != personneRequest.getId())
             professeur.setId(personneRequest.getId());
 
-         return professeur;
-
+        return professeur;
     }
-
 }

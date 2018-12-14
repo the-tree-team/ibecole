@@ -54,7 +54,7 @@ public abstract class Personne  implements Serializable{
     private String adresse;
 
     @NotNull
-    @Column(name = "telephone", length = 15, nullable = false)
+    @Column(name = "telephone", length = 30, nullable = false)
     private String telephone;
 
     @Column(name = "email", length = 30)
