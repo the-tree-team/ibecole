@@ -25,5 +25,7 @@
 /.nb-gradle/
 *nb-configuration.xml
 
+/src/main/resources/application.properties
+
 ### ANGULAR ###
 /src/main/webapp/ui-angular/package-lock.json
