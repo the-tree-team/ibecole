@@ -3,6 +3,8 @@ package com.ibecole.ibecole;
 import com.ibecole.ibecole.commun.qualifier.MatGeneration;
 import com.ibecole.ibecole.convertor.PersonneRequestToEleveConverter;
 import com.ibecole.ibecole.entity.business.Eleve;
+import com.ibecole.ibecole.entity.business.Parent;
+import com.ibecole.ibecole.entity.business.Personne;
 import com.ibecole.ibecole.model.request.PersonneRequest;
 import com.ibecole.ibecole.service.business.PersonneService;
 import com.ibecole.ibecole.service.business.matGenerate.MatriculeGenerate;
@@ -19,13 +21,15 @@ import java.time.LocalDate;
 @SpringBootApplication
 public class IbecoleApplication implements CommandLineRunner{
 
+	private final PersonneService personneService;
+	private final ConversionService conversionService;
+
+
 	@Autowired
-	private PersonneService personneService;
-	@Autowired
-	private ConversionService conversionService;
-	@Autowired
-	private @MatGeneration(MatGeneration.typeMat.ELEVE)
-	MatriculeGenerate matriculeGenerate;
+	public IbecoleApplication(PersonneService personneService, ConversionService conversionService) {
+		this.personneService = personneService;
+		this.conversionService = conversionService;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(IbecoleApplication.class, args);
@@ -38,7 +42,7 @@ public class IbecoleApplication implements CommandLineRunner{
 		list.map(new PersonneRequestToEleveConverter());*/
 		PersonneRequest personneRequest = new PersonneRequest();
 
-		personneRequest.setType("Eleve");
+		personneRequest.setType("Parent");
 		personneRequest.setNom("IDIRENE");
 		personneRequest.setPrenom("Mehdi");
 		personneRequest.setDateNaissance(LocalDate.now());
@@ -47,13 +51,13 @@ public class IbecoleApplication implements CommandLineRunner{
 		personneRequest.setTelephone("+213 551 89 68 95");
 		personneRequest.setEmail("mehdi.bouzidi.92@gmail.com");
 		personneRequest.setActive(true);
-//		personneRequest.setMatricule(matriculeGenerate.Generate(personneRequest));
 		personneRequest.setAdresse("Bab Ezzouar");
 
-		Eleve eleve = (Eleve) personneService.save(personneRequest);
+		Parent eleve = (Parent) personneService.save(personneRequest);
+		/*Parent eleve2 = (Parent) personneService.findById(1,"Parent");
 		System.out.println("==================");
-		System.out.println(eleve.getId());
-		System.out.println(eleve.getMatricule());
-
+		System.out.println(eleve2.getNom());*/
+		/*System.out.println(eleve2.getMatricule());*/
+/*		personneService.delete(1,"Parent");*/
 	}
 }

@@ -14,46 +14,103 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonneService {
 
-    @Autowired
-    private EleveRepository eleveRepository;
+    private final EleveRepository eleveRepository;
 
-    @Autowired
-    private ParentRepository parentRepository;
+    private final ParentRepository parentRepository;
 
-    @Autowired
-    private ProfesseurRepository professeurRepository;
+    private final ProfesseurRepository professeurRepository;
 
-    @Autowired
-    private @MatGeneration(MatGeneration.typeMat.ELEVE)
+    private final
     MatriculeGenerate matriculeGenerate;
 
-    @Autowired
+    private final
     ConversionService conversionService;
+
+    private Eleve eleve;
+    private Parent parent;
+    private Professeur professeur;
+
+    @Autowired
+    public PersonneService(EleveRepository eleveRepository, ParentRepository parentRepository, ProfesseurRepository professeurRepository, @MatGeneration(MatGeneration.typeMat.ELEVE) MatriculeGenerate matriculeGenerate, ConversionService conversionService) {
+        this.eleveRepository = eleveRepository;
+        this.parentRepository = parentRepository;
+        this.professeurRepository = professeurRepository;
+        this.matriculeGenerate = matriculeGenerate;
+        this.conversionService = conversionService;
+    }
 
     public Personne save(PersonneRequest personneRequest){
         switch (personneRequest.getType()){
             case "Eleve":{
                 personneRequest.setMatricule(matriculeGenerate.Generate(personneRequest));
-                Eleve eleve = conversionService.convert(personneRequest, Eleve.class);
-                eleveRepository.save(eleve);
+                eleve = conversionService.convert(personneRequest, Eleve.class);
+                if(eleve != null)
+                    eleveRepository.save(eleve);
                 return eleve;
             }
             case "Parent":{
-                Parent parent = conversionService.convert(personneRequest, Parent.class);
-                parentRepository.save(parent);
+                parent = conversionService.convert(personneRequest, Parent.class);
+                if(parent != null)
+                    parentRepository.save(parent);
                 return parent;
             }
-            case "Professeu":{
-                Professeur professeur = conversionService.convert(personneRequest, Professeur.class);
-                professeurRepository.save(professeur);
+            case "Professeur":{
+                professeur = conversionService.convert(personneRequest, Professeur.class);
+                if(professeur != null)
+                    professeurRepository.save(professeur);
                 return professeur;
             }
             default: return null;
         }
     }
 
+    public boolean delete(Integer id, String type){
+        switch (type){
+            case "Eleve":{
+                eleveRepository.deleteById(id);
+                return true;
+            }
+            case "Parent":{
+                parentRepository.deleteById(id);
+                return true;
+            }
+            case "Professeur":{
+                professeurRepository.deleteById(id);
+                return true;
+            }
+            default: return false;
+        }
+    }
+    public Personne findById(Integer id, String type){
+        switch (type){
+            case "Eleve":{
+                eleve = eleveRepository.getOne(id);
+                return eleve;
+            }
+            case "Parent":{
+                parent = parentRepository.getOne(id);
+                return parent;
+            }
+            case "Professeur":{
+                professeur = professeurRepository.getOne(id);
+                return professeur;
+            }
+            default: return null;
+        }
+    }
 
+    public List<Eleve> findAllEleve(){
+        return eleveRepository.findAll();
+    }
+    public List<Parent> findAllParent(){
+        return parentRepository.findAll();
+    }
+    public List<Professeur> findAllProfesseur(){
+        return professeurRepository.findAll();
+    }
 }
