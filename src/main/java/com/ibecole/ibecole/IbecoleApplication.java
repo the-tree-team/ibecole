@@ -1,9 +1,11 @@
 package com.ibecole.ibecole;
 
+import com.ibecole.ibecole.commun.qualifier.MatGeneration;
 import com.ibecole.ibecole.convertor.PersonneRequestToEleveConverter;
 import com.ibecole.ibecole.entity.business.Eleve;
 import com.ibecole.ibecole.model.request.PersonneRequest;
 import com.ibecole.ibecole.service.business.PersonneService;
+import com.ibecole.ibecole.service.business.matGenerate.MatriculeGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +23,9 @@ public class IbecoleApplication implements CommandLineRunner{
 	private PersonneService personneService;
 	@Autowired
 	private ConversionService conversionService;
+	@Autowired
+	private @MatGeneration(MatGeneration.typeMat.ELEVE)
+	MatriculeGenerate matriculeGenerate;
 
 	public static void main(String[] args) {
 		SpringApplication.run(IbecoleApplication.class, args);
@@ -42,7 +47,7 @@ public class IbecoleApplication implements CommandLineRunner{
 		personneRequest.setTelephone("+213 551 89 68 95");
 		personneRequest.setEmail("mehdi.bouzidi.92@gmail.com");
 		personneRequest.setActive(true);
-		personneRequest.setMatricule("ELV-000015");
+//		personneRequest.setMatricule(matriculeGenerate.Generate(personneRequest));
 		personneRequest.setAdresse("Bab Ezzouar");
 
 		Eleve eleve = (Eleve) personneService.save(personneRequest);

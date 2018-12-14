@@ -1,5 +1,6 @@
 package com.ibecole.ibecole.service.business;
 
+import com.ibecole.ibecole.commun.qualifier.MatGeneration;
 import com.ibecole.ibecole.entity.business.Eleve;
 import com.ibecole.ibecole.entity.business.Parent;
 import com.ibecole.ibecole.entity.business.Personne;
@@ -8,6 +9,7 @@ import com.ibecole.ibecole.model.request.PersonneRequest;
 import com.ibecole.ibecole.repository.business.EleveRepository;
 import com.ibecole.ibecole.repository.business.ParentRepository;
 import com.ibecole.ibecole.repository.business.ProfesseurRepository;
+import com.ibecole.ibecole.service.business.matGenerate.MatriculeGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
@@ -25,11 +27,16 @@ public class PersonneService {
     private ProfesseurRepository professeurRepository;
 
     @Autowired
+    private @MatGeneration(MatGeneration.typeMat.ELEVE)
+    MatriculeGenerate matriculeGenerate;
+
+    @Autowired
     ConversionService conversionService;
 
     public Personne save(PersonneRequest personneRequest){
         switch (personneRequest.getType()){
             case "Eleve":{
+                personneRequest.setMatricule(matriculeGenerate.Generate(personneRequest));
                 Eleve eleve = conversionService.convert(personneRequest, Eleve.class);
                 eleveRepository.save(eleve);
                 return eleve;
