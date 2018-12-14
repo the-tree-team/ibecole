@@ -53,4 +53,8 @@ public class PersonneRequest {
     private LocalDate dateRecrutement;
 
     private List<Enseigner> enseigner;
+
+    /* VIEW */
+
+    private String type;
 }

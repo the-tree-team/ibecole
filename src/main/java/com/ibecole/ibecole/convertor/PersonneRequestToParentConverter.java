@@ -3,13 +3,18 @@ package com.ibecole.ibecole.convertor;
 import com.ibecole.ibecole.commun.enumerate.Sexe;
 import com.ibecole.ibecole.entity.business.Parent;
 import com.ibecole.ibecole.model.request.PersonneRequest;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.Nullable;
 
 import java.util.function.Function;
 
-public class PersonneRequestToParentConverter implements Function<PersonneRequest, Parent> {
+public class PersonneRequestToParentConverter implements Converter<PersonneRequest, Parent> {
+
+
+    @Nullable
     @Override
-    public Parent apply(PersonneRequest personneRequest) {
-      Parent parent= new Parent();
+    public Parent convert(PersonneRequest personneRequest) {
+        Parent parent= new Parent();
 
         /* Attributs Personne */
         parent.setNom(personneRequest.getNom());

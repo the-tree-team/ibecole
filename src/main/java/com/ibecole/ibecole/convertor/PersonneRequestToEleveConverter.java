@@ -4,14 +4,21 @@ package com.ibecole.ibecole.convertor;
 import com.ibecole.ibecole.commun.enumerate.Sexe;
 import com.ibecole.ibecole.entity.business.Eleve;
 import com.ibecole.ibecole.model.request.PersonneRequest;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.Nullable;
 
 import java.util.function.Function;
 
-public class PersonneRequestToEleveConverter implements Function<PersonneRequest, Eleve> {
+public class PersonneRequestToEleveConverter implements Converter<PersonneRequest, Eleve> {
 
 
+
+
+    @Nullable
     @Override
-    public Eleve apply(PersonneRequest personneRequest) {
+    public Eleve convert(PersonneRequest personneRequest) {
+        System.out.println("=========================================");
+        System.out.println(Sexe.getSexeByLibelle(personneRequest.getSexe()));
         Eleve eleve = new Eleve();
 
         /* Attributs Personne */
