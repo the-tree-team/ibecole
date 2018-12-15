@@ -7,6 +7,7 @@ package com.ibecole.ibecole.entity.business;
 
 import com.ibecole.ibecole.commun.StaticUtil;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -44,6 +45,9 @@ public class Absence implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
+    @Column(name = "date")
+    private LocalDate date;
 
     @JoinColumn(name = "seance_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
