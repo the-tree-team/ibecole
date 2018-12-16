@@ -1,5 +1,6 @@
 package com.ibecole.ibecole.config;
 
+import com.ibecole.ibecole.convertor.GroupeRequestToGroupeConverter;
 import com.ibecole.ibecole.convertor.PersonneRequestToEleveConverter;
 import com.ibecole.ibecole.convertor.PersonneRequestToParentConverter;
 import com.ibecole.ibecole.convertor.PersonneRequestToProfesseurConverter;
@@ -20,6 +21,7 @@ public class ConversionConfig {
         converters.add(new PersonneRequestToEleveConverter());
         converters.add(new PersonneRequestToParentConverter());
         converters.add(new PersonneRequestToProfesseurConverter());
+        converters.add(new GroupeRequestToGroupeConverter());
 
         return converters;
     }

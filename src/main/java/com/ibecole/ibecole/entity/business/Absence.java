@@ -58,7 +58,7 @@ public class Absence implements Serializable {
     private Eleve eleve;
 
     @JoinColumn(name = "justificatif_fk", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Justificatif justificatif;
  
 

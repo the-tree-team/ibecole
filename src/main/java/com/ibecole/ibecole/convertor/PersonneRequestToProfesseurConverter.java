@@ -6,7 +6,6 @@ import com.ibecole.ibecole.model.request.PersonneRequest;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 
-import java.util.function.Function;
 
 public class PersonneRequestToProfesseurConverter implements Converter<PersonneRequest, Professeur> {
 
