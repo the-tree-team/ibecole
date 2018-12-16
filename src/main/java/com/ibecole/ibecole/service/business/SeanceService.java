@@ -1,10 +1,8 @@
 package com.ibecole.ibecole.service.business;
 
 import com.ibecole.ibecole.commun.qualifier.MatGeneration;
-import com.ibecole.ibecole.entity.business.*;
+import com.ibecole.ibecole.entity.business.Groupe;
 import com.ibecole.ibecole.model.request.GroupeRequest;
-import com.ibecole.ibecole.model.request.PersonneRequest;
-import com.ibecole.ibecole.repository.business.EleveRepository;
 import com.ibecole.ibecole.repository.business.GroupeRepository;
 import com.ibecole.ibecole.repository.business.ParentRepository;
 import com.ibecole.ibecole.repository.business.ProfesseurRepository;
@@ -16,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GroupeService {
+public class SeanceService {
 
     private final GroupeRepository groupeRepository;
 
@@ -33,7 +31,7 @@ public class GroupeService {
     private Groupe groupe;
 
     @Autowired
-    public GroupeService(GroupeRepository groupeRepository, ParentRepository parentRepository, ProfesseurRepository professeurRepository, @MatGeneration(MatGeneration.typeMat.ELEVE) MatriculeGenerate matriculeGenerate, ConversionService conversionService) {
+    public SeanceService(GroupeRepository groupeRepository, ParentRepository parentRepository, ProfesseurRepository professeurRepository, @MatGeneration(MatGeneration.typeMat.ELEVE) MatriculeGenerate matriculeGenerate, ConversionService conversionService) {
         this.groupeRepository = groupeRepository;
         this.parentRepository = parentRepository;
         this.professeurRepository = professeurRepository;

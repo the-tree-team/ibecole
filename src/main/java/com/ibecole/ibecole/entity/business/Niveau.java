@@ -35,6 +35,4 @@ public class Niveau implements Serializable {
     @OneToMany(mappedBy = "niveau")
     private List<Groupe> groupeList;
 
-    @ManyToOne
-    private Contient contient;
 }

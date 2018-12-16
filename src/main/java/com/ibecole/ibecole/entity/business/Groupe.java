@@ -57,6 +57,12 @@ public class Groupe implements Serializable {
             orphanRemoval = true
     )
     private List<EleveAppartenanceGroupe> eleveAppartenanceGroupeList;
+    @OneToMany(
+            mappedBy = "groupe",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Seance> seanceList;
 
     @ManyToOne
     private Niveau niveau ;

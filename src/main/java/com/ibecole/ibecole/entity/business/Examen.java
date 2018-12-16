@@ -9,6 +9,7 @@ import com.ibecole.ibecole.commun.StaticUtil;
 import com.ibecole.ibecole.commun.enumerate.TypeExamen;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,7 +57,10 @@ public class Examen implements Serializable {
     private Eleve eleve;
 
     private BigDecimal note;
-    
+
+    @Column(name = "date_examen")
+    private LocalDate dateExamen;
+
     @NotNull
     @Column(name = "type_examen", length = 20, nullable = false)
     @Enumerated(EnumType.STRING)

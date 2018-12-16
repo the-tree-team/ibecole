@@ -56,9 +56,9 @@ public class Contient implements Serializable {
     @JoinColumn(name = "unitee_fk", referencedColumnName = "id")
     @ManyToOne
     private Unitee unitee;
- 
-    @OneToMany(mappedBy = "contient")
-    private List<Niveau> niveauList;
+
+    @ManyToOne
+    private Niveau niveau;
 
     public Contient(Integer id) {
         this.id = id;

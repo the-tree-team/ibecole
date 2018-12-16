@@ -1,9 +1,6 @@
 package com.ibecole.ibecole.config;
 
-import com.ibecole.ibecole.convertor.GroupeRequestToGroupeConverter;
-import com.ibecole.ibecole.convertor.PersonneRequestToEleveConverter;
-import com.ibecole.ibecole.convertor.PersonneRequestToParentConverter;
-import com.ibecole.ibecole.convertor.PersonneRequestToProfesseurConverter;
+import com.ibecole.ibecole.convertor.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ConversionServiceFactoryBean;
@@ -22,6 +19,7 @@ public class ConversionConfig {
         converters.add(new PersonneRequestToParentConverter());
         converters.add(new PersonneRequestToProfesseurConverter());
         converters.add(new GroupeRequestToGroupeConverter());
+        converters.add(new SeanceRequestToGroupeConverter());
 
         return converters;
     }
