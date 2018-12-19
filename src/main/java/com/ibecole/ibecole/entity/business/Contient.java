@@ -45,12 +45,14 @@ public class Contient implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "matiere_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "matiere_fk", referencedColumnName = "id",
+            nullable = false)
+    @ManyToOne
     private Matiere matiere;
 
-    @JoinColumn(name = "formation_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "formation_fk", referencedColumnName = "id",
+            nullable = false)
+    @ManyToOne
     private Formation formation;
 
     @JoinColumn(name = "unitee_fk", referencedColumnName = "id")

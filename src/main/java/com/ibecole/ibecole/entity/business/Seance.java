@@ -59,12 +59,14 @@ public class Seance implements Serializable {
     private boolean supplementairePayee;
 
 
-    @JoinColumn(name = "groupe_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "groupe_fk", referencedColumnName = "id",
+            nullable = false)
+    @ManyToOne
     private Groupe groupe;
 
-    @JoinColumn(name = "enseigner_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "enseigner_fk", referencedColumnName = "id",
+            nullable = false)
+    @ManyToOne
     private Enseigner enseigner;
 
     @JoinColumn(name = "classe_fk", referencedColumnName = "id")

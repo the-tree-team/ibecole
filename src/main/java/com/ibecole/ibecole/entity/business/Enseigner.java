@@ -47,12 +47,14 @@ public class Enseigner implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "matiere_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "matiere_fk", referencedColumnName = "id",
+            nullable = false)
+    @ManyToOne
     private Matiere matiere;
 
-    @JoinColumn(name = "professeur_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "professeur_fk", referencedColumnName = "id",
+    nullable = false)
+    @ManyToOne
     private Professeur professeur;
 
   

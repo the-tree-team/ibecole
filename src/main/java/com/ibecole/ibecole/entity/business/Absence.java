@@ -9,18 +9,7 @@ import com.ibecole.ibecole.commun.StaticUtil;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,7 +20,8 @@ import lombok.ToString;
  * @author idirene.youcef
  */
 @Entity
-@Table(schema = StaticUtil.SCH_BUSINESS, name = "absence", uniqueConstraints
+@Table(schema = StaticUtil.SCH_BUSINESS, name = "absence",
+        uniqueConstraints
         = @UniqueConstraint(columnNames = {"eleve_fk", "seance_fk"}))
 @XmlRootElement
 @Data
@@ -49,20 +39,25 @@ public class Absence implements Serializable {
     @Column(name = "date")
     private LocalDate date;
 
-    @JoinColumn(name = "seance_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "seance_fk", referencedColumnName = "id",
+            nullable = false)
+    @ManyToOne
     private Seance seance;
 
-    @JoinColumn(name = "eleve_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "eleve_fk", referencedColumnName = "id",
+            nullable = false)
+    @ManyToOne
     private Eleve eleve;
 
     @JoinColumn(name = "justificatif_fk", referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.ALL)
     private Justificatif justificatif;
- 
+
+    public Absence() {
+    }
 
     public Absence(Integer id) {
+        if(id!=null)
         this.id = id;
     }
 }

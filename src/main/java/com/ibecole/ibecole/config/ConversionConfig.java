@@ -20,6 +20,7 @@ public class ConversionConfig {
         converters.add(new PersonneRequestToProfesseurConverter());
         converters.add(new GroupeRequestToGroupeConverter());
         converters.add(new SeanceRequestToGroupeConverter());
+        converters.add(new AbsenceRequestToAbsenceJConverter());
 
         return converters;
     }

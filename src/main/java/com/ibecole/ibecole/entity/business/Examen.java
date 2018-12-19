@@ -48,12 +48,14 @@ public class Examen implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "enseigner_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "enseigner_fk", referencedColumnName = "id",
+            nullable = false)
+    @ManyToOne
     private Enseigner enseigner;
 
-    @JoinColumn(name = "eleve_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "eleve_fk", referencedColumnName = "id",
+            nullable = false)
+    @ManyToOne
     private Eleve eleve;
 
     private BigDecimal note;
