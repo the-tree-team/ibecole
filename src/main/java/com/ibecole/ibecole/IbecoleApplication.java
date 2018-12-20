@@ -1,10 +1,12 @@
 package com.ibecole.ibecole;
 
 import com.ibecole.ibecole.entity.business.Eleve;
+import com.ibecole.ibecole.entity.business.TypeSanction;
 import com.ibecole.ibecole.model.request.AbsenceRequest;
 import com.ibecole.ibecole.model.request.PersonneRequest;
 import com.ibecole.ibecole.service.business.AbsenceService;
 import com.ibecole.ibecole.service.business.PersonneService;
+import com.ibecole.ibecole.service.business.TypeSanctionService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,13 +20,14 @@ public class IbecoleApplication implements CommandLineRunner{
 	private final AbsenceService absenceService;
 	private final ConversionService conversionService;
 	private final PersonneService personneService;
+	private final TypeSanctionService typeSanctionService;
 
-	public IbecoleApplication(AbsenceService absenceService, ConversionService conversionService, PersonneService personneService) {
+	public IbecoleApplication(AbsenceService absenceService, ConversionService conversionService, PersonneService personneService, TypeSanctionService typeSanctionService) {
 		this.absenceService = absenceService;
 		this.conversionService = conversionService;
 		this.personneService = personneService;
+		this.typeSanctionService = typeSanctionService;
 	}
-
 
 /*
 	@Autowired
@@ -43,6 +46,11 @@ public class IbecoleApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 
 	PersonneRequest personneRequest = new PersonneRequest();
+
+		TypeSanction typeSanction = new TypeSanction();
+		typeSanction.setCode("SANC-001");
+		typeSanction.setLibelle("BLAME");
+		typeSanctionService.save(typeSanction);
 
 		/*Niveau niveau = new Niveau();
 		niveau.setCode("TEST");

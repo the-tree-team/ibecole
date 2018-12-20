@@ -31,6 +31,8 @@ public class TypeSanction implements Serializable {
     @Column(name = "libelle", length = 250)
     private String libelle;
     
+    /*
+    Nous n'avons pas besoin de connaitre toutes les sanctions qui ont ce type
     @OneToMany(mappedBy = "type")
-    private List<Sanction> sanctionList;
+    private List<Sanction> sanctionList;*/
 }

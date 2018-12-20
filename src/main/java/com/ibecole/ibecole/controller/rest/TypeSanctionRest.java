@@ -32,6 +32,18 @@ public class TypeSanctionRest {
 
         return typeSanctionPage;
     }
+
+    // Find By ID
+    @RequestMapping(path = "/{typesanctionid}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<TypeSanction> getTypeSanctionById(
+            @PathVariable Integer typeSanctionId) {
+
+        TypeSanction typeSanction = typeSanctionService.findById(typeSanctionId);
+
+        return new ResponseEntity<>(typeSanction, HttpStatus.OK);
+    }
+
     //ADD
     @RequestMapping(path="add", method = RequestMethod.POST,
     produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -43,11 +55,31 @@ public class TypeSanctionRest {
         return new ResponseEntity<>(typeSanction, HttpStatus.CREATED);
     }
 
-    //DELETE
-    @RequestMapping(path = "/{typesanctionid}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteReservation(
-            @PathVariable Integer typeSanctionId) {
-            typeSanctionService.delete(typeSanctionId);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    //UPDATE
+    @RequestMapping(path="edit", method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<TypeSanction> updateTypeSanction(
+            @RequestBody TypeSanction typeSanction
+    ){
+        typeSanctionService.save(typeSanction);
+        return new ResponseEntity<>(typeSanction, HttpStatus.CREATED);
     }
+
+    //DELETE
+    @RequestMapping(path = "/{typesanctionid}",
+            method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteReservation(
+            @PathVariable("typesanctionid") Integer typeSanctionId) {
+        System.out.println("TYPE SANCTION ID:" + typeSanctionId);
+            typeSanctionService.delete(typeSanctionId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+  /*  @RequestMapping(value = "/{typesanctionid}",
+            method = RequestMethod.DELETE)
+    public @ResponseBody void deleteAuthorizationServer(
+            @PathVariable("typesanctionid") Integer typeSanctionId){
+        System.out.println("TYPE SANCTION ID:"+ typeSanctionId);
+    }*/
 }
