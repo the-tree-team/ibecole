@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SanctionService {
@@ -29,7 +30,8 @@ public class SanctionService {
 
     public Sanction findById(Integer id){
         /* "getOne()" is Lazy - "findOne" is Eager */
-        return sanctionRepository.getOne(id);
+        Optional<Sanction> sanctionOptional = sanctionRepository.findById(id);
+        return sanctionOptional.isPresent() ? sanctionOptional.get(): null;
     }
 
     public List<Sanction> findAll(){

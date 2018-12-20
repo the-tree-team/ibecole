@@ -5,6 +5,7 @@ import com.ibecole.ibecole.repository.business.SeanceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SeanceService {
@@ -21,12 +22,13 @@ public class SeanceService {
     }
 
     public boolean delete(Integer id){
-            seanceRepository.deleteById(id);
+        seanceRepository.deleteById(id);
         return true;
     }
 
     public Seance findById(Integer id){
-        return seanceRepository.findById(id).isPresent()? seanceRepository.findById(id).get() : null;
+        Optional<Seance> seanceOptional = seanceRepository.findById(id);
+        return seanceOptional.isPresent()? seanceOptional.get() : null;
     }
     public List<Seance> findAll(){
         return seanceRepository.findAll();

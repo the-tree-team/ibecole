@@ -10,6 +10,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AbsenceService {
@@ -48,7 +49,8 @@ public class AbsenceService {
 
     public Absence findById(Integer id){
         /* "getOne()" is Lazy - "findOne" is Eager */
-        return absenceRepository.findById(id).isPresent()? absenceRepository.findById(id).get() : null;
+        Optional<Absence> absenceOptional = absenceRepository.findById(id);
+        return absenceOptional.isPresent()? absenceOptional.get() : null;
     }
 
     public List<Absence> findAll(){

@@ -3,7 +3,9 @@ package com.ibecole.ibecole.service.business;
 import com.ibecole.ibecole.entity.business.TypeSanction;
 import com.ibecole.ibecole.repository.business.TypeSanctionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -30,6 +32,9 @@ public class TypeSanctionService {
     public TypeSanction findById(Integer id){
         /* "getOne()" is Lazy - "findOne" is Eager */
         return typeSanctionRepository.getOne(id);
+    }
+    public Page<TypeSanction> pageableFindAll(Pageable pageable){
+        return typeSanctionRepository.findAll(pageable);
     }
 
     public List<TypeSanction> findAll(){
