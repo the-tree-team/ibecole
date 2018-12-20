@@ -1,0 +1,60 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+/* For use in _color-definitions.scss */
+$palette-ibecole: (
+  50 : #e8eaed,
+  100 : #c6cad1,
+  200 : #a0a7b3,
+  300 : #798395,
+  400 : #5d697e,
+  500 : #404e67,
+  600 : #3a475f,
+  700 : #323d54,
+  800 : #2a354a,
+  900 : #1c2539,
+  A100 : #fe9365,
+  A200 : #0ac382,
+  A400 : #fe5e70,
+  A700 : #01a9ac,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ui-angular-primary: mat-palette($palette-ibecole,900);
+$ui-angular-accent: mat-palette($palette-ibecole, 50, A400);
+// The warn palette is optional (defaults to red).
+$ui-angular-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ui-angular-theme: mat-light-theme($ui-angular-primary, $ui-angular-accent, $ui-angular-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ui-angular-theme);
+
