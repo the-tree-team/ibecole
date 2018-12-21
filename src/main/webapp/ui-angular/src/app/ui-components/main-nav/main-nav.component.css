@@ -21,7 +21,50 @@ mat-sidenav{
 }
 mat-toolbar{
   color: #1c2539;
+  height: 50px;
 }
 mat-sidenav mat-toolbar, mat-sidenav mat-nav-list a{
   color: white;
+}
+mat-sidenav mat-toolbar{
+  font-size: 1em;
+  text-align: center;
+}
+mat-sidenav mat-toolbar span{
+  width: 100%;
+}
+mat-sidenav mat-nav-list a{
+  font-size: 0.75em;
+}
+
+mat-expansion-panel{
+  color: white !important;
+  background-color: #1c2539;
+  box-shadow: none !important;
+  border-radius: 0% !important;
+}
+mat-expansion-panel:hover, .mat-expanded{
+  background-color: #2a354a;
+}
+mat-expansion-panel-header{
+  height: 45px!important;
+  padding: 0 12px!important;
+}
+/deep/span.mat-expansion-indicator::after{
+  color: white !important;
+}
+mat-panel-title mat-icon {
+  color: white;
+  font-size: 1.25em;
+}
+mat-panel-title span {
+  color: white;
+  font-size: 0.85em;
+}
+/deep/.mat-list-item{
+  height: 35px!important;
+
+}
+/deep/ .mat-list-item-content {
+padding: 0px !important;
 }
