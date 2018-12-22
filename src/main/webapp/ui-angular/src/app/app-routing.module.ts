@@ -4,7 +4,8 @@ import {AllTypeSanctionComponent} from './content-components/typesanction/all-ty
 import {RouterModule, Routes} from '@angular/router';
 
 export const routes : Routes = [
-  { path: 'typesanction', component: AllTypeSanctionComponent }
+  { path: 'typesanction', component: AllTypeSanctionComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 @NgModule({
   declarations: [],
