@@ -9,15 +9,20 @@ import {
   MatSlideToggleModule, MatAccordion, MatExpansionPanel, MatExpansionModule, MatExpansionPanelHeader
 } from '@angular/material';
 import { MainNavComponent } from './ui-components/main-nav/main-nav.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AllTypeSanctionComponent } from './content-components/typesanction/all-type-sanction/all-type-sanction.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavComponent
+    MainNavComponent,
+    AllTypeSanctionComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -25,7 +30,8 @@ import { MainNavComponent } from './ui-components/main-nav/main-nav.component';
     MatIconModule,
     MatListModule,
     MatSlideToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

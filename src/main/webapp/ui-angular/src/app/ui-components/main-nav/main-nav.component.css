@@ -68,3 +68,7 @@ mat-panel-title span {
 /deep/ .mat-list-item-content {
 padding: 0px !important;
 }
+
+.main-content{
+  padding: 20px;
+}
