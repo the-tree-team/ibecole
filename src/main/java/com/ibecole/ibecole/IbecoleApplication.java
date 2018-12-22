@@ -51,6 +51,10 @@ public class IbecoleApplication implements CommandLineRunner{
 		typeSanction.setCode("SANC-001");
 		typeSanction.setLibelle("BLAME");
 		typeSanctionService.save(typeSanction);
+		typeSanction = new TypeSanction();
+		typeSanction.setCode("SANC-002");
+		typeSanction.setLibelle("AVERTISSEMENT");
+		typeSanctionService.save(typeSanction);
 
 		/*Niveau niveau = new Niveau();
 		niveau.setCode("TEST");

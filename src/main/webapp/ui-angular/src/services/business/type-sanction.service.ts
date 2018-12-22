@@ -11,6 +11,10 @@ export class TypeSanctionService {
   constructor(private http: HttpClient) { }
 
   getTypesSanction() {
-    return this.http.get<>( `${UtilStatic.API_SOURCE}type_sanction/v1`);
+    return this.http.get<TypeSanction[]>( `${UtilStatic.API_SOURCE}type_sanction/v1`,{observe: 'response'});
+  }
+
+  deleteTypeSanction(id: number){
+    return this.http.delete(    `${UtilStatic.API_SOURCE}type_sanction/v1/${id}`);
   }
 }
