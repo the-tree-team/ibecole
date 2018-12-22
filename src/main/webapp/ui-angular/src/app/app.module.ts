@@ -6,7 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
-  MatSlideToggleModule, MatAccordion, MatExpansionPanel, MatExpansionModule, MatExpansionPanelHeader, MatCardModule
+  MatSlideToggleModule, MatAccordion, MatExpansionPanel, MatExpansionModule, MatExpansionPanelHeader, MatCardModule,
+  MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatSortModule
 } from '@angular/material';
 import { MainNavComponent } from './ui-components/main-nav/main-nav.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +35,11 @@ import {HttpClientModule} from "@angular/common/http";
     MatSlideToggleModule,
     MatExpansionModule,
     MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatInputModule,
     AppRoutingModule
   ],
   providers: [],
