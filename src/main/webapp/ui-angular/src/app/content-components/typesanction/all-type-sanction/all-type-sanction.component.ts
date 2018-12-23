@@ -1,7 +1,8 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
 import {TypeSanction} from "../../../../model/business/model.typesanction";
 import {TypeSanctionService} from "../../../../services/business/type-sanction.service";
+import {AddEditTypeSanctionComponent} from "../add-edit-type-sanction/add-edit-type-sanction.component";
 
 @Component({
   selector: 'app-all-type-sanction',
@@ -16,7 +17,9 @@ export class AllTypeSanctionComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private typeSanctionService: TypeSanctionService, private changeDetectorRefs: ChangeDetectorRef) {
+  constructor(private typeSanctionService: TypeSanctionService,
+              public dialog: MatDialog,
+              public snackBar: MatSnackBar) {
     console.log("CONSTRUCT--------");
     this.typeSanctionService.getTypesSanction().subscribe((results: any) =>{
         console.log("SUBSCRIBE============");
@@ -79,5 +82,30 @@ export class AllTypeSanctionComponent implements OnInit {
     }
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddEditTypeSanctionComponent, {
+      width: '450px'
+    });
+      //ADD TYPE SANCTION VIA DIALOG
+     dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
 
+       this.typeSanctionService.createTypeSanction(result).subscribe( data =>{
+         console.log("DATA----");
+         console.log(data);
+         this.typesSanction = this.dataSource.data;
+         this.typesSanction.push(data);
+         this.dataSource = new MatTableDataSource<any>(this.typesSanction);
+         this.dataSource.paginator = this.paginator;
+         this.dataSource.sort = this.sort;
+         this.snackBar.open("Création effectuée avec succès", "Fermer", {
+           duration: 2000,
+         });
+         }
+
+       );
+      console.log(response);
+    });
+  }
 }

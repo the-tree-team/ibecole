@@ -17,4 +17,10 @@ export class TypeSanctionService {
   deleteTypeSanction(id: number){
     return this.http.delete(    `${UtilStatic.API_SOURCE}type_sanction/v1/${id}`);
   }
+
+  createTypeSanction(typeSanction: TypeSanction) {
+    const url = `${UtilStatic.API_SOURCE}type_sanction/v1/add`;
+    console.log(url);
+    return this.http.post( url, typeSanction);
+  }
 }

@@ -8,3 +8,7 @@ td a.action-button{
   padding: 0 5px;
   color: #fe9365;
 }
+
+.table-header div[class*="col"]{
+  margin: auto auto
+}
