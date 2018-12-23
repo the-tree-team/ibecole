@@ -11,7 +11,7 @@ import {TypeSanctionService} from "../../../../services/business/type-sanction.s
 export class AllTypeSanctionComponent implements OnInit {
   displayedColumns: string[] = ['id', 'code', 'libelle','add'];
   typesSanction = null;
-  dataSource: MatTableDataSource<TypeSanction[]> = new MatTableDataSource<TypeSanction[]>(this.typesSanction);
+  dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -20,7 +20,7 @@ export class AllTypeSanctionComponent implements OnInit {
     console.log("CONSTRUCT--------");
     this.typeSanctionService.getTypesSanction().subscribe((results: any) =>{
         console.log("SUBSCRIBE============");
-        this.dataSource.data =  results.body.content ;
+        this.dataSource = new MatTableDataSource(results.body.content);
       },
       // The 2nd callback handles errors.
       (err) => console.error(err),
@@ -60,10 +60,12 @@ export class AllTypeSanctionComponent implements OnInit {
     if ( confirm === true) {
       this.typeSanctionService.deleteTypeSanction( typeSanction.id )
         .subscribe( data => {
-              this.typesSanction = this.dataSource.data.filter(type => type.id != typeSanction.id);
-              this.dataSource = new MatTableDataSource<TypeSanction[]>(this.typesSanction);
+              this.typesSanction = this.dataSource.data.filter((typeS: TypeSanction)=> {
+                typeS.id != typeSanction.id
+              });
+              this.dataSource = new MatTableDataSource<any>(this.typesSanction);
               this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
+              this.dataSource.sort = this.sort;
 
             console.log(data);
             /*this.dataSource.data.splice(

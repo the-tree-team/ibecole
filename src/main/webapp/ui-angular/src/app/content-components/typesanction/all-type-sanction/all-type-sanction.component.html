@@ -1,6 +1,5 @@
-
 <mat-card>
-  <div *ngIf="dataSource.data != null">
+
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
@@ -43,17 +42,14 @@
           </td>
         </ng-container>
 
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-        </tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
-  </div>
-  <div *ngIf="dataSource.data === null">
-    <p>Aucune donnée n'est disponible</p>
-  </div>
+
+
+
 
 </mat-card>
 

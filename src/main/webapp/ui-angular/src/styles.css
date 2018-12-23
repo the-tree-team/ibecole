@@ -5,6 +5,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 td a.action-button{
 /*  margin: 0 10px;*/
-  padding: 0 10px;
+  padding: 0 5px;
   color: #fe9365;
 }
