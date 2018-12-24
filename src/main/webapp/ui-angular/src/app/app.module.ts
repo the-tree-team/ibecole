@@ -28,6 +28,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AddTypeSanctionComponent} from './content-components/typesanction/add-type-sanction/add-type-sanction.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EditTypeSanctionComponent } from './content-components/typesanction/edit-type-sanction/edit-type-sanction.component';
+import { AllSanctionComponent } from './content-components/sanction/all-sanction/all-sanction.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EditTypeSanctionComponent } from './content-components/typesanction/edi
     MainNavComponent,
     AllTypeSanctionComponent,
     AddTypeSanctionComponent,
-    EditTypeSanctionComponent
+    EditTypeSanctionComponent,
+    AllSanctionComponent
   ],
   imports: [
     BrowserModule,

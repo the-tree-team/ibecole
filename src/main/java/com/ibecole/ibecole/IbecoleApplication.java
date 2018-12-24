@@ -1,11 +1,13 @@
 package com.ibecole.ibecole;
 
 import com.ibecole.ibecole.entity.business.Eleve;
+import com.ibecole.ibecole.entity.business.Sanction;
 import com.ibecole.ibecole.entity.business.TypeSanction;
 import com.ibecole.ibecole.model.request.AbsenceRequest;
 import com.ibecole.ibecole.model.request.PersonneRequest;
 import com.ibecole.ibecole.service.business.AbsenceService;
 import com.ibecole.ibecole.service.business.PersonneService;
+import com.ibecole.ibecole.service.business.SanctionService;
 import com.ibecole.ibecole.service.business.TypeSanctionService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,12 +23,14 @@ public class IbecoleApplication implements CommandLineRunner{
 	private final ConversionService conversionService;
 	private final PersonneService personneService;
 	private final TypeSanctionService typeSanctionService;
+	private final SanctionService sanctionService;
 
-	public IbecoleApplication(AbsenceService absenceService, ConversionService conversionService, PersonneService personneService, TypeSanctionService typeSanctionService) {
+	public IbecoleApplication(AbsenceService absenceService, ConversionService conversionService, PersonneService personneService, TypeSanctionService typeSanctionService, SanctionService sanctionService) {
 		this.absenceService = absenceService;
 		this.conversionService = conversionService;
 		this.personneService = personneService;
 		this.typeSanctionService = typeSanctionService;
+		this.sanctionService = sanctionService;
 	}
 
 /*
@@ -47,14 +51,25 @@ public class IbecoleApplication implements CommandLineRunner{
 
 	PersonneRequest personneRequest = new PersonneRequest();
 
+		TypeSanction typeSanction1 = new TypeSanction();
+		typeSanction1.setCode("SANC-001");
+		typeSanction1.setLibelle("BLAME");
+		typeSanctionService.save(typeSanction1);
 		TypeSanction typeSanction = new TypeSanction();
-		typeSanction.setCode("SANC-001");
-		typeSanction.setLibelle("BLAME");
-		typeSanctionService.save(typeSanction);
-		typeSanction = new TypeSanction();
 		typeSanction.setCode("SANC-002");
 		typeSanction.setLibelle("AVERTISSEMENT");
-		typeSanctionService.save(typeSanction);
+		typeSanction = typeSanctionService.save(typeSanction);
+
+		Sanction sanction = new Sanction();
+		sanction.setMotif("Retard");
+		sanction.setCommentaire("Un retard de 2h dans la séance d'Histoire-Géo");
+		sanction.setType(typeSanction);
+		sanctionService.save(sanction);
+		sanction = new Sanction();
+		sanction.setMotif("Manque de Respect");
+		sanction.setCommentaire("L'étudiant a manqué de respect au professeur de Français");
+		sanction.setType(typeSanction1);
+		sanctionService.save(sanction);
 
 		/*Niveau niveau = new Niveau();
 		niveau.setCode("TEST");

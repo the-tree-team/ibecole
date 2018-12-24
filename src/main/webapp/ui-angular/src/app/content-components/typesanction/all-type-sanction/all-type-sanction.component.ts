@@ -4,7 +4,7 @@ import {TypeSanction} from "../../../../model/business/model.typesanction";
 import {TypeSanctionService} from "../../../../services/business/type-sanction.service";
 import {AddTypeSanctionComponent} from "../add-type-sanction/add-type-sanction.component";
 import {EditTypeSanctionComponent} from "../edit-type-sanction/edit-type-sanction.component";
-import {UtilStatic} from "../../../../services/business/UtilStatic";
+import {UtilStatic} from "../../../../services/UtilStatic";
 
 @Component({
   selector: 'app-all-type-sanction',
