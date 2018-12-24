@@ -25,15 +25,17 @@ import {AppRoutingModule} from './app-routing.module';
 import {AllTypeSanctionComponent} from './content-components/typesanction/all-type-sanction/all-type-sanction.component';
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
-import {AddEditTypeSanctionComponent} from './content-components/typesanction/add-edit-type-sanction/add-edit-type-sanction.component';
+import {AddTypeSanctionComponent} from './content-components/typesanction/add-type-sanction/add-type-sanction.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { EditTypeSanctionComponent } from './content-components/typesanction/edit-type-sanction/edit-type-sanction.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
     AllTypeSanctionComponent,
-    AddEditTypeSanctionComponent
+    AddTypeSanctionComponent,
+    EditTypeSanctionComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ AddEditTypeSanctionComponent]
+  entryComponents: [ AddTypeSanctionComponent,
+    EditTypeSanctionComponent
+  ]
 })
 export class AppModule { }

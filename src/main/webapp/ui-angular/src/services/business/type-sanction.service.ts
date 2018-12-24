@@ -23,4 +23,9 @@ export class TypeSanctionService {
     console.log(url);
     return this.http.post( url, typeSanction);
   }
+  updateTypeSanction(typeSanction: TypeSanction){
+    const url = `${UtilStatic.API_SOURCE}type_sanction/v1/edit`;
+    console.log(url);
+    return this.http.put( url, typeSanction);
+  }
 }

@@ -5,14 +5,14 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-add-edit-type-sanction',
-  templateUrl: './add-edit-type-sanction.component.html',
-  styleUrls: ['./add-edit-type-sanction.component.css']
+  templateUrl: './add-type-sanction.component.html',
+  styleUrls: ['./add-type-sanction.component.css']
 })
-export class AddEditTypeSanctionComponent implements OnInit {
+export class AddTypeSanctionComponent implements OnInit {
 
   addForm: FormGroup;
 
-  constructor( public dialogRef: MatDialogRef<AddEditTypeSanctionComponent>,
+  constructor( public dialogRef: MatDialogRef<AddTypeSanctionComponent>,
                @Inject(MAT_DIALOG_DATA) public typeSanction: TypeSanction,
                private fb: FormBuilder) { }
 

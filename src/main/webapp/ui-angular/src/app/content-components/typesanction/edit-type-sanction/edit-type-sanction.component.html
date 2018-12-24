@@ -1,0 +1,26 @@
+<form [formGroup]="editForm">
+  <h1 mat-dialog-title>Noveau Type Sanction </h1>
+  <div mat-dialog-content>
+
+    <mat-form-field>
+      <input matInput placeholder="Code" formControlName="code">
+      <mat-error *ngIf="code.invalid">
+        Champs Obligatoire
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Libellé" formControlName="libelle">
+      <mat-error *ngIf="libelle.invalid">
+        Champs Obligatoire
+      </mat-error>
+    </mat-form-field>
+
+
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Annuler</button>
+    <button mat-button  [disabled]="editForm.invalid" (click)="onValidationClick()">Valider</button>
+  </div>
+
+</form>

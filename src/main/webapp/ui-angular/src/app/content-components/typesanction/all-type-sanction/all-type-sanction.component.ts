@@ -2,7 +2,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
 import {TypeSanction} from "../../../../model/business/model.typesanction";
 import {TypeSanctionService} from "../../../../services/business/type-sanction.service";
-import {AddEditTypeSanctionComponent} from "../add-edit-type-sanction/add-edit-type-sanction.component";
+import {AddTypeSanctionComponent} from "../add-type-sanction/add-type-sanction.component";
+import {EditTypeSanctionComponent} from "../edit-type-sanction/edit-type-sanction.component";
+import {UtilStatic} from "../../../../services/business/UtilStatic";
 
 @Component({
   selector: 'app-all-type-sanction',
@@ -18,7 +20,8 @@ export class AllTypeSanctionComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private typeSanctionService: TypeSanctionService,
-              public dialog: MatDialog,
+              public addDialog: MatDialog,
+              public editDialog: MatDialog,
               public snackBar: MatSnackBar) {
     console.log("CONSTRUCT--------");
     this.typeSanctionService.getTypesSanction().subscribe((results: any) =>{
@@ -62,18 +65,12 @@ export class AllTypeSanctionComponent implements OnInit {
     const confirm = window.confirm('Êtes-vous sûr de bien vouloir supprimer cette entité ?');
     if ( confirm === true) {
       this.typeSanctionService.deleteTypeSanction( typeSanction.id )
-        .subscribe( data => {
-              this.typesSanction = this.dataSource.data.filter((typeS: TypeSanction)=> {
-                typeS.id != typeSanction.id
-              });
-              this.dataSource = new MatTableDataSource<any>(this.typesSanction);
-              this.dataSource.paginator = this.paginator;
-              this.dataSource.sort = this.sort;
+        .subscribe( () => {
+            console.log(this.dataSource.data);
+            this.typesSanction = this.dataSource.data;
+            this.typesSanction=UtilStatic.arrayDeleteItem(this.typesSanction, typeSanction);
 
-            console.log(data);
-            /*this.dataSource.data.splice(
-              this.dataSource.data.indexOf(typeSanction), 1
-            );*/
+            this.refresh();
           },
           err => {
             console.log('ERROR DELETE');
@@ -82,30 +79,53 @@ export class AllTypeSanctionComponent implements OnInit {
     }
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AddEditTypeSanctionComponent, {
+  openAddDialog(): void {
+    const dialogRef = this.addDialog.open(AddTypeSanctionComponent, {
       width: '450px'
     });
-      //ADD TYPE SANCTION VIA DIALOG
-     dialogRef.afterClosed().subscribe(result => {
+    //ADD TYPE SANCTION VIA DIALOG
+    dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
 
-       this.typeSanctionService.createTypeSanction(result).subscribe( data =>{
-         console.log("DATA----");
-         console.log(data);
-         this.typesSanction = this.dataSource.data;
-         this.typesSanction.push(data);
-         this.dataSource = new MatTableDataSource<any>(this.typesSanction);
-         this.dataSource.paginator = this.paginator;
-         this.dataSource.sort = this.sort;
-         this.snackBar.open("Création effectuée avec succès", "Fermer", {
-           duration: 2000,
-         });
-         }
+      this.typeSanctionService.createTypeSanction(result).subscribe( data =>{
+          this.typesSanction = this.dataSource.data;
+          this.typesSanction.push(data);
+          this.refresh();
+          this.snackBar.open("Création effectuée avec succès", "Fermer", {
+            duration: 2000,
+          });
+        }
 
-       );
-      console.log(response);
+      );
     });
+  }
+
+  openEditDialog(typeSEdit: TypeSanction): void {
+    const dialogRef = this.editDialog.open(EditTypeSanctionComponent, {
+      width: '450px'
+    });
+    dialogRef.componentInstance.typeSanction = typeSEdit;
+    //ADD TYPE SANCTION VIA DIALOG
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      this.typeSanctionService.updateTypeSanction(result).subscribe( typeSanctionEdited =>{
+        this.typesSanction = this.dataSource.data;
+        this.typesSanction=UtilStatic.arrayDeleteItem(this.typesSanction, typeSEdit);
+        this.typesSanction.push(typeSanctionEdited);
+          this.refresh();
+          this.snackBar.open("Edition effectuée avec succès", "Fermer", {
+            duration: 2000,
+          });
+        }
+
+      );
+    });
+  }
+  refresh(){
+    this.dataSource = new MatTableDataSource<any>(this.typesSanction);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

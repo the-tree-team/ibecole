@@ -1,6 +1,8 @@
 <mat-card>
   <mat-grid-list cols="2" style="width: 100%">
-    <button mat-flat-button color="primary" style="width: 10%" (click)="openDialog()"><mat-icon style="height: 30px">add</mat-icon> Ajouter</button>
+    <button mat-flat-button color="primary" style="width: 10%"
+            (click)="openAddDialog()">
+      <mat-icon style="height: 30px">add</mat-icon> Ajouter</button>
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
@@ -8,7 +10,7 @@
 
 
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc">
 
       <!-- ID Column -->
       <ng-container matColumnDef="id">
@@ -33,11 +35,11 @@
         <th mat-header-cell *matHeaderCellDef style="text-align: center">
         </th>
         <td mat-cell *matCellDef="let row" style="text-align: center">
-          <a mat-button class="action-button" href="">
-            <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+          <a mat-button class="action-button" (click)="openEditDialog(row)">
+            <mat-icon >edit</mat-icon>
           </a>
           <a mat-button class="action-button" (click)="deleteTypeSectionListener(row)" >
-            <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+            <mat-icon>delete</mat-icon>
           </a>
         </td>
       </ng-container>
