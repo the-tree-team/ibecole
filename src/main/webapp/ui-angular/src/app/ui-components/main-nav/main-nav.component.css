@@ -72,3 +72,17 @@ padding: 0px !important;
 .main-content{
   padding: 20px;
 }
+
+.left-toolbar{
+  width: 50%;
+}
+.right-toolbar{
+  width: 50%;
+  display: flex;
+  justify-content:flex-end;
+}
+.mat-flat-button{
+  /*  margin: 0 10px;*/
+  padding: 0 5px;
+  min-width: 40px;
+}

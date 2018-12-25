@@ -31,17 +31,21 @@ public class PersonneService {
     private final
     ConversionService conversionService;
 
+    private final
+    EnseignerService enseignerService;
+
     private Eleve eleve;
     private Parent parent;
     private Professeur professeur;
 
     @Autowired
-    public PersonneService(EleveRepository eleveRepository, ParentRepository parentRepository, ProfesseurRepository professeurRepository, @MatGeneration(MatGeneration.typeMat.ELEVE) MatriculeGenerate matriculeGenerate, ConversionService conversionService) {
+    public PersonneService(EleveRepository eleveRepository, ParentRepository parentRepository, ProfesseurRepository professeurRepository, @MatGeneration(MatGeneration.typeMat.ELEVE) MatriculeGenerate matriculeGenerate, ConversionService conversionService, EnseignerService enseignerService) {
         this.eleveRepository = eleveRepository;
         this.parentRepository = parentRepository;
         this.professeurRepository = professeurRepository;
         this.matriculeGenerate = matriculeGenerate;
         this.conversionService = conversionService;
+        this.enseignerService = enseignerService;
     }
 
     public Personne save(PersonneRequest personneRequest){
@@ -62,7 +66,9 @@ public class PersonneService {
             case "Professeur":{
                 professeur = conversionService.convert(personneRequest, Professeur.class);
                 if(professeur != null)
-                    professeurRepository.save(professeur);
+                    professeur = professeurRepository.save(professeur);
+                //ICI QU'ON PERSISTE LA LISTE DES MATIERES EN RELATION AVEC LE PROFESSEUR
+                enseignerService.save(personneRequest.getMatiereList(),professeur);
                 return professeur;
             }
             default: return null;

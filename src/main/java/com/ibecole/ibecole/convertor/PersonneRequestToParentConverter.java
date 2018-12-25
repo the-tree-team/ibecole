@@ -1,15 +1,27 @@
 package com.ibecole.ibecole.convertor;
 
 import com.ibecole.ibecole.commun.enumerate.Sexe;
+import com.ibecole.ibecole.entity.business.Eleve;
 import com.ibecole.ibecole.entity.business.Parent;
 import com.ibecole.ibecole.model.request.PersonneRequest;
+import com.ibecole.ibecole.service.business.PersonneService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class PersonneRequestToParentConverter implements Converter<PersonneRequest, Parent> {
 
 
+    private PersonneService personneService;
+
+    @Autowired
+    public PersonneRequestToParentConverter(PersonneService personneService) {
+        this.personneService = personneService;
+    }
     @Nullable
     @Override
     public Parent convert(PersonneRequest personneRequest) {
@@ -27,7 +39,10 @@ public class PersonneRequestToParentConverter implements Converter<PersonneReque
         parent.setPhoto(personneRequest.getPhoto());
 
         /* Attributs Parent */
-        parent.setEnfantList(personneRequest.getEnfantList());
+        List<Eleve> enfantList = personneRequest.getEnfantList().stream().map( id ->
+                (Eleve) personneService.findById(id,"Eleve")
+        ).collect(Collectors.toList());
+        parent.setEnfantList(enfantList);
 
         if(null != personneRequest.getId())
             parent.setId(personneRequest.getId());

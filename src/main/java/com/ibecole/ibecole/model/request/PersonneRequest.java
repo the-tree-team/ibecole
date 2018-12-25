@@ -34,25 +34,37 @@ public class PersonneRequest {
 
     private boolean active;
 
-    /* Eleve */
-    private String matricule;
+    /* Eleve----------------------------- */
+    /** Pas besoin du matricule parcequ'on le crée nous même avant de persister **/
+    //private String matricule;
 
-    private Parent parent;
+    /** Doit être changé en idParent car on n'a pas le model parent dans le coté Angular **/
+//    private Parent parent;
+    private Integer idParent;
 
     private List<Sanction> sanctionList;
 
 
     private List<Absence> absenceList;
 
-    private List<EleveAppartenanceGroupe> eleveAppartenanceGroupeList;
+    /** Doit être supprimée car on n'affecte pas les groupes dans la création de l'élève, mais on affecte les élèves
+     * au groupe, et donc ça doit être placé dans le groupe
+     */
+    //private List<EleveAppartenanceGroupe> eleveAppartenanceGroupeList;
 
-    /* Parent */
-    private List<Eleve> enfantList;
+    /* Parent ----------------------------- */
+    /** Cette liste doit aussi être changée en une lsite d'id personne puisque nous n'avons pas l'entité Parent coté
+     * Angular
+     */
+    // private List<Eleve> enfantsList;
+    private List<Integer> enfantList;
 
-    /* Professeur */
+    /* Professeur----------------------------- */
     private LocalDate dateRecrutement;
 
-    private List<Enseigner> enseigner;
+    /** Cette Liste doit être changé en une liste de Matières qui va être par la suite mappée en une liste "Enseigner"**/
+    //private List<Enseigner> enseigner;
+    private List<Matiere> matiereList;
 
     /* VIEW */
 

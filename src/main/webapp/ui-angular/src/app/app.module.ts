@@ -13,7 +13,7 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatMenuModule,
   MatPaginatorModule,
   MatSelectModule,
   MatSidenavModule,
@@ -34,6 +34,7 @@ import {EditTypeSanctionComponent} from './content-components/business/typesanct
 import {AllSanctionComponent} from './content-components/business/sanction/all-sanction/all-sanction.component';
 import {AddSanctionComponent} from './content-components/business/sanction/add-sanction/add-sanction.component';
 import {EditSanctionComponent} from './content-components/business/sanction/edit-sanction/edit-sanction.component';
+import { AddPersonneComponent } from './content-components/business/personne/add-personne/add-personne.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {EditSanctionComponent} from './content-components/business/sanction/edit
     EditTypeSanctionComponent,
     AllSanctionComponent,
     AddSanctionComponent,
-    EditSanctionComponent
+    EditSanctionComponent,
+    AddPersonneComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import {EditSanctionComponent} from './content-components/business/sanction/edit
     MatInputModule,
     MatSnackBarModule,
     MatSelectModule,
+    MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule

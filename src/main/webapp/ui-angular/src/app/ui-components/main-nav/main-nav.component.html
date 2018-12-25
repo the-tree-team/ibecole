@@ -13,7 +13,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
 
-              <mat-icon>view_day</mat-icon>
+            <mat-icon>view_day</mat-icon>
             <span>
               Données de Base
             </span>
@@ -32,16 +32,25 @@
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="accent">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-      >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-
+    <mat-toolbar color="accent" >
+      <div class="left-toolbar" >
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      </div>
+      <div class="right-toolbar">
+        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary"><mat-icon>add</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="addpersonne"><mat-icon color="primary">person</mat-icon>Personne</button>
+          <button mat-menu-item><mat-icon color="primary">group</mat-icon>Groupe</button>
+          <button mat-menu-item><mat-icon color="primary">school</mat-icon>Formation</button>
+        </mat-menu>
+      </div>
     </mat-toolbar>
     <div class="main-content">
       <router-outlet></router-outlet>

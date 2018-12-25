@@ -1,10 +1,13 @@
 package com.ibecole.ibecole.convertor;
 
 import com.ibecole.ibecole.commun.enumerate.Sexe;
+import com.ibecole.ibecole.entity.business.Enseigner;
 import com.ibecole.ibecole.entity.business.Professeur;
 import com.ibecole.ibecole.model.request.PersonneRequest;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+
+import java.util.List;
 
 
 public class PersonneRequestToProfesseurConverter implements Converter<PersonneRequest, Professeur> {
@@ -25,10 +28,17 @@ public class PersonneRequestToProfesseurConverter implements Converter<PersonneR
         professeur.setPhoto(personneRequest.getPhoto());
           /* Attributs Professeur */
         professeur.setDateRecrutement(personneRequest.getDateRecrutement());
-        professeur.setEnseigner(personneRequest.getEnseigner());
 
-        if(null != personneRequest.getId())
+        /**- IL FAUT PERSISTER LA LISTE ENSEIGNER A PART, CAR ON N'A PAS FORCEMENT L'ID DU PROFESSEUR,
+         * SI ON NE L'A PAS ENCORE PERSISTé DANS LA BDD.
+         * - IL NOUS FAUT DONC UNE "ENSEIGNER FACTORY" QUI RECOIT UNE LISTE DE MATIERES ET l'ID D'UN PROFESSEUR,
+         * ET PERSISTE LE TOUT !
+         * **/
+       // professeur.setEnseigner(personneRequest.getEnseigner());
+
+        if(null != personneRequest.getId()) {
             professeur.setId(personneRequest.getId());
+        }
 
         return professeur;
     }

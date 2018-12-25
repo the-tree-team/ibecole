@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UtilStatic} from "../UtilStatic";
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Sanction} from "../../model/business/model.sanction";
 import {map} from "rxjs/internal/operators";
 
@@ -13,7 +13,7 @@ export class SanctionService {
 
   getSanctions() {
     return this.http.get( `${UtilStatic.API_SOURCE}sanction/v1`,{observe: 'response'}) .pipe(
-      map(data => {
+      map((data) => {
         return data.body.content.map(item =>{
           let sanction = new Sanction();
           sanction.id=item.id;

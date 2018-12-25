@@ -62,4 +62,9 @@ public class Enseigner implements Serializable {
     public Enseigner(Integer id) {
         this.id = id;
     }
+
+    public Enseigner(Matiere matiere, Professeur professeur) {
+        this.matiere = matiere;
+        this.professeur = professeur;
+    }
 }
