@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
-import {TypeSanction} from "../../../../model/business/model.typesanction";
-import {TypeSanctionService} from "../../../../services/business/type-sanction.service";
+import {TypeSanctionService} from "../../../../../services/business/type-sanction.service";
+import {TypeSanction} from "../../../../../model/business/model.typesanction";
+import {UtilStatic} from "../../../../../services/UtilStatic";
 import {AddTypeSanctionComponent} from "../add-type-sanction/add-type-sanction.component";
 import {EditTypeSanctionComponent} from "../edit-type-sanction/edit-type-sanction.component";
-import {UtilStatic} from "../../../../services/UtilStatic";
 
 @Component({
   selector: 'app-all-type-sanction',

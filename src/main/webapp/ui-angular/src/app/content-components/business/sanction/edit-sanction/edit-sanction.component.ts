@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Sanction} from "../../../../model/business/model.sanction";
+import {Sanction} from "../../../../../model/business/model.sanction";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {TypeSanctionService} from "../../../../services/business/type-sanction.service";
+import {TypeSanctionService} from "../../../../../services/business/type-sanction.service";
 
 @Component({
   selector: 'app-edit-sanction',
@@ -27,7 +27,6 @@ export class EditSanctionComponent implements OnInit {
       console.log("ON COMPLETE CALL");
       const typteToSelect = this.typeSanctionOptions.find(itemType=> itemType.id === this.sanction.type.id);
         this.editForm.get('type').reset(typteToSelect);
-
       });
   }
 

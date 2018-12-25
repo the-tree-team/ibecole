@@ -1,9 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Sanction} from "../../../../model/business/model.sanction";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {TypeSanctionService} from "../../../../services/business/type-sanction.service";
-import {TypeSanction} from "../../../../model/business/model.typesanction";
+import {TypeSanctionService} from "../../../../../services/business/type-sanction.service";
+import {Sanction} from "../../../../../model/business/model.sanction";
 
 @Component({
   selector: 'app-add-sanction',

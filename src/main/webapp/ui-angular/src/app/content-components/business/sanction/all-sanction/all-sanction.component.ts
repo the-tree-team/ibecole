@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {SanctionService} from "../../../../services/business/sanction.service";
+import {SanctionService} from "../../../../../services/business/sanction.service";
 import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from "@angular/material";
-import {Sanction} from "../../../../model/business/model.sanction";
-import {UtilStatic} from "../../../../services/UtilStatic";
+import {Sanction} from "../../../../../model/business/model.sanction";
+import {UtilStatic} from "../../../../../services/UtilStatic";
 import {AddSanctionComponent} from "../add-sanction/add-sanction.component";
 import {EditSanctionComponent} from "../edit-sanction/edit-sanction.component";
 
