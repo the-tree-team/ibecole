@@ -31,6 +31,7 @@ export class AddSanctionComponent implements OnInit {
       commentaire: ['',[
       ]],
       type: ['',[
+        Validators.required
       ]]
     });
   }

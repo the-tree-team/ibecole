@@ -1,3 +1,32 @@
-<p>
-  edit-sanction works!
-</p>
+<form [formGroup]="editForm">
+  <h1 mat-dialog-title>Novelle Sanction </h1>
+  <div mat-dialog-content>
+
+    <mat-form-field>
+      <input matInput placeholder="Motif" formControlName="motif">
+      <mat-error *ngIf="motif.invalid">
+        Champs Obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Type Sanction" formControlName="type" [value]="type">
+        <mat-option *ngFor="let type of typeSanctionOptions" [value]="type">
+          {{type.libelle}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field id="commentaire">
+      <textarea   matInput placeholder="Commentaire" formControlName="commentaire"></textarea>
+    </mat-form-field>
+
+
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Annuler</button>
+    <button mat-button  [disabled]="editForm.invalid" (click)="onValidationClick()">Valider</button>
+  </div>
+
+</form>

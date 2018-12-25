@@ -4,6 +4,7 @@ import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from 
 import {Sanction} from "../../../../model/business/model.sanction";
 import {UtilStatic} from "../../../../services/UtilStatic";
 import {AddSanctionComponent} from "../add-sanction/add-sanction.component";
+import {EditSanctionComponent} from "../edit-sanction/edit-sanction.component";
 
 @Component({
   selector: 'app-all-sanction',
@@ -47,7 +48,6 @@ export class AllSanctionComponent implements OnInit {
     );
 
   }
-
 
   ngOnInit() {
   }
@@ -94,6 +94,28 @@ export class AllSanctionComponent implements OnInit {
     });
   }
 
+  openEditDialog(sanctionEdit: Sanction): void {
+    const dialogRef = this.editDialog.open(EditSanctionComponent, {
+      width: '450px'
+    });
+    dialogRef.componentInstance.sanction = sanctionEdit;
+    //EDIT SANCTION VIA DIALOG
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      this.sanctionService.updateSanction(result).subscribe( sanctionEdited =>{
+          this.sanctions = this.dataSource.data;
+          this.sanctions=UtilStatic.arrayDeleteItem(this.sanctions, sanctionEdit);
+          this.sanctions.push(sanctionEdited);
+          this.refresh();
+          this.snackBar.open("Edition effectuée avec succès", "Fermer", {
+            duration: 2000,
+          });
+        }
+
+      );
+    });
+  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
