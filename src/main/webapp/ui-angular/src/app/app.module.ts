@@ -6,7 +6,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from '@angular/cdk/layout';
 import {
   MatButtonModule,
-  MatCardModule, MatDialogModule,
+  MatCardModule,
+  MatDialogModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatGridListModule,
@@ -14,8 +15,10 @@ import {
   MatInputModule,
   MatListModule,
   MatPaginatorModule,
+  MatSelectModule,
   MatSidenavModule,
-  MatSlideToggleModule, MatSnackBarModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
   MatSortModule,
   MatTableModule,
   MatToolbarModule
@@ -27,8 +30,10 @@ import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {AddTypeSanctionComponent} from './content-components/typesanction/add-type-sanction/add-type-sanction.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { EditTypeSanctionComponent } from './content-components/typesanction/edit-type-sanction/edit-type-sanction.component';
-import { AllSanctionComponent } from './content-components/sanction/all-sanction/all-sanction.component';
+import {EditTypeSanctionComponent} from './content-components/typesanction/edit-type-sanction/edit-type-sanction.component';
+import {AllSanctionComponent} from './content-components/sanction/all-sanction/all-sanction.component';
+import {AddSanctionComponent} from './content-components/sanction/add-sanction/add-sanction.component';
+import {EditSanctionComponent} from './content-components/sanction/edit-sanction/edit-sanction.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,9 @@ import { AllSanctionComponent } from './content-components/sanction/all-sanction
     AllTypeSanctionComponent,
     AddTypeSanctionComponent,
     EditTypeSanctionComponent,
-    AllSanctionComponent
+    AllSanctionComponent,
+    AddSanctionComponent,
+    EditSanctionComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +68,7 @@ import { AllSanctionComponent } from './content-components/sanction/all-sanction
     MatDialogModule,
     MatInputModule,
     MatSnackBarModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule
@@ -68,7 +76,9 @@ import { AllSanctionComponent } from './content-components/sanction/all-sanction
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [ AddTypeSanctionComponent,
-    EditTypeSanctionComponent
+    EditTypeSanctionComponent,
+    AddSanctionComponent,
+    EditSanctionComponent
   ]
 })
 export class AppModule { }

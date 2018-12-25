@@ -1,7 +1,7 @@
 <mat-card>
   <mat-grid-list cols="2" style="width: 100%">
     <button mat-flat-button color="primary" style="width: 10%"
-            >
+            (click)="openAddDialog()">
       <mat-icon style="height: 30px">add</mat-icon> Ajouter</button>
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -44,7 +44,7 @@
           <a mat-button class="action-button" >
             <mat-icon >edit</mat-icon>
           </a>
-          <a mat-button class="action-button" >
+          <a mat-button class="action-button" (click)="deleteSectionListener(row)" >
             <mat-icon>delete</mat-icon>
           </a>
         </td>

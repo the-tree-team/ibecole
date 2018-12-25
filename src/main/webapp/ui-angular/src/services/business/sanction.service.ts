@@ -24,18 +24,6 @@ export class SanctionService {
         });
       }) // or any other operator
     );
-      /*.pipe(
-      map(data =>{
-        console.log("DATA");
-        console.log(data);
-        let sanction = new Sanction();
-        sanction.id=data.id;
-        sanction.motif = data.motif;
-        sanction.commentaire = data.commentaire;
-        sanction.type = data.type;
-        return sanction;
-        }
-      ));*/
   }
 
   deleteSanction(id: number){
