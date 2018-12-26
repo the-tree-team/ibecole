@@ -1,0 +1,15 @@
+mat-form-field{
+  margin: 10px 10px;
+  width: 100%;
+}
+#upload-picture-btn{
+  min-width: 250px;min-height: 150px;margin: 0 auto!important;
+  color: white;
+  background-color: #1c2539;
+  cursor: pointer;
+  border: none;
+}
+
+.uploaded-photo{
+  background-color: #0ac382!important;
+}

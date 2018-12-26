@@ -8,12 +8,14 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.sql.Blob;
 import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -60,9 +62,8 @@ public abstract class Personne  implements Serializable{
     @Column(name = "email", length = 30)
     private String email;
 
-    @Lob
-    @Column(nullable = true,length=100000)
-    private byte[] photo;
+    @Lob @Type(type="org.hibernate.type.BlobType")
+    private Blob photo;
 
     private boolean active;
 }

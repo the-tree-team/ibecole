@@ -7,13 +7,15 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {
   MatButtonModule,
   MatCardModule,
+  MatDatepickerModule,
   MatDialogModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatMenuModule,
+  MatListModule,
+  MatMenuModule, MatNativeDateModule,
   MatPaginatorModule,
   MatSelectModule,
   MatSidenavModule,
@@ -34,7 +36,7 @@ import {EditTypeSanctionComponent} from './content-components/business/typesanct
 import {AllSanctionComponent} from './content-components/business/sanction/all-sanction/all-sanction.component';
 import {AddSanctionComponent} from './content-components/business/sanction/add-sanction/add-sanction.component';
 import {EditSanctionComponent} from './content-components/business/sanction/edit-sanction/edit-sanction.component';
-import { AddPersonneComponent } from './content-components/business/personne/add-personne/add-personne.component';
+import {AddPersonneComponent} from './content-components/business/personne/add-personne/add-personne.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { AddPersonneComponent } from './content-components/business/personne/add
     MatSnackBarModule,
     MatSelectModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule

@@ -41,12 +41,13 @@ public class PersonneRequest {
     /** Doit être changé en idParent car on n'a pas le model parent dans le coté Angular **/
 //    private Parent parent;
     private Integer idParent;
+/* On ne doit pas lui créer les sanctions et les absences alors qu'il n'existe même pas dans notre S.I
 
     private List<Sanction> sanctionList;
 
 
     private List<Absence> absenceList;
-
+*/
     /** Doit être supprimée car on n'affecte pas les groupes dans la création de l'élève, mais on affecte les élèves
      * au groupe, et donc ça doit être placé dans le groupe
      */
