@@ -11,10 +11,16 @@ export class AddPersonneComponent implements OnInit {
   addForm: FormGroup;
   sexeOptions=['Homme','Femme'];
   uploadedPhoto = false;
+  createEleve: boolean=false;
+  createParent: boolean=false;
+  createProfesseur: boolean=false;
   personne: Personne = new Personne();
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.createEleve=false;
+    this.createParent=false;
+    this.createProfesseur=false;
     this.addForm = this.fb.group({
       nom:['',[
         Validators.required,
@@ -68,11 +74,34 @@ export class AddPersonneComponent implements OnInit {
       ]],
     });
   }
-
+  get goToCreation(){
+    return this.createEleve || this.createParent || this.createProfesseur;
+  }
+  reset(){
+    this.createParent = false;
+    this.createEleve= false;
+    this.createProfesseur= false;
+    this.type.setValue("Eleve")
+  }
   onSelectPhoto($event){
     this.uploadedPhoto=true;
     const target = <HTMLInputElement>event.target;
     this.personne.photo= target.files[0];
+  }
+  selectParent(){
+    this.createParent=true;
+    this.type.setValue("Parent");
+    console.log(this.goToCreation);
+  }
+  selectEleve(){
+    this.createEleve = true;
+    this.type.setValue("Eleve");
+    console.log(this.goToCreation);
+  }
+  selectProfesseur(){
+    this.createProfesseur=true;
+    this.type.setValue("Professeur");
+    console.log(this.goToCreation);
   }
 
   get nom(){

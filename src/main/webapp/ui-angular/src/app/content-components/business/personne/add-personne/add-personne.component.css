@@ -13,3 +13,42 @@ mat-form-field{
 .uploaded-photo{
   background-color: #0ac382!important;
 }
+.personne-selection{
+  padding: 0!important;
+  margin: 0px auto!important;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.personne-selection .col-4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 100%;
+  height: 50vh;
+  padding: 0!important;
+  margin: 0px !important;
+  cursor: pointer;
+}
+.personne-selection .col-4 h3{
+  opacity: 0;
+}
+.personne-selection .col-4:hover h3{
+  animation: fadein 2s;
+}
+#select-parent{
+  background: url("../../../../../assets/resources/images/parent.jpg") no-repeat ;
+}
+#select-eleve{
+  background: url("../../../../../assets/resources/images/eleve.jpg");
+}
+#select-professeur{
+  background: url("../../../../../assets/resources/images/professeur.jpg");
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
