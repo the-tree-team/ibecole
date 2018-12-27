@@ -50,9 +50,9 @@ public class PersonneService {
 
     public Personne save(PersonneRequest personneRequest){
         switch (personneRequest.getType()){
-            case "Eleve":{
-                personneRequest.setMatricule(matriculeGenerate.Generate(personneRequest));
+            case "Eleve":{  
                 eleve = conversionService.convert(personneRequest, Eleve.class);
+                 eleve.setMatricule(matriculeGenerate.Generate(personneRequest));
                 if(eleve != null)
                     eleveRepository.save(eleve);
                 return eleve;

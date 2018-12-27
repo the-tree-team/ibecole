@@ -37,6 +37,10 @@ import {AllSanctionComponent} from './content-components/business/sanction/all-s
 import {AddSanctionComponent} from './content-components/business/sanction/add-sanction/add-sanction.component';
 import {EditSanctionComponent} from './content-components/business/sanction/edit-sanction/edit-sanction.component';
 import {AddPersonneComponent} from './content-components/business/personne/add-personne/add-personne.component';
+import { EditTypeSanctionComponent } from './content-components/typesanction/edit-type-sanction/edit-type-sanction.component';
+import { LoginComponent } from './login/login.component';
+import { LoginRequest } from '../model/admin/loginRequest';
+import {AuthenticationService} from "./_services/authentication.service";
 
 @NgModule({
   declarations: [
@@ -48,7 +52,8 @@ import {AddPersonneComponent} from './content-components/business/personne/add-p
     AllSanctionComponent,
     AddSanctionComponent,
     EditSanctionComponent,
-    AddPersonneComponent
+    AddPersonneComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,7 @@ import {AddPersonneComponent} from './content-components/business/personne/add-p
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthenticationService, LoginRequest],
   bootstrap: [AppComponent],
   entryComponents: [ AddTypeSanctionComponent,
     EditTypeSanctionComponent,

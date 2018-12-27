@@ -21,6 +21,10 @@ public class PersonneRequestToEleveConverter implements Converter<PersonneReques
         this.personneService = personneService;
     }
 
+    public PersonneRequestToEleveConverter() {
+        
+    }
+
     @Nullable
     @Override
     public Eleve convert(PersonneRequest personneRequest) {
@@ -43,8 +47,8 @@ public class PersonneRequestToEleveConverter implements Converter<PersonneReques
         /** Pas besoin du matricule parcequ'on le crée nous même avant de persister **/
 //        eleve.setMatricule(personneRequest.getMatricule());
 
-        eleve.setSanctionList(personneRequest.getSanctionList());
-        eleve.setAbsenceList(personneRequest.getAbsenceList());
+//        eleve.setSanctionList(personneRequest.getSanctionList());
+//        eleve.setAbsenceList(personneRequest.getAbsenceList());
         /** Doit être supprimée car on n'affecte pas les groupes dans la création de l'élève, mais on affecte les élèves
          * au groupe, et donc ça doit être placé dans le groupe
          */

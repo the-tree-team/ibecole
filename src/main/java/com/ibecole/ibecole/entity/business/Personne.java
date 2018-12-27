@@ -63,7 +63,7 @@ public abstract class Personne  implements Serializable{
     private String email;
 
     @Lob @Type(type="org.hibernate.type.BlobType")
-    private Blob photo;
+    private byte[] photo;
 
     private boolean active;
 }

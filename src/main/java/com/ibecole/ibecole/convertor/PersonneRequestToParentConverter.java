@@ -22,6 +22,10 @@ public class PersonneRequestToParentConverter implements Converter<PersonneReque
     public PersonneRequestToParentConverter(PersonneService personneService) {
         this.personneService = personneService;
     }
+
+    public PersonneRequestToParentConverter() {
+       
+    }
     @Nullable
     @Override
     public Parent convert(PersonneRequest personneRequest) {
