@@ -15,7 +15,7 @@ export class TypeSanctionService {
     return this.http.get<TypeSanction[]>( `${UtilStatic.API_SOURCE}type_sanction/v1`,{observe: 'response'});
   }
   getTypeSanctionList() {
-    return this.http.get( `${UtilStatic.API_SOURCE}type_sanction/v1`,{observe: 'response'}) .pipe(
+    return this.http.get<any>( `${UtilStatic.API_SOURCE}type_sanction/v1`,{observe: 'response'}) .pipe(
       map(data => {
         return data.body.content.map(item =>{
           return item;

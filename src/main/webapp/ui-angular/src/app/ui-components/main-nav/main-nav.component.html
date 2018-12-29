@@ -1,5 +1,6 @@
 
 <mat-sidenav-container class="sidenav-container">
+  <!--*ngIf="affiche"-->
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -32,7 +33,8 @@
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="accent" >
+    <!--*ngIf="affiche"-->
+    <mat-toolbar   color="accent" >
       <div class="left-toolbar" >
         <button
           type="button"
@@ -43,7 +45,8 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
       </div>
-      <div class="right-toolbar">
+      <!--*ngIf="affiche"-->
+      <div class="right-toolbar" >
         <button mat-flat-button [matMenuTriggerFor]="menu" color="primary"><mat-icon>add</mat-icon></button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item routerLink="addpersonne"><mat-icon color="primary">person</mat-icon>Personne</button>
@@ -53,6 +56,8 @@
       </div>
     </mat-toolbar>
     <div class="main-content">
+
+
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

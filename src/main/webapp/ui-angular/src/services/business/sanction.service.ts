@@ -12,7 +12,7 @@ export class SanctionService {
   constructor(private http: HttpClient) { }
 
   getSanctions() {
-    return this.http.get( `${UtilStatic.API_SOURCE}sanction/v1`,{observe: 'response'}) .pipe(
+    return this.http.get<any>( `${UtilStatic.API_SOURCE}sanction/v1`,{observe: 'response'}) .pipe(
       map((data) => {
         return data.body.content.map(item =>{
           let sanction = new Sanction();

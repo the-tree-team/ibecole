@@ -5,15 +5,15 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
 
-  <div mat-dialog-content>
+  <div mat-dialog-content class="col-md-6 offset-3">
     <mat-form-field>
-      <input matInput   formControlName="username" type="text"
+      <input matInput   formControlName="username" type="text" placeholder="Username"
              [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >
       <mat-error *ngIf="submitted && f.username.errors">Username is required
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" formControlName="password"
+      <input matInput type="password" formControlName="password" placeholder="Password"
              [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
       <mat-error *ngIf="submitted && f.password.errors">
         Password is required

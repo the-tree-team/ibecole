@@ -18,12 +18,20 @@ export class AuthenticationService {
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
+  public  afficherNavBar(): boolean {
+    if (localStorage.getItem('currentUser')===null)
+    {
+      console.log("localStorage.getItem('currentUser')++++++++++ "+localStorage.getItem('currentUser'));
+      return false;
+    }
+    else{ console.log("localStorage.getItem('currentUser ============ ') "+localStorage.getItem('currentUser'));
+      return true};
+  }
+
 
 
 
   login(loginRequest :LoginRequest ) {
-
-
     return this.http.post<any>("http://localhost:8080/api/auth/signin", loginRequest)
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
@@ -39,9 +47,12 @@ export class AuthenticationService {
 
 
 
+
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+
   }
 }

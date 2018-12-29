@@ -1,0 +1,52 @@
+
+ <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="col-md-6 offset-3">
+   <div mat-dialog-content class=" divInputs .col-md-8 .col-md-offset-3">
+    <mat-form-field  >
+      <mat-label>Name</mat-label>
+      <input  matInput  placeholder="name"  name="name" [formControl]="name"  required>
+      <mat-error *ngIf="name.invalid">
+        name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>Username</mat-label>
+      <input  matInput  placeholder="Username" name="username" [formControl]="username" required>
+      <mat-error *ngIf="username.invalid">
+        username is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field  >
+    <mat-label>Email</mat-label>
+    <input  matInput  placeholder="Email" name="email" [formControl]="email" >
+      <mat-error *ngIf="email.invalid">
+        email is required
+      </mat-error>
+  </mat-form-field>
+    <mat-form-field  >
+      <mat-label>Password</mat-label>
+      <input  matInput  placeholder="Password" type="password" name="password"
+              [formControl]="password" >
+      <mat-error *ngIf="password.invalid">
+        Password is required
+      </mat-error>
+      <!--<mat-error *ngIf="password.errors.minlength">
+        Password must be at least 6 characters
+      </mat-error>-->
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Roles" [formControl]="roles"   multiple>
+        <mat-option *ngFor="let role of rolesList" [value]="role">
+          {{role.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="rolesList.invalid">
+        role is required
+      </mat-error>
+    </mat-form-field>
+   <div class="form-group">
+     <button [disabled]="loading"  class="btn btn-primary" type="submit">Register</button>
+   </div>
+   <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+   </div>
+  </form>
+

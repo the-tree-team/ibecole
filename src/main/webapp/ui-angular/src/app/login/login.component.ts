@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['home'] || '/';
   }
 
   // convenience getter for easy access to form fields
@@ -59,7 +59,8 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/addpersonne' +
+          '']);
         },
         error => {
           this.error =   "Username ou Password Incorrect !!!!!";

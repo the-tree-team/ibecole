@@ -40,6 +40,10 @@ import {AddPersonneComponent} from './content-components/business/personne/add-p
 import { LoginComponent } from './login/login.component';
 import { LoginRequest } from '../model/admin/loginRequest';
 import {AuthenticationService} from "./_services/authentication.service";
+import { RegisterComponent } from './register/register.component';
+import {SigneUpRequest} from "../model/admin/signeUpRequest";
+import {Role} from "../model/admin/role";
+import {User} from "../model/admin/user";
 
 @NgModule({
   declarations: [
@@ -52,7 +56,8 @@ import {AuthenticationService} from "./_services/authentication.service";
     AddSanctionComponent,
     EditSanctionComponent,
     AddPersonneComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +89,7 @@ import {AuthenticationService} from "./_services/authentication.service";
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [AuthenticationService, LoginRequest],
+  providers: [AuthenticationService, LoginRequest, SigneUpRequest, Role,User],
   bootstrap: [AppComponent],
   entryComponents: [ AddTypeSanctionComponent,
     EditTypeSanctionComponent,

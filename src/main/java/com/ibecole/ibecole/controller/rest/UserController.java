@@ -1,6 +1,7 @@
 package com.ibecole.ibecole.controller.rest;
 
 
+import com.ibecole.ibecole.entity.admin.User;
 import com.ibecole.ibecole.payload.UserIdentityAvailability;
 import com.ibecole.ibecole.payload.UserSummary;
 import com.ibecole.ibecole.repository.admin.UserRepository;
@@ -43,8 +44,7 @@ public class UserController {
         Boolean isAvailable = !userRepository.existsByEmail(email);
         return new UserIdentityAvailability(isAvailable);
     }
-
-//    @GetMapping("/users/{username}")
+//  @GetMapping("/users/{username}")
 //    public UserProfile getUserProfile(@PathVariable(value = "username") String username) {
 //        User user = userRepository.findByUsername(username)
 //                .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));

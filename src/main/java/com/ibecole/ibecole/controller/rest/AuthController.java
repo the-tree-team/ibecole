@@ -29,9 +29,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by rajeevkumarsingh on 02/08/17.
@@ -68,7 +68,7 @@ public class AuthController {
             list.add(role1);
             roleRepository.saveAll(list);
         }
-        if (userRepository.findByUsername("allaoua").equals(true)){
+
         User user = new User("allaoua", "allaoua",
                 "allaoua@gmail.com", passwordEncoder.encode("allaoua"));
 
@@ -76,11 +76,11 @@ public class AuthController {
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
 
-        user.setRoles(Collections.singleton(userRole));
+//        user.setRoles(Collections.singleton(userRole));
 
         User result = userRepository.save(user);
         }
-    }
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@RequestBody @Valid LoginRequest loginRequest) {
@@ -101,6 +101,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody @Valid SignUpRequest signUpRequest) {
+        System.out.println( " dans la fonction signe up"+signUpRequest.getRoles());
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
@@ -110,18 +111,32 @@ public class AuthController {
             return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
-
+        System.out.println( "create account ");
         // Creating user's account
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPassword());
 
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
+//        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+         //       .orElseThrow(() -> new AppException("User Role not set."));
 
-        user.setRoles(Collections.singleton(userRole));
+//        user.setRoles(Collections.singleton(userRole));
+        List<Role> roles= new ArrayList();
+       signUpRequest.getRoles()
+                .stream()
+                .forEach(
+                    a -> {
+                        roles.add(roleRepository.findByName(a.getName()).get());
+                        System.out.println(roles);
 
+                });
+
+
+        user.setRoles(roles);
+
+
+        System.out.println("After le foreach roles signup "+roles);
         User result = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
