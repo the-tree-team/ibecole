@@ -1,20 +1,29 @@
 package com.ibecole.ibecole;
 
+import com.ibecole.ibecole.entity.admin.Role;
+import com.ibecole.ibecole.entity.admin.RoleName;
+import com.ibecole.ibecole.entity.admin.User;
 import com.ibecole.ibecole.entity.business.Eleve;
 import com.ibecole.ibecole.entity.business.Sanction;
 import com.ibecole.ibecole.entity.business.TypeSanction;
+import com.ibecole.ibecole.exception.AppException;
 import com.ibecole.ibecole.model.request.AbsenceRequest;
 import com.ibecole.ibecole.model.request.PersonneRequest;
+import com.ibecole.ibecole.repository.admin.RoleRepository;
+import com.ibecole.ibecole.repository.admin.UserRepository;
 import com.ibecole.ibecole.service.business.AbsenceService;
 import com.ibecole.ibecole.service.business.PersonneService;
 import com.ibecole.ibecole.service.business.SanctionService;
 import com.ibecole.ibecole.service.business.TypeSanctionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
+import java.util.Collections;
 
 @SpringBootApplication
 public class IbecoleApplication implements CommandLineRunner{
@@ -24,13 +33,21 @@ public class IbecoleApplication implements CommandLineRunner{
 	private final PersonneService personneService;
 	private final TypeSanctionService typeSanctionService;
 	private final SanctionService sanctionService;
+	private final RoleRepository roleRepository;
+	private final UserRepository userRepository;
 
-	public IbecoleApplication(AbsenceService absenceService, ConversionService conversionService, PersonneService personneService, TypeSanctionService typeSanctionService, SanctionService sanctionService) {
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+
+	public IbecoleApplication(AbsenceService absenceService, ConversionService conversionService, PersonneService personneService, TypeSanctionService typeSanctionService, SanctionService sanctionService, RoleRepository roleRepository, UserRepository userRepository) {
 		this.absenceService = absenceService;
 		this.conversionService = conversionService;
 		this.personneService = personneService;
 		this.typeSanctionService = typeSanctionService;
 		this.sanctionService = sanctionService;
+		this.roleRepository = roleRepository;
+		this.userRepository = userRepository;
 	}
 
 /*
@@ -48,8 +65,17 @@ public class IbecoleApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		/*User user = new User("allaoua", "allaoua",
+				"allaoua@gmail.com", passwordEncoder.encode("allaoua"));
 
-	PersonneRequest personneRequest = new PersonneRequest();
+
+		Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+				.orElseThrow(() -> new AppException("User Role not set."));
+
+		user.setRoles(Collections.singleton(userRole));
+
+		User result = userRepository.save(user);*/
+		PersonneRequest personneRequest = new PersonneRequest();
 
 		TypeSanction typeSanction1 = new TypeSanction();
 		typeSanction1.setCode("SANC-001");
