@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LoginRequest } from '../../model/admin/LoginRequest';
 import { User } from '../../model/admin/user';
+import {UtilStatic} from "../../services/UtilStatic";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -32,7 +33,7 @@ export class AuthenticationService {
 
 
   login(loginRequest :LoginRequest ) {
-    return this.http.post<any>("http://localhost:8080/api/auth/signin", loginRequest)
+    return this.http.post<any>(UtilStatic.API_SOURCE+"api/auth/signin", loginRequest)
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {

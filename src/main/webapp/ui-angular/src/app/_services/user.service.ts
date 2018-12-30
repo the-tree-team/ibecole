@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { SigneUpRequest } from '../../model/admin/signeUpRequest';
 
 import { User } from '../../model/admin/user';
+import {UtilStatic} from "../../services/UtilStatic";
 
 
 @Injectable({ providedIn: 'root' })
@@ -21,7 +22,7 @@ export class UserService {
   }
 
   register(signeUpRequest :SigneUpRequest ) {
-    return this.http.post<any>("http://localhost:8080/api/auth/signup", signeUpRequest)
+    return this.http.post<any>(UtilStatic.API_SOURCE+"api/auth/signup", signeUpRequest)
   }
   update(user: User) {
     return this.http.put(`/users/` + user.id, user);
