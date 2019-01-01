@@ -23,12 +23,13 @@ export class Personne{
 
   email: string;
 
-  photo: any;
+  photo: File;
 
   active: boolean;
 
   /* Eleve */
-  idParent: number;
+  /*idParent: number;*/
+  parent: Personne;
 
   sanctionList: Sanction[];
 

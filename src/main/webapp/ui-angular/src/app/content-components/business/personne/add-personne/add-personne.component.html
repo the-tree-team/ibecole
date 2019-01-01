@@ -6,8 +6,8 @@
 </div>
 <div *ngIf="goToCreation">
   <h3> {{type.value === 'Eleve' ? 'Nouvel' : 'Nouveau'}} {{type.value}}</h3>
-  <mat-card>
-    <form [formGroup]="addForm">
+  <form [formGroup]="addForm" enctype="multipart/form-data">
+    <mat-card>
       <div class="row">
         <div class="col-8">
           <mat-form-field>
@@ -105,14 +105,21 @@
         </div>
       </div>
       <div *ngIf="createParent">
-PARENT
+        PARENT
       </div>
       <div *ngIf="createEleve">
-ELEVE
+        ELEVE
       </div>
       <div *ngIf="createProfesseur">
-PROFESSEUR
+        PROFESSEUR
       </div>
-    </form>
-  </mat-card>
+    </mat-card>
+    <div class="form-actions">
+      <button mat-flat-button type="button">Annuler</button>
+      <button mat-flat-button color="primary"  (click)="onValidationClick()">
+        Valider
+      </button>
+    </div>
+  </form>
+
 </div>

@@ -16,6 +16,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -62,8 +63,8 @@ public abstract class Personne  implements Serializable{
     @Column(name = "email", length = 30)
     private String email;
 
-    @Lob @Type(type="org.hibernate.type.BlobType")
-    private byte[] photo;
+   /* @Lob @Type(type="org.hibernate.type.BlobType")*/
+    private String photo;
 
     private boolean active;
 }

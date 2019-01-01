@@ -39,8 +39,8 @@ public class PersonneRequestToParentConverter implements Converter<PersonneReque
         parent.setLieuNaissance(personneRequest.getLieuNaissance());
         parent.setAdresse(personneRequest.getAdresse());
         parent.setTelephone(personneRequest.getTelephone());
-        parent.setEmail(personneRequest.getEmail());
-        parent.setPhoto(personneRequest.getPhoto());
+        parent.setEmail(personneRequest.getEmail());/*
+        parent.setPhoto(personneRequest.getPhoto());*/
 
         /* Attributs Parent */
         List<Eleve> enfantList = personneRequest.getEnfantList().stream().map( id ->

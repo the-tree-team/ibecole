@@ -41,8 +41,9 @@ public class PersonneRequestToEleveConverter implements Converter<PersonneReques
         eleve.setAdresse(personneRequest.getAdresse());
         eleve.setTelephone(personneRequest.getTelephone());
         eleve.setEmail(personneRequest.getEmail());
-        eleve.setPhoto(personneRequest.getPhoto());
-
+        /*eleve.setPhoto(personneRequest.getPhoto());*/
+        if(personneRequest.getPhoto()!=null)
+        System.out.println("CONVERTER: FILE-Photo: "+personneRequest.getPhoto());
         /* Attributs Eleve */
         /** Pas besoin du matricule parcequ'on le crée nous même avant de persister **/
 //        eleve.setMatricule(personneRequest.getMatricule());
@@ -56,10 +57,12 @@ public class PersonneRequestToEleveConverter implements Converter<PersonneReques
 
         if(null != personneRequest.getId())
             eleve.setId(personneRequest.getId());
+/*
 
         if(null != personneRequest.getIdParent())
             eleve.setParent( (Parent) personneService.findById(personneRequest.getIdParent(),"Parent"));
-
+*/
+        eleve.setParent(personneRequest.getParent());
         return eleve;
     }
 }

@@ -1,9 +1,10 @@
 package com.ibecole.ibecole.model.request;
 
-import com.ibecole.ibecole.entity.business.*;
-import lombok.Data;
+import com.ibecole.ibecole.entity.business.Matiere;
+import com.ibecole.ibecole.entity.business.Parent;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,7 +31,7 @@ public class PersonneRequest {
 
     private String email;
 
-    private byte[] photo;
+    private MultipartFile photo;
 
     private boolean active;
 
@@ -39,8 +40,8 @@ public class PersonneRequest {
     //private String matricule;
 
     /** Doit être changé en idParent car on n'a pas le model parent dans le coté Angular **/
-//    private Parent parent;
-    private Integer idParent;
+    private Parent parent;
+/*    private Integer idParent;*/
 /* On ne doit pas lui créer les sanctions et les absences alors qu'il n'existe même pas dans notre S.I
 
     private List<Sanction> sanctionList;

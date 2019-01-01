@@ -50,14 +50,6 @@ public class IbecoleApplication implements CommandLineRunner{
 		this.userRepository = userRepository;
 	}
 
-/*
-	@Autowired
-	public IbecoleApplication(PersonneService personneService, ConversionService conversionService,NiveauService niveauService) {
-		this.personneService = personneService;
-		this.conversionService = conversionService;
-		this.niveauService =  niveauService;
-	}
-*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(IbecoleApplication.class, args);
@@ -65,16 +57,7 @@ public class IbecoleApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*User user = new User("allaoua", "allaoua",
-				"allaoua@gmail.com", passwordEncoder.encode("allaoua"));
 
-
-		Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-				.orElseThrow(() -> new AppException("User Role not set."));
-
-		user.setRoles(Collections.singleton(userRole));
-
-		User result = userRepository.save(user);*/
 		PersonneRequest personneRequest = new PersonneRequest();
 
 		TypeSanction typeSanction1 = new TypeSanction();
@@ -96,11 +79,6 @@ public class IbecoleApplication implements CommandLineRunner{
 		sanction.setCommentaire("L'étudiant a manqué de respect au professeur de Français");
 		sanction.setType(typeSanction1);
 		sanctionService.save(sanction);
-
-		/*Niveau niveau = new Niveau();
-		niveau.setCode("TEST");
-		niveau.setLibelle("TEST1");
-		niveauService.save(niveau);*/
 
 		personneRequest.setType("Eleve");
 		personneRequest.setNom("IDIRENE");

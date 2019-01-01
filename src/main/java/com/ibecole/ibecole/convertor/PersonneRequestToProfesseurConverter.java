@@ -25,7 +25,8 @@ public class PersonneRequestToProfesseurConverter implements Converter<PersonneR
         professeur.setAdresse(personneRequest.getAdresse());
         professeur.setTelephone(personneRequest.getTelephone());
         professeur.setEmail(personneRequest.getEmail());
-        professeur.setPhoto(personneRequest.getPhoto());
+        /*
+        professeur.setPhoto(personneRequest.getPhoto());*/
           /* Attributs Professeur */
         professeur.setDateRecrutement(personneRequest.getDateRecrutement());
 

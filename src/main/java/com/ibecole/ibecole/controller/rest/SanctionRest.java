@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class SanctionRest {
 
-    SanctionService sanctionService;
+    private SanctionService sanctionService;
 
     public SanctionRest(SanctionService sanctionService) {
         this.sanctionService = sanctionService;

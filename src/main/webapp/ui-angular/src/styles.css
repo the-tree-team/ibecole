@@ -13,3 +13,11 @@ td a.action-button{
 .table-header div[class*="col"]{
   margin: auto auto
 }
+.form-actions{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+.form-actions button{
+  margin: 0 7px;
+}

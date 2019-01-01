@@ -21,6 +21,9 @@ public class ConversionConfig {
         converters.add(new GroupeRequestToGroupeConverter());
         converters.add(new SeanceRequestToGroupeConverter());
         converters.add(new AbsenceRequestToAbsenceJConverter());
+        converters.add(new EleveToPersonneResponseConverter());
+        converters.add(new ParentToPersonneResponseConverter());
+        converters.add(new ProfesseurToPersonneResponseConverter());
 
         return converters;
     }
