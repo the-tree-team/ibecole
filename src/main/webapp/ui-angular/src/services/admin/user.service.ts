@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { SigneUpRequest } from '../../model/admin/signeUpRequest';
 
 import { User } from '../../model/admin/user';
-import {UtilStatic} from "../../services/UtilStatic";
+import {UtilStatic} from "../UtilStatic";
 
 
 @Injectable({ providedIn: 'root' })

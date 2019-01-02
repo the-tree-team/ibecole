@@ -37,10 +37,10 @@ import {AllSanctionComponent} from './content-components/business/sanction/all-s
 import {AddSanctionComponent} from './content-components/business/sanction/add-sanction/add-sanction.component';
 import {EditSanctionComponent} from './content-components/business/sanction/edit-sanction/edit-sanction.component';
 import {AddPersonneComponent} from './content-components/business/personne/add-personne/add-personne.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './content-components/admin/login/login.component';
 import { LoginRequest } from '../model/admin/loginRequest';
-import {AuthenticationService} from "./_services/authentication.service";
-import { RegisterComponent } from './register/register.component';
+import {AuthenticationService} from "../services/admin/authentication.service";
+import { RegisterComponent } from './content-components/admin/register/register.component';
 import {SigneUpRequest} from "../model/admin/signeUpRequest";
 import {Role} from "../model/admin/role";
 import {User} from "../model/admin/user";
