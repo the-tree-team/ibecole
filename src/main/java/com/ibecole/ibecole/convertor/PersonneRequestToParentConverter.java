@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,9 +40,14 @@ public class PersonneRequestToParentConverter implements Converter<PersonneReque
         parent.setLieuNaissance(personneRequest.getLieuNaissance());
         parent.setAdresse(personneRequest.getAdresse());
         parent.setTelephone(personneRequest.getTelephone());
-        parent.setEmail(personneRequest.getEmail());/*
-        parent.setPhoto(personneRequest.getPhoto());*/
-
+        parent.setEmail(personneRequest.getEmail());
+        if(personneRequest.getPhoto()!=null) {
+            try {
+                parent.setPhoto(personneRequest.getPhoto().getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         /* Attributs Parent */
         List<Eleve> enfantList = personneRequest.getEnfantList().stream().map( id ->
                 (Eleve) personneService.findById(id,"Eleve")

@@ -24,6 +24,7 @@ public class PersonneRest {
         this.personneService = personneService;
         this.conversionService = conversionService;
     }
+
 /*
     //ADD
     @RequestMapping(path="add", method = RequestMethod.POST,
@@ -58,15 +59,23 @@ public class PersonneRest {
         return new ResponseEntity<>(personneResponse, HttpStatus.CREATED);
 
     } */
-    @RequestMapping(path="add", method = RequestMethod.POST,
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,headers = "content-type=multipart/form-data")
-    public ResponseEntity<PersonneResponse> createSanction(
-            @RequestParam MultipartFile file
-    ){
-        if (file != null) {
-            System.out.println(file.getOriginalFilename());
-        }
-        return null;
-
+/*@RequestMapping(path="add", method = RequestMethod.POST,
+        consumes = MediaType.MULTIPART_FORM_DATA_VALUE, headers = "content-type=multipart/form-data")*/
+@RequestMapping(path="add", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+public ResponseEntity<PersonneResponse> createSanction(
+        @RequestPart("file") MultipartFile file,
+        @RequestPart("personne") PersonneRequest personneRequest
+){
+    personneRequest.setPhoto(file);
+    if (file!= null) {
+        System.out.println(file.getOriginalFilename());
     }
+    if(personneRequest != null){
+        System.out.println(personneRequest.getNom());
+    }
+
+    personneService.save(personneRequest);
+    return null;
+
+}
 }

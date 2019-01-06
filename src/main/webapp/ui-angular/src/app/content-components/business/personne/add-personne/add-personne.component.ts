@@ -91,13 +91,13 @@ export class AddPersonneComponent implements OnInit {
     this.uploadedPhoto=true;
     const target = <HTMLInputElement>event.target;
     this.personne.photo= target.files[0];
-    this.uploadedFile= target.files[0];
+    /*this.uploadedFile= target.files[0];
     this.personneService.createPersonne(this.uploadedFile).subscribe( data =>{
         console.log(data);
 
       }
 
-    );;
+    );;*/
   }
   selectParent(){
     this.createParent=true;
@@ -139,12 +139,11 @@ export class AddPersonneComponent implements OnInit {
     }else{
 
     }
-    /*this.personneService.createPersonne(this.personne).subscribe( data =>{
+    this.personneService.createPersonne(this.personne).subscribe( data =>{
        console.log(data);
 
       }
-
-    );*/
+    );
   }
   get nom(){
     return this.addForm.get('nom');

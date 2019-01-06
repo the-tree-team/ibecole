@@ -6,9 +6,12 @@ import com.ibecole.ibecole.entity.business.Eleve;
 import com.ibecole.ibecole.entity.business.Parent;
 import com.ibecole.ibecole.model.request.PersonneRequest;
 import com.ibecole.ibecole.service.business.PersonneService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+
+import java.io.IOException;
 
 
 public class PersonneRequestToEleveConverter implements Converter<PersonneRequest, Eleve> {
@@ -22,7 +25,7 @@ public class PersonneRequestToEleveConverter implements Converter<PersonneReques
     }
 
     public PersonneRequestToEleveConverter() {
-        
+
     }
 
     @Nullable
@@ -41,9 +44,14 @@ public class PersonneRequestToEleveConverter implements Converter<PersonneReques
         eleve.setAdresse(personneRequest.getAdresse());
         eleve.setTelephone(personneRequest.getTelephone());
         eleve.setEmail(personneRequest.getEmail());
-        /*eleve.setPhoto(personneRequest.getPhoto());*/
-        if(personneRequest.getPhoto()!=null)
-        System.out.println("CONVERTER: FILE-Photo: "+personneRequest.getPhoto());
+        if(personneRequest.getPhoto()!=null){
+            try {
+                eleve.setPhoto(personneRequest.getPhoto().getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         /* Attributs Eleve */
         /** Pas besoin du matricule parcequ'on le crée nous même avant de persister **/
 //        eleve.setMatricule(personneRequest.getMatricule());

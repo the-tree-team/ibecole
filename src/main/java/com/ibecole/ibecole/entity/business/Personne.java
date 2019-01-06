@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Data
 @NoArgsConstructor
 @ToString(of = "id", doNotUseGetters = true)
-@EqualsAndHashCode(of = "id", doNotUseGetters = true) 
+@EqualsAndHashCode(of = "id", doNotUseGetters = true)
 public abstract class Personne  implements Serializable{
 
     @Id
@@ -63,8 +63,9 @@ public abstract class Personne  implements Serializable{
     @Column(name = "email", length = 30)
     private String email;
 
-   /* @Lob @Type(type="org.hibernate.type.BlobType")*/
-    private String photo;
+    /* @Lob @Type(type="org.hibernate.type.BlobType")*/
+    @Lob
+    private byte[] photo;
 
     private boolean active;
 }
