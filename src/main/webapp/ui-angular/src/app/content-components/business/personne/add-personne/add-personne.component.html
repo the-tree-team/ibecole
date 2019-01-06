@@ -5,7 +5,7 @@
   <div id="select-professeur" class="col-4" (click)="selectProfesseur()"><h3>PROFESSEUR</h3></div>
 </div>
 <div *ngIf="goToCreation">
-  <h3> {{type.value === 'Eleve' ? 'Nouvel' : 'Nouveau'}} {{type.value}}</h3>
+  <h3> {{f.type.value === 'Eleve' ? 'Nouvel' : 'Nouveau'}} {{f.type.value}}</h3>
   <form [formGroup]="addForm" enctype="multipart/form-data">
     <mat-card>
       <div class="row">
@@ -13,14 +13,14 @@
           <mat-form-field>
             <input matInput placeholder="Nom" formControlName="nom">
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="nom.invalid">
+            <mat-error *ngIf="f.nom.invalid">
               Champs Obligatoire
             </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Prénom" formControlName="prenom">
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="prenom.invalid">
+            <mat-error *ngIf="f.prenom.invalid">
               Champs Obligatoire
             </mat-error>
           </mat-form-field>
@@ -41,7 +41,7 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
 
-            <mat-error *ngIf="dateNaissance.invalid">
+            <mat-error *ngIf="f.dateNaissance.invalid">
               Champs Obligatoire
             </mat-error>
           </mat-form-field>
@@ -50,7 +50,7 @@
           <mat-form-field>
             <input matInput placeholder="Lieu de Naissance" formControlName="lieuNaissance">
             <mat-icon matSuffix>person_pin_circle</mat-icon>
-            <mat-error *ngIf="prenom.invalid">
+            <mat-error *ngIf="f.prenom.invalid">
               Champs Obligatoire
             </mat-error>
           </mat-form-field>
@@ -62,7 +62,7 @@
                 {{sexe}}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="sexe.invalid">
+            <mat-error *ngIf="f.sexe.invalid">
               Veuillez spécifier votre sexe
             </mat-error>
           </mat-form-field>
@@ -76,7 +76,7 @@
           <mat-form-field >
             <input matInput placeholder="Adresse" formControlName="adresse" >
             <mat-icon matSuffix>home</mat-icon>
-            <mat-error *ngIf="adresse.invalid">
+            <mat-error *ngIf="f.adresse.invalid">
               Champs Obligatoire
             </mat-error>
           </mat-form-field>
@@ -88,7 +88,7 @@
           <mat-form-field>
             <input matInput placeholder="@Email" formControlName="email">
             <mat-icon matSuffix>alternate_email</mat-icon>
-            <mat-error *ngIf="email.invalid">
+            <mat-error *ngIf="f.email.invalid">
               Veuillez saisir correctement l'email. <strong>Exemple: jane@doe.net</strong>
             </mat-error>
           </mat-form-field>
@@ -98,7 +98,7 @@
             <span matPrefix>(+213) &nbsp;</span>
             <input matInput placeholder="Téléphone" formControlName="telephone">
             <mat-icon matSuffix>phone</mat-icon>
-            <mat-error *ngIf="telephone.invalid">
+            <mat-error *ngIf="f.telephone.invalid">
               Veuillez saisir correctement le numéro de téléphone
             </mat-error>
           </mat-form-field>
@@ -107,9 +107,17 @@
       <div *ngIf="createParent">
         PARENT
       </div>
-      <div *ngIf="createEleve">
-        ELEVE
+
+      <div *ngIf="createEleve" >
+        <mat-form-field>
+          <mat-select placeholder="Parent" formControlName="parent">
+            <mat-option *ngFor="let parent of parentOptions" [value]="parent">
+              {{parent.nom}} {{parent.prenom}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
+
       <div *ngIf="createProfesseur">
         PROFESSEUR
       </div>

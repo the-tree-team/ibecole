@@ -26,6 +26,9 @@ public class EleveToPersonneResponseConverter implements Converter<Eleve, Person
         personneResponse.setSanctionList(eleve.getSanctionList());
         personneResponse.setAbsenceList(eleve.getAbsenceList());
 
+        if(eleve.getId()!=null){
+            personneResponse.setId(eleve.getId());
+        }
         return personneResponse;
     }
 }

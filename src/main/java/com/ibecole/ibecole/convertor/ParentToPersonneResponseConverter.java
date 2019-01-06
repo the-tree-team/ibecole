@@ -24,7 +24,9 @@ public class ParentToPersonneResponseConverter implements Converter<Parent, Pers
      /*   personneResponse.setEnfantList();
         personneResponse.setSanctionList(parent.getSanctionList());
         personneResponse.setAbsenceList(parent.getAbsenceList());*/
-
+        if(parent.getId()!=null){
+            personneResponse.setId(parent.getId());
+        }
         return personneResponse;
     }
 }

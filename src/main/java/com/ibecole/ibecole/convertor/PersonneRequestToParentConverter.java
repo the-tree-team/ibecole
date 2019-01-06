@@ -31,7 +31,7 @@ public class PersonneRequestToParentConverter implements Converter<PersonneReque
     @Override
     public Parent convert(PersonneRequest personneRequest) {
         Parent parent= new Parent();
-
+        System.out.println("PARENT CONVERSION:" + personneRequest.getNom());
         /* Attributs Personne */
         parent.setNom(personneRequest.getNom());
         parent.setPrenom(personneRequest.getPrenom());
@@ -49,11 +49,12 @@ public class PersonneRequestToParentConverter implements Converter<PersonneReque
             }
         }
         /* Attributs Parent */
-        List<Eleve> enfantList = personneRequest.getEnfantList().stream().map( id ->
-                (Eleve) personneService.findById(id,"Eleve")
-        ).collect(Collectors.toList());
-        parent.setEnfantList(enfantList);
-
+        if(personneRequest.getEnfantList() != null) {
+            List<Eleve> enfantList = personneRequest.getEnfantList().stream().map(id ->
+                    (Eleve) personneService.findById(id, "Eleve")
+            ).collect(Collectors.toList());
+            parent.setEnfantList(enfantList);
+        }
         if(null != personneRequest.getId())
             parent.setId(personneRequest.getId());
 

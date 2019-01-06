@@ -2,6 +2,7 @@ package com.ibecole.ibecole.model.request;
 
 import com.ibecole.ibecole.entity.business.Matiere;
 import com.ibecole.ibecole.entity.business.Parent;
+import com.ibecole.ibecole.entity.business.Personne;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,7 +41,7 @@ public class PersonneRequest {
     //private String matricule;
 
     /** Doit être changé en idParent car on n'a pas le model parent dans le coté Angular **/
-    private Parent parent;
+    private PersonneRequest parent;
 /*    private Integer idParent;*/
 /* On ne doit pas lui créer les sanctions et les absences alors qu'il n'existe même pas dans notre S.I
 

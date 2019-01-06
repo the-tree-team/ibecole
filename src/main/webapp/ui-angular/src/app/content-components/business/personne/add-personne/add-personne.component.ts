@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Personne} from "../../../../../model/business/model.personne";
 import {PersonneService} from "../../../../../services/business/personne.service";
+import {MatiereService} from "../../../../../services/business/matiere.service";
 
 @Component({
   selector: 'app-add-personne',
@@ -11,6 +12,9 @@ import {PersonneService} from "../../../../../services/business/personne.service
 export class AddPersonneComponent implements OnInit {
   addForm: FormGroup;
   sexeOptions=['Homme','Femme'];
+  parentOptions;
+  enfantsOptions;
+  matieresOptions;
   uploadedPhoto = false;
   createEleve: boolean=false;
   createParent: boolean=false;
@@ -19,12 +23,25 @@ export class AddPersonneComponent implements OnInit {
   personne: Personne = new Personne();
 
   constructor(private fb: FormBuilder,
-              private personneService: PersonneService) { }
+              private personneService: PersonneService,
+              private matiereService: MatiereService
+  ) { }
 
   ngOnInit() {
     this.createEleve=false;
     this.createParent=false;
     this.createProfesseur=false;
+    this.personneService.getEleveList().subscribe(results => {
+      this.enfantsOptions = results;
+    } );
+    this.personneService.getParentList().subscribe(results => {
+      console.log(results);
+      this.parentOptions = results;
+    } );
+    this.matiereService.getAll().subscribe(results => {
+      console.log(results);
+      this.matieresOptions = results;
+    } );
     this.addForm = this.fb.group({
       nom:['',[
         Validators.required,
@@ -58,10 +75,7 @@ export class AddPersonneComponent implements OnInit {
       photo:['',[
 
       ]],
-      active:['',[
-
-      ]],
-      idParent:['',[
+      parent:['',[
 
       ]],
       enfantList:['',[
@@ -85,109 +99,64 @@ export class AddPersonneComponent implements OnInit {
     this.createParent = false;
     this.createEleve= false;
     this.createProfesseur= false;
-    this.type.setValue("Eleve")
+    this.f.type.setValue("Eleve")
   }
   onSelectPhoto($event){
     this.uploadedPhoto=true;
     const target = <HTMLInputElement>event.target;
     this.personne.photo= target.files[0];
-    /*this.uploadedFile= target.files[0];
-    this.personneService.createPersonne(this.uploadedFile).subscribe( data =>{
-        console.log(data);
-
-      }
-
-    );;*/
+    this.uploadedFile= target.files[0];
   }
   selectParent(){
     this.createParent=true;
-    this.type.setValue("Parent");
+    this.f.type.setValue("Parent");
     this.createEleve=false;
     this.createProfesseur=false;
     console.log(this.goToCreation);
   }
   selectEleve(){
     this.createEleve = true;
-    this.type.setValue("Eleve");
+    this.f.type.setValue("Eleve");
     this.createParent=false;
     this.createProfesseur=false;
     console.log(this.goToCreation);
   }
   selectProfesseur(){
     this.createProfesseur=true;
-    this.type.setValue("Professeur");
+    this.f.type.setValue("Professeur");
     this.createEleve=false;
     this.createParent=false;
     console.log(this.goToCreation);
   }
   onValidationClick(){
-    this.personne.nom = this.nom.value;
-    this.personne.prenom = this.prenom.value;
-    this.personne.sexe= this.sexe.value;
-    this.personne.dateNaissance= this.dateNaissance.value;
-    this.personne.lieuNaissance= this.lieuNaissance.value;
-    this.personne.adresse= this.adresse.value;
-    this.personne.telephone= this.telephone.value;
-    this.personne.email= this.email.value;
-    this.personne.active= this.active.value;
-    this.personne.type = this.type.value;
+    this.personne.nom = this.f.nom.value;
+    this.personne.prenom = this.f.prenom.value;
+    this.personne.sexe= this.f.sexe.value;
+    this.personne.dateNaissance= this.f.dateNaissance.value;
+    this.personne.lieuNaissance= this.f.lieuNaissance.value;
+    this.personne.adresse= this.f.adresse.value;
+    this.personne.telephone= this.f.telephone.value;
+    this.personne.email= this.f.email.value;
+    this.personne.type = this.f.type.value;
     this.personne.active = true;
     if(this.personne.type === "Eleve"){
-
+      this.personne.parent =  this.f.parent.value;
+      console.log("ID:"+this.personne.parent.id);
     }else if(this.personne.type === "Parent"){
 
     }else{
 
     }
+
     this.personneService.createPersonne(this.personne).subscribe( data =>{
        console.log(data);
 
       }
     );
   }
-  get nom(){
-    return this.addForm.get('nom');
+  get parent(){
+    return this.addForm.get('parent');
   }
-  get prenom(){
-    return this.addForm.get('prenom');
-  }
-  get sexe(){
-    return this.addForm.get('sexe');
-  }
-  get dateNaissance(){
-    return this.addForm.get('dateNaissance');
-  }
-  get lieuNaissance(){
-    return this.addForm.get('lieuNaissance');
-  }
-  get adresse(){
-    return this.addForm.get('adresse');
-  }
-  get telephone(){
-    return this.addForm.get('telephone');
-  }
-  get email(){
-    return this.addForm.get('email');
-  }
-  get photo(){
-    return this.addForm.get('photo');
-  }
-  get active(){
-    return this.addForm.get('active');
-  }
-  get idParent(){
-    return this.addForm.get('idParent');
-  }
-  get enfantList(){
-    return this.addForm.get('enfantList');
-  }
-  get dateRecrutement(){
-    return this.addForm.get('dateRecrutement');
-  }
-  get matiereList(){
-    return this.addForm.get('matiereList');
-  }
-  get type(){
-    return this.addForm.get('type');
-  }
+
+  get f() { return this.addForm.controls; }
 }

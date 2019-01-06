@@ -6,22 +6,24 @@ import com.ibecole.ibecole.entity.business.Eleve;
 import com.ibecole.ibecole.entity.business.Parent;
 import com.ibecole.ibecole.model.request.PersonneRequest;
 import com.ibecole.ibecole.service.business.PersonneService;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-
 
 public class PersonneRequestToEleveConverter implements Converter<PersonneRequest, Eleve> {
 
 
     private PersonneService personneService;
+    private ConversionService conversionService;
 
     @Autowired
-    public PersonneRequestToEleveConverter(PersonneService personneService) {
+    public PersonneRequestToEleveConverter(PersonneService personneService, ConversionService conversionService) {
         this.personneService = personneService;
+        this.conversionService = conversionService;
     }
 
     public PersonneRequestToEleveConverter() {
@@ -70,7 +72,9 @@ public class PersonneRequestToEleveConverter implements Converter<PersonneReques
         if(null != personneRequest.getIdParent())
             eleve.setParent( (Parent) personneService.findById(personneRequest.getIdParent(),"Parent"));
 */
-        eleve.setParent(personneRequest.getParent());
+       if(personneRequest.getParent()!=null){
+           /*eleve.setParent(personneRequest.getParent());*/
+        }
         return eleve;
     }
 }

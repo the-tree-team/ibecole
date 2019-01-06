@@ -4,6 +4,7 @@ import com.ibecole.ibecole.entity.admin.Role;
 import com.ibecole.ibecole.entity.admin.RoleName;
 import com.ibecole.ibecole.entity.admin.User;
 import com.ibecole.ibecole.entity.business.Eleve;
+import com.ibecole.ibecole.entity.business.Parent;
 import com.ibecole.ibecole.entity.business.Sanction;
 import com.ibecole.ibecole.entity.business.TypeSanction;
 import com.ibecole.ibecole.exception.AppException;
@@ -80,7 +81,7 @@ public class IbecoleApplication implements CommandLineRunner{
 		sanction.setType(typeSanction1);
 		sanctionService.save(sanction);
 
-		personneRequest.setType("Eleve");
+		personneRequest.setType("Parent");
 		personneRequest.setNom("IDIRENE");
 		personneRequest.setPrenom("Mehdi");
 		personneRequest.setDateNaissance(LocalDate.now());
@@ -91,7 +92,7 @@ public class IbecoleApplication implements CommandLineRunner{
 		personneRequest.setActive(true);
 		personneRequest.setAdresse("Bab Ezzouar");
 
-		Eleve eleve = (Eleve) personneService.save(personneRequest);
+		Parent eleve = (Parent) personneService.save(personneRequest);
 
 		AbsenceRequest absenceRequest = new AbsenceRequest();
 
