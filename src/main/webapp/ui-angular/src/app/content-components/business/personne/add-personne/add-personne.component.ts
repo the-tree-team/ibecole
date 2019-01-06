@@ -13,8 +13,6 @@ export class AddPersonneComponent implements OnInit {
   addForm: FormGroup;
   sexeOptions=['Homme','Femme'];
   parentOptions;
-  enfantsOptions;
-  matieresOptions;
   uploadedPhoto = false;
   createEleve: boolean=false;
   createParent: boolean=false;
@@ -31,17 +29,17 @@ export class AddPersonneComponent implements OnInit {
     this.createEleve=false;
     this.createParent=false;
     this.createProfesseur=false;
-    this.personneService.getEleveList().subscribe(results => {
+ /*   this.personneService.getEleveList().subscribe(results => {
       this.enfantsOptions = results;
-    } );
+    } );*/
     this.personneService.getParentList().subscribe(results => {
       console.log(results);
       this.parentOptions = results;
     } );
-    this.matiereService.getAll().subscribe(results => {
+/*    this.matiereService.getAll().subscribe(results => {
       console.log(results);
       this.matieresOptions = results;
-    } );
+    } );*/
     this.addForm = this.fb.group({
       nom:['',[
         Validators.required,

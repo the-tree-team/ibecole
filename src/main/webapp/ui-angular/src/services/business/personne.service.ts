@@ -24,6 +24,9 @@ export class PersonneService {
           personne.adresse = item.adresse;
           personne.email = item.email;
           personne.telephone= item.telephone;
+          if(item.matricule!=null){
+            personne.matricule = item.matricule;
+          }
           return personne;
         });
       }) // or any other operator

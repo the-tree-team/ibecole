@@ -44,6 +44,10 @@ import { RegisterComponent } from './content-components/admin/register/register.
 import {SigneUpRequest} from "../model/admin/signeUpRequest";
 import {Role} from "../model/admin/role";
 import {User} from "../model/admin/user";
+import {AddEnfantsDialogComponent} from "./content-components/business/personne/add-personne/include/add-enfants/add-enfants-dialog/add-enfants-dialog.component";
+import {AddMatieresDialogComponent} from "./content-components/business/personne/add-personne/include/add-matieres/add-matieres-dialog/add-matieres-dialog.component";
+import {SelectedEnfantsComponent} from "./content-components/business/personne/add-personne/include/add-enfants/selected-enfants/selected-enfants.component";
+import {SelectedMatieresComponent} from "./content-components/business/personne/add-personne/include/add-matieres/selected-matieres/selected-matieres.component";
 
 @NgModule({
   declarations: [
@@ -57,7 +61,11 @@ import {User} from "../model/admin/user";
     EditSanctionComponent,
     AddPersonneComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddEnfantsDialogComponent,
+    AddMatieresDialogComponent,
+    SelectedEnfantsComponent,
+    SelectedMatieresComponent
   ],
   imports: [
     BrowserModule,

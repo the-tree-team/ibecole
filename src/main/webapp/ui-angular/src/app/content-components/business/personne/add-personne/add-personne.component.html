@@ -104,8 +104,16 @@
           </mat-form-field>
         </div>
       </div>
+
       <div *ngIf="createParent">
-        PARENT
+      <div class="row">
+        <div class="col-6">
+          <app-selected-enfants></app-selected-enfants>
+        </div>
+        <div class="col-6">
+          <app-selected-matieres></app-selected-matieres>
+        </div>
+      </div>
       </div>
 
       <div *ngIf="createEleve" >

@@ -45,7 +45,6 @@ public class PersonneRest {
         List<PersonneResponse> responseList = elevePage.stream()
                 .map(item -> conversionService.convert(item, PersonneResponse.class))
                 .collect(Collectors.toList());
-        responseList.stream().forEach(item-> System.out.println(item.getId()));
         Page<PersonneResponse> personneResponsePage = new PageImpl<PersonneResponse>(responseList);
         return personneResponsePage;
     }

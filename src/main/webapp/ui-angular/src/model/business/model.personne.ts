@@ -29,6 +29,8 @@ export class Personne{
 
   /* Eleve */
   /*idParent: number;*/
+  matricule: string;
+
   parent: Personne;
 
   sanctionList: Sanction[];

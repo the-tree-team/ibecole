@@ -23,6 +23,8 @@ public class EleveToPersonneResponseConverter implements Converter<Eleve, Person
         /*** Eleve **/
        /* personneResponse.setIdParent(eleve.getParent().getId());*/
         personneResponse.setParent(eleve.getParent());
+        personneResponse.setMatricule(eleve.getMatricule());
+        System.out.println(personneResponse.getMatricule());
         personneResponse.setSanctionList(eleve.getSanctionList());
         personneResponse.setAbsenceList(eleve.getAbsenceList());
 
