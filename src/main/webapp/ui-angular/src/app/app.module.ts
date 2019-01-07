@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from '@angular/cdk/layout';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatCheckboxModule,
   MatDatepickerModule,
   MatDialogModule,
   MatExpansionModule,
@@ -37,13 +37,17 @@ import {AllSanctionComponent} from './content-components/business/sanction/all-s
 import {AddSanctionComponent} from './content-components/business/sanction/add-sanction/add-sanction.component';
 import {EditSanctionComponent} from './content-components/business/sanction/edit-sanction/edit-sanction.component';
 import {AddPersonneComponent} from './content-components/business/personne/add-personne/add-personne.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './content-components/admin/login/login.component';
 import { LoginRequest } from '../model/admin/loginRequest';
 import {AuthenticationService} from "../services/admin/authentication.service";
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './content-components/admin/register/register.component';
 import {SigneUpRequest} from "../model/admin/signeUpRequest";
 import {Role} from "../model/admin/role";
 import {User} from "../model/admin/user";
+import {AddEnfantsDialogComponent} from "./content-components/business/personne/add-personne/include/add-enfants/add-enfants-dialog/add-enfants-dialog.component";
+import {AddMatieresDialogComponent} from "./content-components/business/personne/add-personne/include/add-matieres/add-matieres-dialog/add-matieres-dialog.component";
+import {SelectedEnfantsComponent} from "./content-components/business/personne/add-personne/include/add-enfants/selected-enfants/selected-enfants.component";
+import {SelectedMatieresComponent} from "./content-components/business/personne/add-personne/include/add-matieres/selected-matieres/selected-matieres.component";
 
 @NgModule({
   declarations: [
@@ -57,7 +61,11 @@ import {User} from "../model/admin/user";
     EditSanctionComponent,
     AddPersonneComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddEnfantsDialogComponent,
+    AddMatieresDialogComponent,
+    SelectedEnfantsComponent,
+    SelectedMatieresComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +93,7 @@ import {User} from "../model/admin/user";
     MatMenuModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule
@@ -94,7 +103,9 @@ import {User} from "../model/admin/user";
   entryComponents: [ AddTypeSanctionComponent,
     EditTypeSanctionComponent,
     AddSanctionComponent,
-    EditSanctionComponent
+    EditSanctionComponent,
+    AddEnfantsDialogComponent,
+    AddMatieresDialogComponent,
   ]
 })
 export class AppModule { }

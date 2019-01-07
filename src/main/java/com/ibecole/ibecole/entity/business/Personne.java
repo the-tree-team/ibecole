@@ -16,6 +16,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,7 +26,7 @@ import org.hibernate.annotations.Type;
 @Data
 @NoArgsConstructor
 @ToString(of = "id", doNotUseGetters = true)
-@EqualsAndHashCode(of = "id", doNotUseGetters = true) 
+@EqualsAndHashCode(of = "id", doNotUseGetters = true)
 public abstract class Personne  implements Serializable{
 
     @Id
@@ -62,7 +63,8 @@ public abstract class Personne  implements Serializable{
     @Column(name = "email", length = 30)
     private String email;
 
-    @Lob @Type(type="org.hibernate.type.BlobType")
+    /* @Lob @Type(type="org.hibernate.type.BlobType")*/
+    @Lob
     private byte[] photo;
 
     private boolean active;

@@ -7,6 +7,7 @@ import com.ibecole.ibecole.model.request.PersonneRequest;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -25,7 +26,13 @@ public class PersonneRequestToProfesseurConverter implements Converter<PersonneR
         professeur.setAdresse(personneRequest.getAdresse());
         professeur.setTelephone(personneRequest.getTelephone());
         professeur.setEmail(personneRequest.getEmail());
-        professeur.setPhoto(personneRequest.getPhoto());
+        if(personneRequest.getPhoto()!=null) {
+            try {
+                professeur.setPhoto(personneRequest.getPhoto().getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
           /* Attributs Professeur */
         professeur.setDateRecrutement(personneRequest.getDateRecrutement());
 

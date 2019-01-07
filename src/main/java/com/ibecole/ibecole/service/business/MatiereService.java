@@ -5,6 +5,8 @@ import com.ibecole.ibecole.entity.business.Matiere;
 import com.ibecole.ibecole.repository.business.FormationRepository;
 import com.ibecole.ibecole.repository.business.MatiereRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,5 +39,6 @@ public class MatiereService {
     public List<Matiere> findAll(){
         return matiereRepository.findAll();
     }
+    public Page<Matiere> findAll(Pageable pageable){return matiereRepository.findAll(pageable);}
 
 }

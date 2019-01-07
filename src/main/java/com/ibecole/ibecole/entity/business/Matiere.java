@@ -26,20 +26,22 @@ public class Matiere implements Serializable {
     private Integer id;
 
     @NotNull
-    @Column(name = "code", length = 5, nullable = false)
+    @Column(name = "code", length = 15, nullable = false)
     private String code;
 
     @NotNull
-    @Column(name = "libelle", length = 10, nullable = false)
+    @Column(name = "libelle", length = 20, nullable = false)
     private String libelle;
 
     @NotNull
     @Column(name = "couleur", length = 10, nullable = false)
     private String couleur;
-
+/*
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "matiere", orphanRemoval = true)*/
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matiere", orphanRemoval = true)
     private List<Contient> inFormation;
-    
+    /*
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "matiere", orphanRemoval = true)*/
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matiere", orphanRemoval = true)
     private List<Enseigner> enseigner;
 }

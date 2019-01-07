@@ -23,19 +23,22 @@ export class Personne{
 
   email: string;
 
-  photo: any;
+  photo: File;
 
   active: boolean;
 
   /* Eleve */
-  idParent: number;
+  /*idParent: number;*/
+  matricule: string;
+
+  parent: Personne;
 
   sanctionList: Sanction[];
 
   absenceList: Absence[];
 
   /* Parent */
-  enfantList: number[];
+  enfantList: Personne[];
 
 
   /*  Professuer  */

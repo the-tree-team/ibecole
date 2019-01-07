@@ -1,6 +1,7 @@
 package com.ibecole.ibecole.entity.business;
 
 
+import com.ibecole.ibecole.commun.StaticUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,8 +23,13 @@ import lombok.ToString;
 @EqualsAndHashCode(of = "id", doNotUseGetters = true)
 public class Parent extends Personne implements Serializable, Cloneable {
 
-
-    @OneToMany(mappedBy = "parent")
+    @JoinTable(
+            schema = StaticUtil.SCH_BUSINESS,
+            name = "join_eleve_parent",
+            joinColumns = @JoinColumn(name = "parent_fk"),
+            inverseJoinColumns = @JoinColumn(name = "enfant_fk")
+    )
+    @OneToMany
     private List<Eleve> enfantList;
 
     public Object cloneParent(){

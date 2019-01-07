@@ -12,9 +12,12 @@ import com.ibecole.ibecole.repository.business.ProfesseurRepository;
 import com.ibecole.ibecole.service.business.matGenerate.MatriculeGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonneService {
@@ -50,15 +53,37 @@ public class PersonneService {
 
     public Personne save(PersonneRequest personneRequest){
         switch (personneRequest.getType()){
-            case "Eleve":{  
+            case "Eleve":{
                 eleve = conversionService.convert(personneRequest, Eleve.class);
-                 eleve.setMatricule(matriculeGenerate.Generate(personneRequest));
+                eleve.setMatricule(matriculeGenerate.Generate(personneRequest));
+                if(personneRequest.getParent()!=null){
+                    System.out.println("PARENT-Request-ID: "+ personneRequest.getId());
+
+                    Parent parent = conversionService.convert(personneRequest.getParent(), Parent.class);
+                    eleve.setParent(parent);
+                    System.out.println("PARENT-ID: "+ parent.getId());
+                }
                 if(eleve != null)
                     eleveRepository.save(eleve);
                 return eleve;
             }
             case "Parent":{
+                System.out.println("PARENT SERVICE");
                 parent = conversionService.convert(personneRequest, Parent.class);
+                if(personneRequest.getEnfantList()!=null){
+                parent.setEnfantList(
+                            personneRequest.getEnfantList()
+                                    .stream()
+                                    .map(item -> {
+                                    Eleve eleve=conversionService.convert(item, Eleve.class);
+                                    eleve.setParent(parent);
+                                        System.out.println("ELEVE:"+eleve.getId());
+                                    return eleve;
+                                    })
+                                    .collect(Collectors.toList())
+                    );
+                    System.out.println(parent.getEnfantList().size());
+                }
                 if(parent != null)
                     parentRepository.save(parent);
                 return parent;
@@ -118,5 +143,15 @@ public class PersonneService {
     }
     public List<Professeur> findAllProfesseur(){
         return professeurRepository.findAll();
+    }
+
+    public Page<Eleve> findAllEleve(Pageable pageable){
+        return eleveRepository.findAll(pageable);
+    }
+    public Page<Parent> findAllParent(Pageable pageable){
+        return parentRepository.findAll(pageable);
+    }
+    public Page<Professeur> findAllProfesseur(Pageable pageable){
+        return professeurRepository.findAll(pageable);
     }
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class TypeSanctionRest {
 
-    TypeSanctionService typeSanctionService;
+    private TypeSanctionService typeSanctionService;
 
     @Autowired
     public TypeSanctionRest(TypeSanctionService typeSanctionService) {

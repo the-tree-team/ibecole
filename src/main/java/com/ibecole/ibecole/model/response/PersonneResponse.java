@@ -1,19 +1,19 @@
-package com.ibecole.ibecole.model.request;
+package com.ibecole.ibecole.model.response;
 
+import com.ibecole.ibecole.entity.business.Absence;
 import com.ibecole.ibecole.entity.business.Matiere;
 import com.ibecole.ibecole.entity.business.Parent;
-import com.ibecole.ibecole.entity.business.Personne;
+import com.ibecole.ibecole.entity.business.Sanction;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Blob;
 import java.time.LocalDate;
 import java.util.List;
 
 @Getter
 @Setter
-public class PersonneRequest {
-
+public class PersonneResponse {
     private Integer id;
 
     private String nom;
@@ -32,24 +32,20 @@ public class PersonneRequest {
 
     private String email;
 
-    private MultipartFile photo;
+    private Blob photo;
 
     private boolean active;
 
     /* Eleve----------------------------- */
-    /** Pas besoin du matricule parcequ'on le crée nous même avant de persister **/
-    //private String matricule;
+    private String matricule;
 
-    /** Doit être changé en idParent car on n'a pas le model parent dans le coté Angular **/
-    private PersonneRequest parent;
-/*    private Integer idParent;*/
-/* On ne doit pas lui créer les sanctions et les absences alors qu'il n'existe même pas dans notre S.I
+    /*private Integer idParent;*/
+    private Parent parent;
 
     private List<Sanction> sanctionList;
 
 
     private List<Absence> absenceList;
-*/
     /** Doit être supprimée car on n'affecte pas les groupes dans la création de l'élève, mais on affecte les élèves
      * au groupe, et donc ça doit être placé dans le groupe
      */
@@ -59,7 +55,8 @@ public class PersonneRequest {
     /** Cette liste doit aussi être changée en une lsite d'id personne puisque nous n'avons pas l'entité Parent coté
      * Angular
      */
-    private List<PersonneRequest> enfantList;
+    // private List<Eleve> enfantsList;
+    private List<Integer> enfantList;
 
     /* Professeur----------------------------- */
     private LocalDate dateRecrutement;
