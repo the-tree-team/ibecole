@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import {    AuthenticationService } from '../_services/authentication.service';
-import {  UserService  } from '../_services/user.service';
+import {    AuthenticationService } from '../../services/admin/authentication.service';
+import {  UserService  } from '../../services/admin/user.service';
 import { SigneUpRequest } from '../../model/admin/signeUpRequest';
 import {User} from "../../model/admin/user";
 import {Role} from "../../model/admin/role";

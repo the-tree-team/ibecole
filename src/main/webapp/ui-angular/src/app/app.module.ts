@@ -39,7 +39,7 @@ import {EditSanctionComponent} from './content-components/business/sanction/edit
 import {AddPersonneComponent} from './content-components/business/personne/add-personne/add-personne.component';
 import { LoginComponent } from './login/login.component';
 import { LoginRequest } from '../model/admin/loginRequest';
-import {AuthenticationService} from "./_services/authentication.service";
+import {AuthenticationService} from "../services/admin/authentication.service";
 import { RegisterComponent } from './register/register.component';
 import {SigneUpRequest} from "../model/admin/signeUpRequest";
 import {Role} from "../model/admin/role";

@@ -2,9 +2,9 @@ import { Injectable ,Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LoginRequest } from '../../model/admin/LoginRequest';
+import { LoginRequest } from '../../model/admin/loginRequest';
 import { User } from '../../model/admin/user';
-import {UtilStatic} from "../../services/UtilStatic";
+import {UtilStatic} from "../UtilStatic";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
