@@ -14,10 +14,11 @@ export const routes : Routes = [
   { path: 'login',        component: LoginComponent  },
   { path: 'sanction', component: AllSanctionComponent ,
     canActivate: [AuthGuard]},
-  { path: 'addpersonne', component: AddPersonneComponent,
+  { path: 'personne', component: AddPersonneComponent,
           canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent},
-  { path: '', redirectTo: '/', pathMatch: 'full' }
+  { path: '', redirectTo: '/', pathMatch: 'full',
+    canActivate: [AuthGuard] }
 ];
 @NgModule({
   declarations: [],
