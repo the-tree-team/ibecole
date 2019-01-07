@@ -38,7 +38,7 @@ export class Personne{
   absenceList: Absence[];
 
   /* Parent */
-  enfantList: number[];
+  enfantList: Personne[];
 
 
   /*  Professuer  */

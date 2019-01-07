@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Personne} from "../../../../../model/business/model.personne";
 import {PersonneService} from "../../../../../services/business/personne.service";
@@ -20,6 +20,7 @@ export class AddPersonneComponent implements OnInit {
   uploadedFile: File;
   personne: Personne = new Personne();
 
+  @ViewChild ('selectedEnfantsComponents') selectedEnfantsComponents;
   constructor(private fb: FormBuilder,
               private personneService: PersonneService,
               private matiereService: MatiereService
@@ -141,7 +142,7 @@ export class AddPersonneComponent implements OnInit {
       this.personne.parent =  this.f.parent.value;
       console.log("ID:"+this.personne.parent.id);
     }else if(this.personne.type === "Parent"){
-
+     this.personne.enfantList = this.selectedEnfantsComponents.selectedEnfants;
     }else{
 
     }
@@ -152,9 +153,7 @@ export class AddPersonneComponent implements OnInit {
       }
     );
   }
-  get parent(){
-    return this.addForm.get('parent');
-  }
+
 
   get f() { return this.addForm.controls; }
 }

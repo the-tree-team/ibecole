@@ -49,12 +49,12 @@ public class PersonneRequestToParentConverter implements Converter<PersonneReque
             }
         }
         /* Attributs Parent */
-        if(personneRequest.getEnfantList() != null) {
+        /*if(personneRequest.getEnfantList() != null) {
             List<Eleve> enfantList = personneRequest.getEnfantList().stream().map(id ->
                     (Eleve) personneService.findById(id, "Eleve")
             ).collect(Collectors.toList());
             parent.setEnfantList(enfantList);
-        }
+        }*/
         if(null != personneRequest.getId())
             parent.setId(personneRequest.getId());
 

@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonneService {
@@ -67,7 +68,22 @@ public class PersonneService {
                 return eleve;
             }
             case "Parent":{
+                System.out.println("PARENT SERVICE");
                 parent = conversionService.convert(personneRequest, Parent.class);
+                if(personneRequest.getEnfantList()!=null){
+                parent.setEnfantList(
+                            personneRequest.getEnfantList()
+                                    .stream()
+                                    .map(item -> {
+                                    Eleve eleve=conversionService.convert(item, Eleve.class);
+                                    eleve.setParent(parent);
+                                        System.out.println("ELEVE:"+eleve.getId());
+                                    return eleve;
+                                    })
+                                    .collect(Collectors.toList())
+                    );
+                    System.out.println(parent.getEnfantList().size());
+                }
                 if(parent != null)
                     parentRepository.save(parent);
                 return parent;

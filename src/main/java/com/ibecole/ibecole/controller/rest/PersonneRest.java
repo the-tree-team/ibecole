@@ -84,7 +84,6 @@ public class PersonneRest {
         }
         if(personneRequest != null){
             System.out.println(personneRequest.getNom());
-            System.out.println(personneRequest.getParent().getNom());
         }
 
         personneService.save(personneRequest);

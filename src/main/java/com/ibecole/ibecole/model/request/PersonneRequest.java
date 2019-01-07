@@ -59,8 +59,7 @@ public class PersonneRequest {
     /** Cette liste doit aussi être changée en une lsite d'id personne puisque nous n'avons pas l'entité Parent coté
      * Angular
      */
-    // private List<Eleve> enfantsList;
-    private List<Integer> enfantList;
+    private List<PersonneRequest> enfantList;
 
     /* Professeur----------------------------- */
     private LocalDate dateRecrutement;
