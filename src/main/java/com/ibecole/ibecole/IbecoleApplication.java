@@ -1,21 +1,11 @@
 package com.ibecole.ibecole;
 
-import com.ibecole.ibecole.entity.admin.Role;
-import com.ibecole.ibecole.entity.admin.RoleName;
-import com.ibecole.ibecole.entity.admin.User;
-import com.ibecole.ibecole.entity.business.Eleve;
-import com.ibecole.ibecole.entity.business.Parent;
-import com.ibecole.ibecole.entity.business.Sanction;
-import com.ibecole.ibecole.entity.business.TypeSanction;
-import com.ibecole.ibecole.exception.AppException;
+import com.ibecole.ibecole.entity.business.*;
 import com.ibecole.ibecole.model.request.AbsenceRequest;
 import com.ibecole.ibecole.model.request.PersonneRequest;
 import com.ibecole.ibecole.repository.admin.RoleRepository;
 import com.ibecole.ibecole.repository.admin.UserRepository;
-import com.ibecole.ibecole.service.business.AbsenceService;
-import com.ibecole.ibecole.service.business.PersonneService;
-import com.ibecole.ibecole.service.business.SanctionService;
-import com.ibecole.ibecole.service.business.TypeSanctionService;
+import com.ibecole.ibecole.service.business.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,7 +14,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
-import java.util.Collections;
+import java.util.ArrayList;
 
 @SpringBootApplication
 public class IbecoleApplication implements CommandLineRunner{
@@ -34,6 +24,7 @@ public class IbecoleApplication implements CommandLineRunner{
 	private final PersonneService personneService;
 	private final TypeSanctionService typeSanctionService;
 	private final SanctionService sanctionService;
+	private final MatiereService matiereService;
 	private final RoleRepository roleRepository;
 	private final UserRepository userRepository;
 
@@ -41,12 +32,13 @@ public class IbecoleApplication implements CommandLineRunner{
 	PasswordEncoder passwordEncoder;
 
 
-	public IbecoleApplication(AbsenceService absenceService, ConversionService conversionService, PersonneService personneService, TypeSanctionService typeSanctionService, SanctionService sanctionService, RoleRepository roleRepository, UserRepository userRepository) {
+	public IbecoleApplication(AbsenceService absenceService, ConversionService conversionService, PersonneService personneService, TypeSanctionService typeSanctionService, SanctionService sanctionService, MatiereService matiereService, RoleRepository roleRepository, UserRepository userRepository) {
 		this.absenceService = absenceService;
 		this.conversionService = conversionService;
 		this.personneService = personneService;
 		this.typeSanctionService = typeSanctionService;
 		this.sanctionService = sanctionService;
+		this.matiereService = matiereService;
 		this.roleRepository = roleRepository;
 		this.userRepository = userRepository;
 	}
@@ -102,7 +94,20 @@ public class IbecoleApplication implements CommandLineRunner{
 
 		absenceRequest.setIdEleve(eleve.getId());
 /*		absenceService.save(absenceRequest);*/
-
+		Matiere matiere = new Matiere();
+		matiere.setCode("MATH-001");
+		matiere.setLibelle("Mathématique");
+		matiere.setCouleur("#0F4162");
+		matiere.setInFormation(new ArrayList<>());
+		matiere.setEnseigner(new ArrayList<>());
+		matiereService.save(matiere);
+		matiere = new Matiere();
+		matiere.setInFormation(new ArrayList<>());
+		matiere.setEnseigner(new ArrayList<>());
+		matiere.setCode("PHY-002");
+		matiere.setLibelle("Physique");
+		matiere.setCouleur("#EEDD82");
+		matiereService.save(matiere);
 
 
 	}

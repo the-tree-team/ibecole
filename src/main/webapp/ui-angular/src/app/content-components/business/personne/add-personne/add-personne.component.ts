@@ -21,6 +21,7 @@ export class AddPersonneComponent implements OnInit {
   personne: Personne = new Personne();
 
   @ViewChild ('selectedEnfantsComponents') selectedEnfantsComponents;
+  @ViewChild ('selectedMatieresComponents') selectedMatieresComponents;
   constructor(private fb: FormBuilder,
               private personneService: PersonneService,
               private matiereService: MatiereService
@@ -83,9 +84,6 @@ export class AddPersonneComponent implements OnInit {
       dateRecrutement:['',[
 
       ]],
-      matiereList:['',[
-        Validators.required
-      ]],
       type:['Eleve',[
 
       ]],
@@ -144,7 +142,8 @@ export class AddPersonneComponent implements OnInit {
     }else if(this.personne.type === "Parent"){
      this.personne.enfantList = this.selectedEnfantsComponents.selectedEnfants;
     }else{
-
+      this.personne.dateNaissance = this.f.dateRecrutement.value;
+      this.personne.matiereList = this.selectedMatieresComponents.selectedMatieres;
     }
 
     this.personneService.createPersonne(this.personne).subscribe( data =>{

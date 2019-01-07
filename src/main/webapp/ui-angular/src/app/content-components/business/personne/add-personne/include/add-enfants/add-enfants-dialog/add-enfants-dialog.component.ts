@@ -28,14 +28,6 @@ export class AddEnfantsDialogComponent implements OnInit {
     /*this.selection = new SelectionModel<Personne>(this.allowMultiSelect, this.selectedEnfants);*/
     this.enfants = this.data.enfants;
     this.selectedEnfants = this.data.selectedEnfants;
-    this.dataSource = new MatTableDataSource(this.enfants);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sortingDataAccessor = (item, property) => {
-      switch(property) {
-        case 'type': return item.type.libelle;
-        default: return item[property];
-      }
-    };
     this.dataSource.sort = this.sort;
     this.selection=new SelectionModel<Personne>(true, this.selectedEnfants);
   }

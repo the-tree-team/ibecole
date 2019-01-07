@@ -22,13 +22,6 @@ export class SelectedEnfantsComponent implements OnInit {
               public selectDialog: MatDialog) {
     this.dataSource = new MatTableDataSource(this.selectedEnfants);
     this.dataSource.paginator = this.paginator;
-    // Faire un sort par rapport à une sous Propriété : sanction.type.libelle
-    this.dataSource.sortingDataAccessor = (item, property) => {
-      switch(property) {
-        case 'type': return item.type.libelle;
-        default: return item[property];
-      }
-    };
     this.dataSource.sort = this.sort;
 
   }
