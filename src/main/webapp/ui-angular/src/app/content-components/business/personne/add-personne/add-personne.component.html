@@ -86,7 +86,7 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field>
-            <input matInput placeholder="@Email" formControlName="email">
+            <input matInput placeholder="Email" formControlName="email">
             <mat-icon matSuffix>alternate_email</mat-icon>
             <mat-error *ngIf="f.email.invalid">
               Veuillez saisir correctement l'email. <strong>Exemple: jane@doe.net</strong>
@@ -106,14 +106,7 @@
       </div>
 
       <div *ngIf="createParent">
-      <div class="row">
-        <div class="col-6">
           <app-selected-enfants></app-selected-enfants>
-        </div>
-        <div class="col-6">
-          <app-selected-matieres></app-selected-matieres>
-        </div>
-      </div>
       </div>
 
       <div *ngIf="createEleve" >
@@ -127,7 +120,7 @@
       </div>
 
       <div *ngIf="createProfesseur">
-        PROFESSEUR
+          <app-selected-matieres></app-selected-matieres>
       </div>
     </mat-card>
     <div class="form-actions">

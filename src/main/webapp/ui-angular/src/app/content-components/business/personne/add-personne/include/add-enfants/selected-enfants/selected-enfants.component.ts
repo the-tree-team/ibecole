@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {PersonneService} from "../../../../../../../../services/business/personne.service";
 import {Personne} from "../../../../../../../../model/business/model.personne";
+import {AddEnfantsDialogComponent} from "../add-enfants-dialog/add-enfants-dialog.component";
 
 @Component({
   selector: 'app-selected-enfants',
@@ -10,7 +11,7 @@ import {Personne} from "../../../../../../../../model/business/model.personne";
 })
 export class SelectedEnfantsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nom', 'prenom','matricule','datenaissance'];
-  selectedEnfants = null;
+  selectedEnfants = [];
   enfants: Personne[];
   dataSource: MatTableDataSource<any>;
 
@@ -44,5 +45,32 @@ export class SelectedEnfantsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+
+  openSelectDialog(): void {
+    const dialogRef = this.selectDialog.open(AddEnfantsDialogComponent, {
+      width: '800px',
+      data: {
+        enfants: this.enfants,
+        selectedEnfants: this.selectedEnfants
+      }
+    });
+
+    //SELECT ENFANTS VIA DIALOG
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if(result!=null){
+        this.selectedEnfants = result;
+        this.refresh();
+      }
+    });
+  }
+
+  refresh(){
+    this.dataSource = new MatTableDataSource<any>(this.selectedEnfants);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

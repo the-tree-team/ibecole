@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from '@angular/cdk/layout';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatCheckboxModule,
   MatDatepickerModule,
   MatDialogModule,
   MatExpansionModule,
@@ -93,6 +93,7 @@ import {SelectedMatieresComponent} from "./content-components/business/personne/
     MatMenuModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule
@@ -102,7 +103,9 @@ import {SelectedMatieresComponent} from "./content-components/business/personne/
   entryComponents: [ AddTypeSanctionComponent,
     EditTypeSanctionComponent,
     AddSanctionComponent,
-    EditSanctionComponent
+    EditSanctionComponent,
+    AddEnfantsDialogComponent,
+    AddMatieresDialogComponent,
   ]
 })
 export class AppModule { }
