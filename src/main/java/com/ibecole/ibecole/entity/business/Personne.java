@@ -16,6 +16,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity

@@ -48,6 +48,7 @@ import {AddEnfantsDialogComponent} from "./content-components/business/personne/
 import {AddMatieresDialogComponent} from "./content-components/business/personne/add-personne/include/add-matieres/add-matieres-dialog/add-matieres-dialog.component";
 import {SelectedEnfantsComponent} from "./content-components/business/personne/add-personne/include/add-enfants/selected-enfants/selected-enfants.component";
 import {SelectedMatieresComponent} from "./content-components/business/personne/add-personne/include/add-matieres/selected-matieres/selected-matieres.component";
+import { ShowPersonneComponent } from './content-components/business/personne/show-personne/show-personne.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {SelectedMatieresComponent} from "./content-components/business/personne/
     AddEnfantsDialogComponent,
     AddMatieresDialogComponent,
     SelectedEnfantsComponent,
-    SelectedMatieresComponent
+    SelectedMatieresComponent,
+    ShowPersonneComponent
   ],
   imports: [
     BrowserModule,

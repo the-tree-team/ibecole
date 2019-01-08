@@ -64,7 +64,7 @@ public class PersonneService {
                     System.out.println("PARENT-ID: "+ parent.getId());
                 }
                 if(eleve != null)
-                    eleveRepository.save(eleve);
+                    eleve = eleveRepository.save(eleve);
                 return eleve;
             }
             case "Parent":{
@@ -85,7 +85,7 @@ public class PersonneService {
                     System.out.println(parent.getEnfantList().size());
                 }
                 if(parent != null)
-                    parentRepository.save(parent);
+                    parent=parentRepository.save(parent);
                 return parent;
             }
             case "Professeur":{

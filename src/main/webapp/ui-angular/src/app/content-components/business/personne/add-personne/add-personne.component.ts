@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Personne} from "../../../../../model/business/model.personne";
 import {PersonneService} from "../../../../../services/business/personne.service";
-import {MatiereService} from "../../../../../services/business/matiere.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-personne',
@@ -24,24 +24,18 @@ export class AddPersonneComponent implements OnInit {
   @ViewChild ('selectedMatieresComponents') selectedMatieresComponents;
   constructor(private fb: FormBuilder,
               private personneService: PersonneService,
-              private matiereService: MatiereService
-  ) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.createEleve=false;
     this.createParent=false;
     this.createProfesseur=false;
- /*   this.personneService.getEleveList().subscribe(results => {
-      this.enfantsOptions = results;
-    } );*/
+
     this.personneService.getParentList().subscribe(results => {
       console.log(results);
       this.parentOptions = results;
     } );
-/*    this.matiereService.getAll().subscribe(results => {
-      console.log(results);
-      this.matieresOptions = results;
-    } );*/
+
     this.addForm = this.fb.group({
       nom:['',[
         Validators.required,
@@ -138,7 +132,6 @@ export class AddPersonneComponent implements OnInit {
     this.personne.active = true;
     if(this.personne.type === "Eleve"){
       this.personne.parent =  this.f.parent.value;
-      console.log("ID:"+this.personne.parent.id);
     }else if(this.personne.type === "Parent"){
      this.personne.enfantList = this.selectedEnfantsComponents.selectedEnfants;
     }else{
@@ -146,11 +139,18 @@ export class AddPersonneComponent implements OnInit {
       this.personne.matiereList = this.selectedMatieresComponents.selectedMatieres;
     }
 
-    this.personneService.createPersonne(this.personne).subscribe( data =>{
+    this.personneService.createPersonne(this.personne).subscribe( (data: Personne) =>{
+      console.log("DATA:");
        console.log(data);
-
+      this.personne = data;
+      console.log("NAVIGATION");
+      console.log(this.personne.id);
+      this.router.navigate(['/showpersonne', this.personne.type, this.personne.id ]);/*
+      this.router.navigate(['/showpersonne', {id: this.personne.id, type: this.personne.type}]);*/
+  /*    this.router.navigate(['/typesanction']);*/
       }
     );
+
   }
 
 

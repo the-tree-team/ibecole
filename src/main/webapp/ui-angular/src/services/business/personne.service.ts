@@ -53,7 +53,6 @@ export class PersonneService {
   }
 
   createPersonne(personne: Personne) {
-    console.log("PARENT:"+ personne.parent);
 
     var seen = [];
 
@@ -73,5 +72,10 @@ export class PersonneService {
     const url = `${UtilStatic.API_SOURCE}personne/v1/add`;
 
     return this.http.post( url, formData, httpOptions);
+  }
+
+  getPersonne(id:any, type:string){
+    let url= `${UtilStatic.API_SOURCE}personne/v1/getpersonne/${id}/${type}`;
+    return this.http.get<any>( url,{observe: 'response'});
   }
 }

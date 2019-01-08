@@ -18,12 +18,9 @@ export class UtilStatic{
     var b = (rgb >>  0) & 0xff;  // extract blue
 
     var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
-    console.log(luma);
     if (luma < 127) {
-      console.log("DARK");
       return true;
     }else{
-      console.log("LIGHT");
       return false;
     }
   }

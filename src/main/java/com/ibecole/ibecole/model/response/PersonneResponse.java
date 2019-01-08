@@ -32,7 +32,7 @@ public class PersonneResponse {
 
     private String email;
 
-    private Blob photo;
+    private byte[] photo;
 
     private boolean active;
 

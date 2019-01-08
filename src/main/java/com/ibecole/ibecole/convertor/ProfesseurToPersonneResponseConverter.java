@@ -19,6 +19,7 @@ public class ProfesseurToPersonneResponseConverter implements Converter<Professe
         personneResponse.setAdresse(professeur.getAdresse());
         personneResponse.setTelephone(professeur.getTelephone());
         personneResponse.setEmail(professeur.getEmail());
+        personneResponse.setPhoto(professeur.getPhoto());
 
         if(professeur.getId()!=null){
             personneResponse.setId(professeur.getId());

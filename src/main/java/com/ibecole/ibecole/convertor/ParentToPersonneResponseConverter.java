@@ -17,8 +17,8 @@ public class ParentToPersonneResponseConverter implements Converter<Parent, Pers
         personneResponse.setLieuNaissance(parent.getLieuNaissance());
         personneResponse.setAdresse(parent.getAdresse());
         personneResponse.setTelephone(parent.getTelephone());
-        personneResponse.setEmail(parent.getEmail());/*
-        personneResponse.setPhoto(parent.getPhoto());*/
+        personneResponse.setEmail(parent.getEmail());
+        personneResponse.setPhoto(parent.getPhoto());
 
         /*** Parent **/
      /*   personneResponse.setEnfantList();

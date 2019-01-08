@@ -17,8 +17,8 @@ public class EleveToPersonneResponseConverter implements Converter<Eleve, Person
         personneResponse.setLieuNaissance(eleve.getLieuNaissance());
         personneResponse.setAdresse(eleve.getAdresse());
         personneResponse.setTelephone(eleve.getTelephone());
-        personneResponse.setEmail(eleve.getEmail());/*
-        personneResponse.setPhoto(eleve.getPhoto());*/
+        personneResponse.setEmail(eleve.getEmail());
+        personneResponse.setPhoto(eleve.getPhoto());
 
         /*** Eleve **/
        /* personneResponse.setIdParent(eleve.getParent().getId());*/

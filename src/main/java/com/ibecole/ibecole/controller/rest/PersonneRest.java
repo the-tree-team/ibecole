@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,7 @@ public class PersonneRest {
         Page<PersonneResponse> personneResponsePage = new PageImpl<PersonneResponse>(responseList);
         return personneResponsePage;
     }
+
     //Find ALL Parents
     @RequestMapping(path ="/parents", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -61,6 +63,7 @@ public class PersonneRest {
         Page<PersonneResponse> personneResponsePage = new PageImpl<PersonneResponse>(responseList);
         return personneResponsePage;
     }
+
     //Find ALL Professeurs
     @RequestMapping(path ="/professeurs", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -73,6 +76,7 @@ public class PersonneRest {
         Page<PersonneResponse> personneResponsePage = new PageImpl<PersonneResponse>(responseList);
         return personneResponsePage;
     }
+
     @RequestMapping(path="add", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<PersonneResponse> createSanction(
             @RequestPart("file") MultipartFile file,
@@ -86,8 +90,62 @@ public class PersonneRest {
             System.out.println(personneRequest.getNom());
         }
 
-        personneService.save(personneRequest);
-        return null;
+        switch (personneRequest.getType()){
+            case "Eleve":{
+                Eleve eleve =(Eleve) personneService.save(personneRequest);
+                PersonneResponse personneResponse =conversionService.convert(eleve, PersonneResponse.class);
+                personneResponse.setType("Eleve");
+                return new  ResponseEntity<>(personneResponse, HttpStatus.OK);
+            }
+            case "Parent":{
+                Parent parent =(Parent) personneService.save(personneRequest);
+                PersonneResponse personneResponse =conversionService.convert(parent, PersonneResponse.class);
+                personneResponse.setType("Parent");
+                return new  ResponseEntity<>(personneResponse, HttpStatus.OK);
+
+            }
+            case "Professeur":{
+                Professeur professeur =(Professeur) personneService.save(personneRequest);
+                PersonneResponse personneResponse = conversionService.convert(professeur, PersonneResponse.class);
+                personneResponse.setType("Professeur");
+                return new  ResponseEntity<>(personneResponse, HttpStatus.OK);
+
+            }
+            default: return null;
+        }
+
+    }
+
+    //Get Personne
+    @RequestMapping(path ="/getpersonne/{id}/{type}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<PersonneResponse> getPersonne (
+            @PathVariable(value = "id") Integer id,
+            @PathVariable(value = "type") String type) {
+
+        System.out.println(id + "  ");/*
+        System.out.println(id + "  "+type);*/
+        switch (type){
+            case "Eleve":{
+                Eleve eleve =(Eleve) personneService.findById(id,type);
+                PersonneResponse personneResponse =conversionService.convert(eleve, PersonneResponse.class);
+                personneResponse.setType("Eleve");
+                return new  ResponseEntity<>(personneResponse, HttpStatus.OK);
+            }
+            case "Parent":{
+                Parent parent =(Parent) personneService.findById(id,type);
+                PersonneResponse personneResponse =conversionService.convert(parent, PersonneResponse.class);
+                personneResponse.setType("Parent");
+                return new  ResponseEntity<>(personneResponse, HttpStatus.OK);
+            }
+            case "Professeur":{
+                Professeur professeur =(Professeur) personneService.findById(id,type);
+                PersonneResponse personneResponse = conversionService.convert(professeur, PersonneResponse.class);
+                personneResponse.setType("Professeur");
+                return new  ResponseEntity<>(personneResponse, HttpStatus.OK);
+            }
+            default: return null;
+        }
 
     }
 }
