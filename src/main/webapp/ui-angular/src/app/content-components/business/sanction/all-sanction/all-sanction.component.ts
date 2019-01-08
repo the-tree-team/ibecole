@@ -5,6 +5,10 @@ import {Sanction} from "../../../../../model/business/model.sanction";
 import {UtilStatic} from "../../../../../services/UtilStatic";
 import {AddSanctionComponent} from "../add-sanction/add-sanction.component";
 import {EditSanctionComponent} from "../edit-sanction/edit-sanction.component";
+import {User} from "../../../../../model/admin/user";
+import {UserService} from "../../../../../services/admin/user.service";
+import {AuthenticationService} from "../../../../../services/admin/authentication.service";
+import {Subscription} from "rxjs/index";
 
 @Component({
   selector: 'app-all-sanction',
@@ -18,12 +22,18 @@ export class AllSanctionComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  currentUser: User;
+  currentUserSubscription: Subscription;
 
   constructor(private sanctionService: SanctionService,
               public addDialog: MatDialog,
               public editDialog: MatDialog,
+              private authenticationService: AuthenticationService,
+              private userService: UserService,
               public snackBar: MatSnackBar) {
+    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;
+    });
     this.sanctionService.getSanctions().subscribe((results: any) =>{
         console.log("SUBSCRIBE============");
         console.log(results);

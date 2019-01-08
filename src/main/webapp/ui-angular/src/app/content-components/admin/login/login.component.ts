@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../../../../services/admin/authentication.service';
  import {LoginRequest} from "../../../../model/admin/loginRequest";
+ import {AlertService} from "../../../../services/admin/alert.service";
 
 
 @Component({
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private loginRequest : LoginRequest,
+    private alertService: AlertService
 
   ) { }
 
@@ -37,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['home'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['personne'] || '/';
   }
 
   // convenience getter for easy access to form fields
@@ -59,11 +61,10 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/' +
-          '']);
+          this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.error =   "Username ou Password Incorrect !!!!!";
+          this.alertService.error(error);
           this.loading = false;
         });
   }

@@ -10,6 +10,7 @@ import {AuthGuard} from "../guards/auth.guard";
 import {ShowPersonneComponent} from "./content-components/business/personne/show-personne/show-personne.component";
 
 export const routes : Routes = [
+  // { path: 'sanction', component: AllSanctionComponent , canActivate: [AuthGuard]},
   { path: 'typesanction', component: AllTypeSanctionComponent ,
     canActivate: [AuthGuard]},
   { path: 'login',        component: LoginComponent  },
