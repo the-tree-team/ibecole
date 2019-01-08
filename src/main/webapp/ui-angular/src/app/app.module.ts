@@ -49,6 +49,9 @@ import {AddMatieresDialogComponent} from "./content-components/business/personne
 import {SelectedEnfantsComponent} from "./content-components/business/personne/add-personne/include/add-enfants/selected-enfants/selected-enfants.component";
 import {SelectedMatieresComponent} from "./content-components/business/personne/add-personne/include/add-matieres/selected-matieres/selected-matieres.component";
 import { ShowPersonneComponent } from './content-components/business/personne/show-personne/show-personne.component';
+import { AddNiveauComponent } from './content-components/business/niveau/add-niveau/add-niveau.component';
+import { ShowNiveauComponent } from './content-components/business/niveau/show-niveau/show-niveau.component';
+import { EditNiveauComponent } from './content-components/business/niveau/edit-niveau/edit-niveau.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,10 @@ import { ShowPersonneComponent } from './content-components/business/personne/sh
     AddMatieresDialogComponent,
     SelectedEnfantsComponent,
     SelectedMatieresComponent,
-    ShowPersonneComponent
+    ShowPersonneComponent,
+    AddNiveauComponent,
+    ShowNiveauComponent,
+    EditNiveauComponent
   ],
   imports: [
     BrowserModule,
