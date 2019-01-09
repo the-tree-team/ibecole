@@ -48,9 +48,12 @@
       </div>
       <!--*ngIf="affiche"-->
       <div class="right-toolbar" >
+
+          <button mat-menu-item routerLink="register"> <mat-icon color="primary">more_vert</mat-icon>Register</button>
+
         <button mat-flat-button [matMenuTriggerFor]="menu" color="primary"><mat-icon>add</mat-icon></button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="addpersonne"><mat-icon color="primary">person</mat-icon>Personne</button>
+          <button mat-menu-item routerLink="personne"><mat-icon color="primary">person</mat-icon>Personne</button>
           <button mat-menu-item><mat-icon color="primary">group</mat-icon>Groupe</button>
           <button mat-menu-item><mat-icon color="primary">school</mat-icon>Formation</button>
         </mat-menu>

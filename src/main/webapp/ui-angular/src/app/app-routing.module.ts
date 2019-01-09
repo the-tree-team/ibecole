@@ -24,7 +24,7 @@ export const routes : Routes = [
   { path: 'showpersonne/:type/:id', component: ShowPersonneComponent,
           canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent},
-  { path: '', redirectTo: '/', pathMatch: 'full',
+  { path: '', redirectTo: '/login', pathMatch: 'full',
     canActivate: [AuthGuard] }
 ];
 @NgModule({
