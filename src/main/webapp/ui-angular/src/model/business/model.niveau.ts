@@ -1,5 +1,5 @@
 
-export class TypeSanction{
+export class Niveau{
   id:number = null;
   code:string;
   libelle:string;

@@ -108,7 +108,7 @@ import { EditNiveauComponent } from './content-components/business/niveau/edit-n
   ],
   providers: [AuthenticationService, LoginRequest, SigneUpRequest, Role,User],
   bootstrap: [AppComponent],
-  entryComponents: [ AddTypeSanctionComponent,
+  entryComponents: [ AddTypeSanctionComponent, AddNiveauComponent, EditNiveauComponent,
     EditTypeSanctionComponent,
     AddSanctionComponent,
     EditSanctionComponent,

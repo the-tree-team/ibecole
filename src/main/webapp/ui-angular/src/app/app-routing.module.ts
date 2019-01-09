@@ -8,6 +8,7 @@ import {AddPersonneComponent} from "./content-components/business/personne/add-p
 import {RegisterComponent} from "./content-components/admin/register/register.component";
 import {AuthGuard} from "../guards/auth.guard";
 import {ShowPersonneComponent} from "./content-components/business/personne/show-personne/show-personne.component";
+import {ShowNiveauComponent} from "./content-components/business/niveau/show-niveau/show-niveau.component";
 
 export const routes : Routes = [
   // { path: 'sanction', component: AllSanctionComponent , canActivate: [AuthGuard]},
@@ -15,6 +16,8 @@ export const routes : Routes = [
     canActivate: [AuthGuard]},
   { path: 'login',        component: LoginComponent  },
   { path: 'sanction', component: AllSanctionComponent ,
+    canActivate: [AuthGuard]},
+  { path: 'niveau', component: ShowNiveauComponent ,
     canActivate: [AuthGuard]},
   { path: 'personne', component: AddPersonneComponent,
           canActivate: [AuthGuard]},
