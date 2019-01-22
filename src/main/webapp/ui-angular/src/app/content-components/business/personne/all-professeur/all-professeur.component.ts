@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { PersonneService } from 'src/services/business/personne.service';
 import { Router } from '@angular/router';
+import { UtilStatic } from 'src/services/UtilStatic';
 
 @Component({
   selector: 'app-all-professeur',
@@ -13,6 +14,7 @@ export class AllProfesseurComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nom', 'naissance', 'sexe', 'telephone', 'actions'];
   elevelist = null;
   dataSource: MatTableDataSource<any>;
+  typePersonne = "Professeur";
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -56,5 +58,33 @@ export class AllProfesseurComponent implements OnInit {
   goToAddPersonne() {
     this.router.navigate(['/personne']);
   }
+  
+  goToShowPersonne(id,type) {
+    this.router.navigate(['/showpersonne', this.typePersonne, id ]);
+  }
+  
+  deletePersonne(eleveToDelete){
+    const confirm = window.confirm('Êtes-vous sûr de bien vouloir supprimer cette entité ?');
+    if ( confirm === true) {
+      this.personneService.deletePersonne(eleveToDelete.id, this.typePersonne)
+        .subscribe( () => {
+            console.log(this.dataSource.data);
+            this.elevelist = this.dataSource.data;
+            this.elevelist=UtilStatic.arrayDeleteItem(this.elevelist, eleveToDelete);
 
+            this.refresh();
+          },
+          err => {
+            console.log('ERROR DELETE');
+            alert('ERROR !');
+          });
+    }
+    
+  }
+
+  refresh(){
+    this.dataSource = new MatTableDataSource<any>(this.elevelist);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 }

@@ -23,7 +23,8 @@ import {
   MatSnackBarModule,
   MatSortModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 import {MainNavComponent} from './ui-components/main-nav/main-nav.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -108,6 +109,7 @@ import { AllProfesseurComponent } from './content-components/business/personne/a
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule

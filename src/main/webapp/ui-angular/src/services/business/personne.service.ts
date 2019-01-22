@@ -78,4 +78,8 @@ export class PersonneService {
     let url= `${UtilStatic.API_SOURCE}personne/v1/getpersonne/${id}/${type}`;
     return this.http.get<any>( url,{observe: 'response'});
   }
+
+  deletePersonne(id: number, type: String){
+    return this.http.delete(`${UtilStatic.API_SOURCE}personne/v1/${id}/${type}`);
+  }
 }
