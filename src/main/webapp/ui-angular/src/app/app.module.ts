@@ -52,6 +52,9 @@ import { ShowPersonneComponent } from './content-components/business/personne/sh
 import { AddNiveauComponent } from './content-components/business/niveau/add-niveau/add-niveau.component';
 import { ShowNiveauComponent } from './content-components/business/niveau/show-niveau/show-niveau.component';
 import { EditNiveauComponent } from './content-components/business/niveau/edit-niveau/edit-niveau.component';
+import { AllEleveComponent } from './content-components/business/personne/all-eleve/all-eleve.component';
+import { AllParentComponent } from './content-components/business/personne/all-parent/all-parent.component';
+import { AllProfesseurComponent } from './content-components/business/personne/all-professeur/all-professeur.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,10 @@ import { EditNiveauComponent } from './content-components/business/niveau/edit-n
     ShowPersonneComponent,
     AddNiveauComponent,
     ShowNiveauComponent,
-    EditNiveauComponent
+    EditNiveauComponent,
+    AllEleveComponent,
+    AllParentComponent,
+    AllProfesseurComponent
   ],
   imports: [
     BrowserModule,
