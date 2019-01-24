@@ -1,11 +1,12 @@
-<div class="alert alert-info">
+<!--<div class="alert alert-info">
 
-</div>
-<h2>Login</h2>
+</div>-->
+
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
 
   <div mat-dialog-content class="col-md-6 offset-3">
+    <h2>Login</h2>
     <mat-form-field>
       <input matInput   formControlName="username" type="text" placeholder="Username"
              [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >

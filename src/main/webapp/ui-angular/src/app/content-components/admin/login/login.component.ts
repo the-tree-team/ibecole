@@ -53,8 +53,8 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loginRequest = new LoginRequest;
-    this.loginRequest.usernameOrEmail= this.username.value;
-    this.loginRequest.password= this.password.value;
+    this.loginRequest.usernameOrEmail= this.f.username.value;
+    this.loginRequest.password= this.f.password.value;
 
     this.loading = true;
     this.authenticationService.login(this.loginRequest)
@@ -69,10 +69,5 @@ export class LoginComponent implements OnInit {
         });
   }
 
-  get username(){
-    return this.loginForm.get('username');
-  }
-  get password(){
-    return this.loginForm.get('password');
-  }
+
 }

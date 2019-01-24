@@ -56,6 +56,7 @@ import { EditNiveauComponent } from './content-components/business/niveau/edit-n
 import { AllEleveComponent } from './content-components/business/personne/all-eleve/all-eleve.component';
 import { AllParentComponent } from './content-components/business/personne/all-parent/all-parent.component';
 import { AllProfesseurComponent } from './content-components/business/personne/all-professeur/all-professeur.component';
+import {SecondaryRoutingModule} from "./secondaryModule/secondary-routing.module";
 
 @NgModule({
   declarations: [
@@ -112,7 +113,9 @@ import { AllProfesseurComponent } from './content-components/business/personne/a
     MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SecondaryRoutingModule
+
   ],
   providers: [AuthenticationService, LoginRequest, SigneUpRequest, Role,User],
   bootstrap: [AppComponent],
