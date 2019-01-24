@@ -93,6 +93,7 @@ public class PersonneService {
                 if(professeur != null)
                     professeur = professeurRepository.save(professeur);
                 //ICI QU'ON PERSISTE LA LISTE DES MATIERES EN RELATION AVEC LE PROFESSEUR
+                if(personneRequest.getMatiereList()!=null)
                 enseignerService.save(personneRequest.getMatiereList(),professeur);
                 return professeur;
             }

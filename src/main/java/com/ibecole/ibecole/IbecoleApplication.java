@@ -73,7 +73,7 @@ public class IbecoleApplication implements CommandLineRunner{
 		sanction.setType(typeSanction1);
 		sanctionService.save(sanction);
 
-		personneRequest.setType("Eleve");
+		personneRequest.setType("Professeur");
 		personneRequest.setNom("IDIRENE");
 		personneRequest.setPrenom("Mehdi");
 		personneRequest.setDateNaissance(LocalDate.now());
@@ -84,7 +84,7 @@ public class IbecoleApplication implements CommandLineRunner{
 		personneRequest.setActive(true);
 		personneRequest.setAdresse("Bab Ezzouar");
 
-		Eleve eleve = (Eleve) personneService.save(personneRequest);
+		Professeur eleve = (Professeur) personneService.save(personneRequest);
 
 		AbsenceRequest absenceRequest = new AbsenceRequest();
 

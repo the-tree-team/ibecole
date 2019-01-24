@@ -148,4 +148,13 @@ public class PersonneRest {
         }
 
     }
+
+    //Delete Personne
+    @RequestMapping(path="/{personneid}/{type}", method= RequestMethod.DELETE)
+    public ResponseEntity<Void> deletePersonne(
+    		@PathVariable("personneid") Integer personneId,
+            @PathVariable(value = "type") String type) {
+    	personneService.delete((personneId), type);
+    	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
