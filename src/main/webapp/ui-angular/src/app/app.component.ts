@@ -9,19 +9,19 @@ import {User} from "../model/admin/user";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ui-angular';
+  title = 'IBECOlE';
   currentUser: User;
   loggedin: Boolean;
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-    // if (this.authenticationService.currentUserValue) {
-    //   this.loggedin=  true;
-    // }else {
-    //   this.loggedin=false;
-    // }
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    if (this.authenticationService.currentUserValue) {
+      this.loggedin=  true;
+    }else {
+      this.loggedin=false;
+    }
+
   }
 
   logout() {

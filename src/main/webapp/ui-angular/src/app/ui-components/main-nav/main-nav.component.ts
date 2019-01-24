@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {AuthenticationService} from "../../../services/admin/authentication.service";
 import {OnInit} from "@angular/core";
+import {User} from "../../../model/admin/user";
 
 @Component({
   selector: 'app-main-nav',
@@ -11,7 +12,7 @@ import {OnInit} from "@angular/core";
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent implements OnInit {
-  affiche:boolean;
+  currentUser: User;
   isHandset$:Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -19,12 +20,15 @@ export class MainNavComponent implements OnInit {
 
   constructor(private breakpointObserver:BreakpointObserver,
               private authenticationService:AuthenticationService) {
-
+             this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
+
+
+
 
   ngOnInit() {
 
-      this.affiche = this.authenticationService.afficherNavBar();
+
      }
 
 

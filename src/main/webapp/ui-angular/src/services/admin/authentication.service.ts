@@ -19,29 +19,17 @@ export class AuthenticationService {
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
-  public  afficherNavBar(): boolean {
-    if (localStorage.getItem('currentUser')===null)
-    {
-      console.log("localStorage.getItem('currentUser')++++++++++ "+localStorage.getItem('currentUser'));
-      return false;
-    }
-    else{ console.log("localStorage.getItem('currentUser ============ ') "+localStorage.getItem('currentUser'));
-      return true};
-  }
-
-
-
 
   login(loginRequest :LoginRequest ) {
     return this.http.post<any>(UtilStatic.API_SOURCE+"api/auth/signin", loginRequest)
 
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
-        // if (user && user.token) {
-        if (JSON.stringify(user)) {
+        if (user && user.accessToken) {
+        // if (JSON.stringify(user)) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-          console.log(" user"+user.accessToken+" == = = = = = "+JSON.stringify(user) );
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          console.log(" user " +user.accessToken+" == = = = = = "+JSON.stringify(user) );
           this.currentUserSubject.next(user);
         }
 

@@ -7,6 +7,10 @@ import {NiveauService} from "../../../../../services/business/niveau.service";
 import {Niveau} from "../../../../../model/business/model.niveau";
 import {AddNiveauComponent} from "../add-niveau/add-niveau.component";
 import {EditNiveauComponent} from "../edit-niveau/edit-niveau.component";
+import {AuthenticationService} from "../../../../../services/admin/authentication.service";
+import {UserService} from "../../../../../services/admin/user.service";
+import {User} from "../../../../../model/admin/user";
+import {Subscription} from "rxjs/index";
 
 @Component({
   selector: 'app-show-niveau',
@@ -22,12 +26,19 @@ export class ShowNiveauComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  currentUserSubscription: Subscription;
+  users: User[] = [];
+  currentUser: User;
 
   constructor(private niveauService: NiveauService,
               public addDialog: MatDialog,
               public editDialog: MatDialog,
-              public snackBar: MatSnackBar) {
+              public snackBar: MatSnackBar,
+              private authenticationService: AuthenticationService,
+              private userService: UserService) {
     console.log("CONSTRUCT--------");
+    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;});
     this.niveauService.getNiveau().subscribe((results: any) =>{
         console.log("SUBSCRIBE============");
         this.dataSource = new MatTableDataSource(results.body.content);
@@ -52,7 +63,10 @@ export class ShowNiveauComponent implements OnInit {
     );
   }
 
-
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.currentUserSubscription.unsubscribe();
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

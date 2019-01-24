@@ -2,6 +2,10 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Niveau} from "../../../../../model/business/model.niveau";
+import {AuthenticationService} from "../../../../../services/admin/authentication.service";
+import {UserService} from "../../../../../services/admin/user.service";
+import {User} from "../../../../../model/admin/user";
+import {Subscription} from "rxjs/index";
 @Component({
   selector: 'app-add-niveau',
   templateUrl: './add-niveau.component.html',
@@ -10,6 +14,7 @@ import {Niveau} from "../../../../../model/business/model.niveau";
 export class AddNiveauComponent implements OnInit {
 
   addForm: FormGroup;
+  currentUser: User;
 
   constructor( public dialogRef: MatDialogRef<AddNiveauComponent>,
                @Inject(MAT_DIALOG_DATA) public niveau: Niveau,

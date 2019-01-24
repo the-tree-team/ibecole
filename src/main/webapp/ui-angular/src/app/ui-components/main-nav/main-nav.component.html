@@ -5,7 +5,7 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="!(isHandset$ | async)"
-  >
+               *ngIf="currentUser" >
     <mat-toolbar>
       <span>Menu</span>
     </mat-toolbar>
@@ -35,19 +35,18 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <!--*ngIf="affiche"-->
-    <mat-toolbar   color="accent" >
+    <mat-toolbar   color="accent" *ngIf="currentUser" >
       <div class="left-toolbar" >
         <button
           type="button"
           aria-label="Toggle sidenav"
           mat-icon-button
-          (click)="drawer.toggle()"
-        >
+          (click)="drawer.toggle()" >
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
       </div>
       <!--*ngIf="affiche"-->
-      <div class="right-toolbar" >
+      <div class="right-toolbar" *ngIf="currentUser" >
 
           <button mat-menu-item routerLink="register"> <mat-icon color="primary">more_vert</mat-icon>Register</button>
 
