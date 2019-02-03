@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams[this.returnUrl] || '/niveau';
+    this.returnUrl = this.route.snapshot.queryParams[this.returnUrl] || '/register';
   }
 
   // convenience getter for easy access to form fields

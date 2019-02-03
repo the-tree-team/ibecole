@@ -34,9 +34,9 @@ export class RegisterComponent implements OnInit {
 
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
+    /*if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
-    }
+    }*/
   }
 
   ngOnInit() {
@@ -68,17 +68,12 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
 
     this.signeUpRequest = new SigneUpRequest;
-    this.signeUpRequest.username= this.username.value;
-    this.signeUpRequest.password= this.password.value;
-    this.signeUpRequest.name= this.name.value;
-    this.signeUpRequest.email= this.email.value;
-    // this.user = new User;
-    // this.user.username= this.username.value;
-    // this.user.password= this.password.value;
-    // this.user.name= this.name.value;
-    // this.user.email= this.email.value;
-    this.signeUpRequest.roles= this.roles.value;
-    console.log(this.roles.value)
+    this.signeUpRequest.username= this.f.username.value;
+    this.signeUpRequest.password= this.f.password.value;
+    this.signeUpRequest.name= this.f.name.value;
+    this.signeUpRequest.email= this.f.email.value;
+    this.signeUpRequest.roles= this.f.roles.value;
+    console.log(this.f.roles.value)
     this.userService.register(this.signeUpRequest)
       .pipe(first())
       .subscribe(
@@ -91,19 +86,6 @@ export class RegisterComponent implements OnInit {
           this.loading = false;
         });
   }
-  get username(){
-    return this.registerForm.get('username');
-  }  get name(){
-    return this.registerForm.get('name');
-  }
-  get password(){
-    return this.registerForm.get('password');
-  }
-  get email(){
-    return this.registerForm.get('email');
-  }
-  get roles(){
-    return this.registerForm.get('roles');
-  }
+
 
 }

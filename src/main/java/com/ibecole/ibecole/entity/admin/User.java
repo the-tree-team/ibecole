@@ -3,17 +3,19 @@ package com.ibecole.ibecole.entity.admin;
 
 import com.ibecole.ibecole.commun.StaticUtil;
 import com.ibecole.ibecole.entity.admin.audit.DateAudit;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by rajeevkumarsingh on 01/08/17.
@@ -57,9 +59,9 @@ public class User extends DateAudit {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles", schema = StaticUtil.SCH_ADMIN,
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "join_user_roles", schema = StaticUtil.SCH_ADMIN,
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles = new ArrayList();
 
 

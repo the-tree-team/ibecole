@@ -1,8 +1,6 @@
 package com.ibecole.ibecole.entity.admin;
 import com.ibecole.ibecole.commun.StaticUtil;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;

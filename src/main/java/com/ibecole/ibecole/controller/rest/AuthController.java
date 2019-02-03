@@ -28,6 +28,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.net.URI;
 import java.util.*;
 import java.util.stream.Collector;
@@ -73,10 +74,15 @@ public class AuthController {
                 "allaoua@gmail.com", passwordEncoder.encode("allaoua"));
 
 
+
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
-
-//        user.setRoles(Collections.singleton(userRole));
+        Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                .orElseThrow(() -> new AppException("User Role not set."));
+        List roles= new ArrayList();
+        roles.add(adminRole);
+        roles.add(userRole);
+        user.setRoles(roles);
 
         User result = userRepository.save(user);
         }
