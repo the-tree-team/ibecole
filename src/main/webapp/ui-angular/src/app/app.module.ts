@@ -81,7 +81,7 @@ import {SecondaryRoutingModule} from "./secondaryModule/secondary-routing.module
     EditNiveauComponent,
     AllEleveComponent,
     AllParentComponent,
-    AllProfesseurComponent   
+    AllProfesseurComponent
   ],
   imports: [
     BrowserModule,
