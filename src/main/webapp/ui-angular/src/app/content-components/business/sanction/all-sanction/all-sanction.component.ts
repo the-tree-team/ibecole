@@ -9,13 +9,14 @@ import {User} from "../../../../../model/admin/user";
 import {UserService} from "../../../../../services/admin/user.service";
 import {AuthenticationService} from "../../../../../services/admin/authentication.service";
 import {Subscription} from "rxjs/index";
+import {OnDestroy} from "@angular/core";
 
 @Component({
   selector: 'app-all-sanction',
   templateUrl: './all-sanction.component.html',
   styleUrls: ['./all-sanction.component.css']
 })
-export class AllSanctionComponent implements OnInit {
+export class AllSanctionComponent implements OnInit,OnDestroy {
   displayedColumns: string[] = ['id', 'motif', 'commentaire','type','add'];
   sanctions = null;
   dataSource: MatTableDataSource<any>;
@@ -58,7 +59,10 @@ export class AllSanctionComponent implements OnInit {
     );
 
   }
-
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.currentUserSubscription.unsubscribe();
+  }
   ngOnInit() {
   }
 
